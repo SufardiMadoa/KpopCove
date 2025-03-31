@@ -16,16 +16,11 @@ class RoleMiddleware
      * @param  string  ...$roles
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle($request, Closure $next, $role)
     {
-        $user = Auth::user();
-
-        // Memeriksa apakah user memiliki salah satu role yang diperbolehkan
-        if ($user && in_array($user->role, $roles)) {
-            return $next($request);
+        if (auth()->user()->role !== $role) {
+            abort(403);
         }
-
-        // Jika role tidak sesuai, redirect ke halaman yang sesuai
-        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        return $next($request);
     }
 }

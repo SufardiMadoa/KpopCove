@@ -55,7 +55,7 @@ Route::view('/contact-us', 'pages.users.kontak')->name('contact_us');
 Route::view('/about', 'pages.users.about_us')->name('about');
 
 // Dashboard untuk Admin
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminProfileController::class, 'viewProfile'])->name('admin.profile');
     Route::put('/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.update');
 
