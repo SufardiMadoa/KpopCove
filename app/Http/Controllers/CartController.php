@@ -49,10 +49,10 @@ class CartController extends Controller
 
         $cart = Cart::where('user_id', $userId)->with('cartItems.product')->first();
         if (!$cart) {
-            return view('cart', ['cartItems' => collect()]);
+            return view('pages.users.cart', ['cartItems' => collect()]);
         }
 
-        return view('cart', ['cartItems' => $cart->cartItems]);
+        return view('pages.users.cart', ['cartItems' => $cart->cartItems]);
     }
 
     // Fungsi untuk melihat isi cart
@@ -89,16 +89,17 @@ class CartController extends Controller
             return response()->json(['message' => 'Product not found in cart'], 404);
         }
     }
+
     public function updateQuantity(Request $request, $itemId)
     {
         $item = CartItem::find($itemId);
-        
+
         if (!$item) {
             return response()->json(['message' => 'Item not found'], 404);
         }
 
         $newQuantity = $request->input('quantity');
-        
+
         // Update quantity
         $item->quantity = $newQuantity;
         $item->save();
@@ -106,5 +107,3 @@ class CartController extends Controller
         return response()->json(['success' => true]);
     }
 }
-
-

@@ -25,7 +25,7 @@ class TransaksiController extends Controller
             $transaksi->products = Product::whereIn('id', $productIds)->get();
         }
 
-        return view('riwayat', compact('transaksiList'));
+        return view('pages.users.riwayat', compact('transaksiList'));
     }
 
     public function showPesanan()
@@ -36,7 +36,7 @@ class TransaksiController extends Controller
             ->whereIn('status', ['pending', 'dikemas', 'dikirim'])
             ->get();
 
-        return view('pesanan', compact('transaksiList'));
+        return view('pages.users.pesanan', compact('transaksiList'));
     }
 
     public function updateStatusByUser(Request $request, $id)
@@ -53,7 +53,7 @@ class TransaksiController extends Controller
             return redirect()->route('pesanan')->with('success', 'Pesanan telah diterima.');
         }
 
-        return redirect()->route('pesanan')->with('error', 'Status pesanan tidak valid.');
+        return redirect()->route('pages.users.pesanan')->with('error', 'Status pesanan tidak valid.');
     }
 
     public function showAll()
