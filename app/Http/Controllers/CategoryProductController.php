@@ -25,7 +25,7 @@ class CategoryProductController extends Controller
 
     public function create()
     {
-        return view('dashboard.kategori.add');
+        return view('pages.admin.kategori.add');
     }
 
     public function store(Request $request)
@@ -61,7 +61,7 @@ class CategoryProductController extends Controller
     public function edit($id)
     {
         $category = CategoryProduct::findOrFail($id);
-        return view('dashboard.kategori.update', compact('category'));
+        return view('pages.admin.kategori.update', compact('category'));
     }
 
     public function update(Request $request, $id)

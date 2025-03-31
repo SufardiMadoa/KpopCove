@@ -1,7 +1,7 @@
 @extends('layouts.dashboard-layout')
 
 @section('content')
-    <div class="container mx-auto pt-24 px-400">
+    <div class="container mx-auto pt-24 ">
 
         <form class="bg-white p-6 rounded-lg shadow-md" action="{{ route('products.store') }}" method="POST"
             enctype="multipart/form-data">

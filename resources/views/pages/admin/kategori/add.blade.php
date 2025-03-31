@@ -23,6 +23,8 @@
                     placeholder="Deskripsi kategori (opsional)"></textarea>
             </div>
 
+
+
             <!-- Gambar Kategori -->
             <div class="mb-5">
                 <label for="path_img" class="block text-gray-700 font-semibold mb-2">Gambar Kategori</label>

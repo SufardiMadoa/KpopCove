@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
 
-        return view('pages.admin.produk.product', [
+        return view('pages.admin.produk.index', [
             'title'    => 'Daftar Produk',
             'products' => $products
         ]);
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $categories = CategoryProduct::all();
 
-        return view('dashboard.produk.add', compact('categories'));
+        return view('pages.admin.produk.add', compact('categories'));
     }
 
     public function store(Request $request)
@@ -92,7 +92,7 @@ class ProductController extends Controller
         $product    = Product::findOrFail($id);
         $categories = CategoryProduct::all();
 
-        return view('dashboard.produk.update', compact('product', 'categories'));
+        return view('pages.admin.produk.update', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)

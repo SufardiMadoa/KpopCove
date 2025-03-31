@@ -1,11 +1,13 @@
 <div
-    class="cursor-pointer hover:bg-slate-900 hover:text-slate-50 duration-500 text-gray-800 transition-all group relative bg-white shadow-md rounded-lg overflow-hidden w-full">
-    <a href="{{ $path }}">
-        <img src="{{ $image }}" alt="Cleanser" loading="lazy"
-            class="w-full h-56 object-cover transition-transform duration-500 transform group-hover:scale-105">
-        <div class="p-4 px-6">
-            <h3 class="text-2xl font-bold mb-2">{{ $title }}</h3>
-            <p class="">{{ $desc }}</p>
-        </div>
-    </a>
+    class="flex flex-col md:flex-row-reverse h-60 overflow-hidden items-center gap-8 border border-linen px-5 rounded-md shadow-md">
+    <div class="relative w-full md:w-1/2 h-full {{ $isOdd ? 'order-1' : '' }}">
+        <img src="{{ $image }}" alt="Kemeja" class="w-full object-cover object-top h-full">
+    </div>
+    <div class="w-full md:w-1/2   {{ $isOdd ? 'text-end' : '' }}">
+        <h3 class="text-3xl font-bold text-gray-800">{{ $title }}</h3>
+        <p class="text-gray-600 my-2">{{ Str::words($desc, 20, '...') }}</p>
+        <a href="{{ $path }} "
+            class="text-slate-950 border border-slate-950 hover:bg-linen  px-5 py-2  shadow-md inline-block mt-5">Belanja
+            Sekarang →</a>
+    </div>
 </div>

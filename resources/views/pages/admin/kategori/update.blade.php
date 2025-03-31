@@ -15,10 +15,14 @@
                     class="mt-1 p-2 border border-gray-300 rounded w-full">
             </div>
 
+
+
             <div class="mb-4">
                 <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
                 <textarea name="deskripsi" id="deskripsi" rows="4" class="mt-1 p-2 border border-gray-300 rounded w-full">{{ $category->deskripsi }}</textarea>
             </div>
+
+
 
             <div class="mb-4">
                 <label for="path_img" class="block text-sm font-medium text-gray-700">Gambar Kategori</label>
