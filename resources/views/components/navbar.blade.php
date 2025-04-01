@@ -1,53 +1,63 @@
 <header
     class="flex top-0 justify-between items-center py-4 px-24 bg-white z-50 bg-gradient-to-r from-cream to-gray-100 w-full fixed font-jost">
     {{-- logo --}}
-    <div class="text-2xl text-slate-700">
-        <h1 class="font-semibold font-jost text-slate-950">TERRA SHOP</h1>
+    <div class="text-2xl font-semibold text-slate-700">
+        TERRA SHOP
     </div>
 
 
 
     {{-- menu --}}
-    <nav class="space-x-5
-            text-sm font-bold ">
+    <nav class="space-x-5 text-sm flex ">
         <a href="/"
-            class="text-gray-900 hover:text-white {{ Request::is('/') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 rounded"
-            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#20750b';"
+            class="text-gray-900 hover:text-white {{ Request::is('/') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 "
+            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='var(--color-slate-900)';"
             onmouseout="this.style.backgroundColor='';">Beranda</a>
 
         <a href="/shop"
-            class="text-gray-900 hover:text-white {{ Request::is('shop') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 rounded"
-            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#20750b';"
+            class="text-gray-900 hover:text-white {{ Request::is('shop') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 "
+            style="transition: background-color 0.3s;"
+            onmouseover="this.style.backgroundColor='var(--color-slate-900)';"
             onmouseout="this.style.backgroundColor='';">Toko</a>
 
         <a href="/kategori"
-            class="text-gray-900 hover:text-white {{ Request::is('kategori') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 rounded"
-            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#20750b';"
+            class="text-gray-900 hover:text-white {{ Request::is('kategori') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 "
+            style="transition: background-color 0.3s;"
+            onmouseover="this.style.backgroundColor='var(--color-slate-900)';"
             onmouseout="this.style.backgroundColor='';">Kategori</a>
 
         <a href="/about"
-            class="text-gray-900 hover:text-white {{ Request::is('about') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 rounded"
-            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#20750b';"
+            class="text-gray-900 hover:text-white {{ Request::is('about') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 "
+            style="transition: background-color 0.3s;"
+            onmouseover="this.style.backgroundColor='var(--color-slate-900)';"
             onmouseout="this.style.backgroundColor='';">Tentang Kami</a>
 
         <a href="/contact-us"
-            class="text-gray-900 hover:text-white {{ Request::is('contact-us') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 rounded"
-            style="transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#20750b';"
+            class="text-gray-900 hover:text-white {{ Request::is('contact-us') ? 'bg-slate-900 text-white' : '' }} px-4 py-2 "
+            style="transition: background-color 0.3s;"
+            onmouseover="this.style.backgroundColor='var(--color-slate-900)';"
             onmouseout="this.style.backgroundColor='';">Kontak</a>
+        <div x-data="{ open: false }" class="relative">
+            <button @click="open = !open"
+                class=" flex justify-center items-center h-full w-full cursor-pointer hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 16 16" fill="none" stroke="#000000"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"
+                    id="Search--Streamline-Feather" height="16" width="16">
+                    <desc>Search Streamline Icon: https://streamlinehq.com</desc>
+                    <path d="M1.875 6.875a5 5 0 1 0 10 0 5 5 0 1 0 -10 0" stroke-width="1"></path>
+                    <path d="m13.125 13.125 -2.71875 -2.71875" stroke-width="1"></path>
+                </svg>
+            </button>
+
+            <!-- Search Form -->
+            <div x-show="open" x-transition class="absolute top-10 right-0 bg-white shadow-md p-2 rounded-md">
+                <input type="text" placeholder="Cari..."
+                    class="border p-2 rounded-md focus:outline-none focus:ring focus:ring-green-500">
+            </div>
+        </div>
 
     </nav>
-    <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open"
-            class="text-gray-900 hover:text-white px-3 py-2 rounded transition duration-300 hover:bg-green-700">
-            🔍
-        </button>
 
-        <!-- Search Form -->
-        <div x-show="open" x-transition class="absolute top-10 right-0 bg-white shadow-md p-2 rounded-md">
-            <input type="text" placeholder="Cari..."
-                class="border p-2 rounded-md focus:outline-none focus:ring focus:ring-green-500">
-        </div>
-    </div>
 
 
     {{-- auth --}}
@@ -158,8 +168,7 @@
                                             <path d="M9.375 11.875a1.25 1.25 0 1 0 2.5 0 1.25 1.25 0 1 0 -2.5 0"
                                                 stroke-width="1"></path>
                                             <path d="M10.625 10.625H3.75V1.875H2.5" stroke-width="1"></path>
-                                            <path d="m3.75 3.125 8.75 0.625 -0.625 4.375H3.75" stroke-width="1">
-                                            </path>
+                                            <path d="m3.75 3.125 8.75 0.625 -0.625 4.375H3.75" stroke-width="1"></path>
                                         </svg>
                                         <p class="text-gray-700">Keranjang</p>
                                     </div>
@@ -195,8 +204,8 @@
     @else
         {{-- Jika pengguna belum login --}}
         <div class="space-x-2">
-            <a href="/login" class="text-gray-900 hover:text-black">Log In</a>
-            <a href="/signup" class="bg-slate-900 text-white py-2 px-4 rounded-lg hover:bg-green-800">Sign Up</a>
+            <a href="/login" class="text-gray-900 hover:text-black">Login</a>
+            <a href="/signup" class="border  py-1 px-4 -lg text-slate-950 ">Register</a>
         </div>
     @endif
 </header>
