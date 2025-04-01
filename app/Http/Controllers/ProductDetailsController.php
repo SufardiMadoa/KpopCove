@@ -16,6 +16,6 @@ class ProductDetailsController extends Controller
             abort(404, 'Product not found');
         }
 
-        return view('product', compact('product'));
+        return view('pages.users.product_detail', compact('product'));
     }
 }

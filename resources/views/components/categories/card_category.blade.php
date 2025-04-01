@@ -10,4 +10,5 @@
             class="text-slate-950 border border-slate-950 hover:bg-linen  px-5 py-2  shadow-md inline-block mt-5">Belanja
             Sekarang →</a>
     </div>
+
 </div>

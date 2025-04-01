@@ -11,14 +11,12 @@
         <!-- Product List -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
             <!-- Product 1 -->
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
-                class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
-                class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
-                class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
-                class="custom-class" />
+            @foreach ($products as $index => $product)
+                <x-shop.card_product :path="route('product.show', $product->id)" title="{{ $product->nama }}" price="{{ $product->harga }}"
+                    image="{{ $product->path_img }}" class="custom-class" />
+            @endforeach
+
+
         </div>
     </section>
 @endsection
