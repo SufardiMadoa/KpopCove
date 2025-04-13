@@ -162,12 +162,10 @@
             document.getElementById('payment-modal').classList.add('hidden');
         }
 
-
         function isUserLoggedIn() {
             return {{ auth()->check() ? 'true' : 'false' }};
         }
 
-        // Add to Cart
         document.getElementById('add-to-cart').addEventListener('click', function() {
             if (!isUserLoggedIn()) {
                 window.location.href = "{{ route('login') }}";

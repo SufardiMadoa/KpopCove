@@ -5,10 +5,9 @@
 @section('title', 'Daftar Transaksi')
 
 @section('content')
-    <div class="p-6 bg-gray-50 min-h-screen px-32">
+    <div class="p-6 bg-gray-50 min-h-screen ">
         <h2 class="text-2xl font-semibold mb-6">Daftar Transaksi Anda</h2>
 
-        <!-- Looping untuk menampilkan setiap transaksi -->
         @foreach ($transaksiList as $transaksi)
             <div class="bg-white p-6 rounded-lg shadow-md mb-4">
                 <div class="flex justify-between items-center mb-2">
