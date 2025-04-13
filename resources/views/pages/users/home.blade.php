@@ -40,6 +40,25 @@
     </section>
 
     <section>
+
+
+        <!-- Product Section -->
+        <div class=" mx-auto py-10 ">
+            <div class="relative w-full bg-linen h-96  flex items-center justify-between">
+                <img src="{{ asset('images/banner.png') }}" alt=""
+                    class="w-[70%] h-full object-cover object-[30%_0%]  -translate-x-10">
+                <div class="pr-10">
+                    <h1 class="text-3xl font-bold">ACTIVE WEAR</h1>
+                    <p class="text-gray-700 mt-2">New collection now available online and in stores. Comes in a variety of
+                        colors, fabrics, and styles.</p>
+                    <a href="#" class="mt-4 inline-block bg-black text-white px-4 py-2">SHOP NOW →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
         <div class=" mx-auto py-10 ">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-semibold">CATEGORIES</h2>
@@ -81,128 +100,7 @@
             </div>
         </div>
     </section>
-    <section>
 
-
-        <!-- Product Section -->
-        <div class=" mx-auto py-10 ">
-            <div class="relative w-full bg-linen h-96  flex items-center justify-between">
-                <img src="{{ asset('images/banner.png') }}" alt=""
-                    class="w-[70%] h-full object-cover object-[30%_0%]  -translate-x-10">
-                <div class="pr-10">
-                    <h1 class="text-3xl font-bold">ACTIVE WEAR</h1>
-                    <p class="text-gray-700 mt-2">New collection now available online and in stores. Comes in a variety of
-                        colors, fabrics, and styles.</p>
-                    <a href="#" class="mt-4 inline-block bg-black text-white px-4 py-2">SHOP NOW →</a>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                <!-- Bestseller -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-4">BESTSELLER</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Leather Wallet">
-                            </div>
-                            <div>
-                                <p class="font-semibold">LEATHER WALLET</p>
-                                <p class="text-gray-600">$35.00</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Shoes Sport">
-                            </div>
-                            <div>
-                                <p class="font-semibold">SHOES SPORT</p>
-                                <p class="text-gray-600">$39.00</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Black Hoodie">
-                            </div>
-                            <div>
-                                <p class="font-semibold">BLACK HOODIE</p>
-                                <div class="flex gap-2">
-                                    <p class="text-gray-500 line-through">$120.00</p>
-                                    <p class="text-red-500">$108.00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Y4 White Jersey">
-                            </div>
-                            <div>
-                                <p class="font-semibold">Y4 WHITE JERSEY</p>
-                                <p class="text-gray-600">$29.00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Featured -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-4">FEATURED</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Shoes Sport">
-                            </div>
-                            <div>
-                                <p class="font-semibold">SHOES SPORT</p>
-                                <p class="text-gray-600">$39.00</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="B&W Sweatshirt">
-                            </div>
-                            <div>
-                                <p class="font-semibold">B&W SWEATSHIRT</p>
-                                <div class="flex gap-2">
-                                    <p class="text-gray-500 line-through">$65.00</p>
-                                    <p class="text-red-500">$55.25</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Sneakers">
-                            </div>
-                            <div>
-                                <p class="font-semibold">SNEAKERS</p>
-                                <p class="text-gray-600">$99.00</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-linen">
-                                <img src="{{ asset('images/banner.png') }}" class="w-16" alt="Black Hoodie">
-                            </div>
-                            <div>
-                                <p class="font-semibold">BLACK HOODIE</p>
-                                <div class="flex gap-2">
-                                    <p class="text-gray-500 line-through">$120.00</p>
-                                    <p class="text-red-500">$108.00</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-    <!-- Scroll to Top Button -->
 
 @endsection
 
