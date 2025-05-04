@@ -13,9 +13,11 @@ class Product extends Model
     protected $table      = 'produk';
     public $timestamps    = false;
     protected $primaryKey = 'id';
+    protected $foreignKey = 'id_artis';
 
     protected $fillable = [
-        'id',
+        'id_album',
+        'id_artis',
         'nama',
         'deskripsi',
         'harga',

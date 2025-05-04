@@ -3,12 +3,12 @@
 @section('content')
     <!-- Dashboard Header -->
     <div class="rounded-xl pt-20 w-full ">
-        <div class="flex justify-between items-center mb-4 p-4 text-slate-950 rounded-t-xl bg-linen ">
-            <h1 class="text-2xl font-bold">Kelola Semua Data Produk</h1>
+        <div class="flex justify-between items-center mb-4 p-4 text-slate-950 rounded-t-xl bg-[#F5F5F5] ">
+            <h1 class="text-2xl font-bold">Kelola Semua Data Album</h1>
             <a href="{{ route('products.create') }}">
                 <button
                     class="btn bg-white text-slate-900 hover:bg-gray-200 font-semibold px-4 py-2 rounded-lg shadow-md">Tambah
-                    Produk</button>
+                    Album</button>
             </a>
         </div>
         <div class="overflow-x-auto px-4">
@@ -44,14 +44,13 @@
             </div>
 
             <table class="table-auto w-full border-collapse rounded-xl overflow-hidden shadow-lg">
-                <thead class="bg-gray-200 text-gray-800 text-lg">
+                <thead class="bg-[#CDB4DB] text-white text-lg">
                     <tr>
                         <th class="py-4 px-6 text-left">No</th>
-                        <th class="py-4 px-6 text-left">Nama</th>
+                        <th class="py-4 px-6 text-left">Judul Album</th>
                         <th class="py-4 px-6 text-left">Deskripsi</th>
-                        <th class="py-4 px-6 text-left">Kategori</th>
                         <th class="py-4 px-6 text-left">Harga</th>
-                        <th class="py-4 px-6 text-left">Jumlah</th>
+                        <th class="py-4 px-6 text-left">Stok</th>
                         <th class="py-4 px-6 text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -61,20 +60,24 @@
                             <td class="py-4 px-6">{{ $index + 1 }}</td>
                             <td class="py-4 px-6 font-semibold">{{ $product->nama }}</td>
                             <td class="py-4 px-6">{{ Str::words($product->deskripsi, 5, '...') }}</td>
-                            <td class="py-4 px-6">{{ $product->category->nama ?? 'Tidak ada kategori' }}</td>
                             <td class="py-4 px-6">{{ number_format($product->harga, 0, ',', '.') }}</td>
                             <td class="py-4 px-6">{{ $product->jumlah }}</td>
                             <td class="py-4 px-6 text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <a href="{{ route('products.edit', $product->id) }}"
-                                        class="btn btn-warning p-2 rounded-lg">Edit</a>
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-error p-2 rounded-lg">Hapus</button>
-                                    </form>
-                                </div>
+                                
+<div class="flex justify-center space-x-2">
+    <a href="{{ route('products.edit', $product->id) }}"
+        class="btn btn-warning p-2 rounded-lg" title="Edit">
+        <i class="fas fa-edit"></i>
+    </a>
+    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+        onsubmit="return confirm('Apakah Anda yakin ingin menghapus barang ini?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-error p-2 rounded-lg" title="Hapus">
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
+</div>
                             </td>
                         </tr>
                     @endforeach

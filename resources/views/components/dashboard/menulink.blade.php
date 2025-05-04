@@ -1,15 +1,21 @@
 @props(['path', 'title'])
 
 @php
-    $isActive = request()->is(trim($path, '/'));
+    $isActive = request()->url() === url($path);
 @endphp
 
-<li>
-    <a href="{{ $path }}" 
-        class="flex items-center p-2 rounded-lg 
-            {{ $isActive ? 'bg-linen text-slate-900' : 'hover:bg-linen hover:text-slate-950' }} 
-            group">
+<li class="group">
+    <a href="{{ url($path) }}"
+       @class([
+           'flex items-center px-4 py-2 rounded-lg transition-colors',
+           'bg-[#A2D2FF] text-black stroke-white' => $isActive,
+           'hover:bg-[#A2D2FF] hover:text-black hover:stroke-white' => !$isActive,
+       ])
+    >
+        {{-- Slot untuk icon --}}
         {{ $slot }}
-        <span class="ms-3 text-lg text-slate-950 group-hover:text-yellow-700">{{ $title }}</span>
+
+        {{-- Label menu --}}
+        <span class="ms-3">{{ $title }}</span>
     </a>
 </li>
