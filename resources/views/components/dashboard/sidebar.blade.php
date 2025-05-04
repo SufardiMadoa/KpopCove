@@ -9,21 +9,20 @@
     </svg>
 </button>
 
-<aside id="default-sidebar font-jost"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-    aria-label="Sidebar">
+<aside id="default-sidebar" class="font-jost fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<nav role="navigation" aria-label="Main">
     <div class="h-full px-3 py-4 overflow-y-auto"
     >
 
 
-        <div class="bg-white pr-2 rounded-lg flex mt-2 justify-center items-center">
-            <div class="text-2xl text-slate-700">
-               <h1 class="font-jost text-2xl font-bold text-yellow-700">TERRA SHOP</h1>
-            </div>
-        </div>
+    <div class="text-center mb-4">
+  <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 font-sans">
+    KPop <span class="font-light">Cove</span>
+  </h1>
+</div>
         <ul class="space-y-2 font-medium mt-6 px-5">
             <x-dashboard.menulink path="/dashboard" title="Dashboard"><svg xmlns="http://www.w3.org/2000/svg"
-                    class="group-hover:stroke-[var(--color-yellow-700)] stroke-black" viewBox="-0.5 -0.5 16 16" fill="none"
+                    class="group-hover:stroke-[var(--color-[#A2D2FF])] stroke-black" viewBox="-0.5 -0.5 16 16" fill="none"
                     stroke-linecap="round" stroke-linejoin="round" id="Layout-Grid-Remove--Streamline-Tabler"
                     height="20" width="20">
                     <desc>Layout Grid Remove Streamline Icon: https://streamlinehq.com</desc>
@@ -39,7 +38,7 @@
                     <path d="M8.75 10.625h3.75" stroke-width="1"></path>
                 </svg></x-dashboard.menulink>
             <x-dashboard.menulink path="{{ route('admin.profile') }}" title="Profile">
-            <svg class="group-hover:stroke-[var(--color-yellow-700)]  stroke-black" xmlns="http://www.w3.org/2000/svg"
+            <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" height="20" width="20">
                 <path d="M12 20h9" />
@@ -47,7 +46,7 @@
             </svg>
             </x-dashboard.menulink>
             <x-dashboard.menulink path="{{ route('dashboard.products') }}" title="Produk">
-                <svg class="group-hover:stroke-[var(--color-yellow-700)]  stroke-black" xmlns="http://www.w3.org/2000/svg"
+                <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     id="List-Details--Streamline-Tabler" height="20" width="20">
                     <desc>List Details Streamline Icon: https://streamlinehq.com</desc>
@@ -64,7 +63,7 @@
                 </svg>
             </x-dashboard.menulink>
             <x-dashboard.menulink path="{{ route('dashboard.kategori.index') }}" title="Kategori"><svg
-                    class="group-hover:stroke-[var(--color-yellow-700)]  stroke-black" xmlns="http://www.w3.org/2000/svg"
+                    class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     id="Table-Column--Streamline-Tabler" height="20" width="20">
                     <desc>Table Column Streamline Icon: https://streamlinehq.com</desc>
@@ -82,7 +81,7 @@
 
 
             <x-dashboard.menulink path="{{ route('transaksi.showAll') }}" title="Transaksi">
-                <svg class="group-hover:stroke-[var(--color-yellow-700)]  stroke-black" xmlns="http://www.w3.org/2000/svg"
+                <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     id="Devices-Dollar--Streamline-Tabler" height="20" width="20">
                     <desc>Devices Dollar Streamline Icon: https://streamlinehq.com</desc>
@@ -99,7 +98,7 @@
                 </svg>
             </x-dashboard.menulink>
             <x-dashboard.menulink path="{{ route('transaksi.showAllLaporan') }}" title="Laporan"><svg
-                    class="group-hover:stroke-[var(--color-yellow-700)]  stroke-black" xmlns="http://www.w3.org/2000/svg"
+                    class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
                     id="Table-Column--Streamline-Tabler" height="20" width="20">
                     <desc>Table Column Streamline Icon: https://streamlinehq.com</desc>
@@ -124,5 +123,5 @@
         </ul>
 
     </div>
-
+    </nav>
 </aside>
