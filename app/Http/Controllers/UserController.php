@@ -2,73 +2,149 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     /**
-     * Menampilkan data user yang sedang login.
+     * Display a listing of the users.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function viewProfile()
+    public function index()
     {
-        $user = Auth::user();
-        return view('pages.users.my-profile', compact('user'));
+        $users = Users::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
-     * Menampilkan halaman edit data user yang sedang login.
+     * Show the form for creating a new user.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function editProfile()
+    public function create()
     {
-        $user = Auth::user();
-        return view('user.edit', compact('user'));
+        return view('admin.users.create');
     }
 
     /**
-     * Memperbarui data user yang sedang login.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function updateProfile(Request $request)
+    public function store(Request $request)
     {
-        // Ambil ID pengguna dari sesi yang sedang login
-        $userId = Auth::user()->id;
-        $user   = User::findOrFail($userId);
-
-        // Validasi input
         $request->validate([
-            'name'          => 'required|string|max:255',
-            'email'         => 'required|email|unique:users,email,' . $user->id,
-            'gender'        => 'nullable|in:male,female',
-            'address'       => 'nullable|string|max:255',
-            'phone'         => 'nullable|string|max:20',
-            'birth_date'    => 'nullable|date',
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama_222305'    => 'required|string|max:255',
+            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305',
+            'password'       => 'required|string|min:8|confirmed',
+            'no_telp_222305' => 'required|string|max:15',
+            'role_222305'    => 'required|in:admin,user',
         ]);
 
-        // Jika ada file yang diupload, simpan foto profil
-        if ($request->hasFile('profile_photo')) {
-            // Hapus foto lama jika ada
-            if ($user->profile_photo && file_exists(storage_path('app/public/' . $user->profile_photo))) {
-                unlink(storage_path('app/public/' . $user->profile_photo));
-            }
+        $user = Users::create([
+            'id_user_222305'  => Str::uuid()->toString(),
+            'nama_222305'     => $request->nama_222305,
+            'email_222305'    => $request->email_222305,
+            'password_222305' => Hash::make($request->password),
+            'no_telp_222305'  => $request->no_telp_222305,
+            'role_222305'     => $request->role_222305,
+        ]);
 
-            // Upload foto baru
-            $path                = $request->file('profile_photo')->store('profile_photos', 'public');
-            $user->profile_photo = $path;
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User berhasil dibuat!');
+    }
+
+    /**
+     * Display the specified user.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user = Users::with(['albums', 'keranjang', 'pemesanan'])->findOrFail($id);
+        return view('admin.users.show', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified user.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = Users::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified user in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = Users::findOrFail($id);
+
+        $rules = [
+            'nama_222305'    => 'required|string|max:255',
+            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $id . ',id_user_222305',
+            'no_telp_222305' => 'required|string|max:15',
+            'role_222305'    => 'required|in:admin,user',
+        ];
+
+        // Only validate password if it's provided
+        if ($request->filled('password')) {
+            $rules['password'] = 'required|string|min:8|confirmed';
         }
 
-        // Update data pengguna
-        $user->update($request->only(['name', 'email', 'gender', 'address', 'phone', 'birth_date']));
+        $request->validate($rules);
 
-        return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
+        // Update user data
+        $user->nama_222305    = $request->nama_222305;
+        $user->email_222305   = $request->email_222305;
+        $user->no_telp_222305 = $request->no_telp_222305;
+        $user->role_222305    = $request->role_222305;
+
+        // Update password if provided
+        if ($request->filled('password')) {
+            $user->password_222305 = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User berhasil diperbarui!');
+    }
+
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = Users::findOrFail($id);
+
+        // Delete associated albums, keranjang, and pemesanan if needed
+        // (You may want to customize this based on your business logic)
+
+        $user->delete();
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User berhasil dihapus!');
     }
 }

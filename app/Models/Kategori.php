@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Kategori extends Model
+{
+    use HasFactory;
+
+    protected $table      = 'kategori_222305';
+    protected $primaryKey = 'id_kategori_222305';
+    public $incrementing  = false;
+    protected $keyType    = 'string';
+    public $timestamps    = false;
+
+    protected $fillable = [
+        'id_kategori_222305',
+        'nama_kategori_222305',
+    ];
+
+    /**
+     * The albums that belong to the kategori.
+     */
+    public function albums()
+    {
+        return $this->belongsToMany(
+            Album::class,
+            'album_kategori_222305',
+            'id_kategori_222305',
+            'id_album_222305',
+            'id_kategori_222305',
+            'id_album_222305'
+        );
+    }
+}

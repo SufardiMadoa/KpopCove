@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\ProfileController;
@@ -17,84 +21,124 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Halaman utama
-Route::get('/', [ProductController::class, 'Best4Product'])->name('product.best');
+Route::get('/', function () {
+    return view('pages.users.home');
+});
+Route::get('/album', function () {
+    return view('pages.users.album');
+});
+Route::get('/album/detail', function () {
+    return view('pages.users.album-detail');
+});
+Route::middleware('guest')->group(function () {
+    // Login routes
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 
-// Login dan Logout
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    // Registration routes
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+});
 
-// Signup
-Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup');
-Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
+Route::middleware('auth')->group(function () {
+    // Logout route
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Profile management
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
+
+    // Password change
+    Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('password.change');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.update');
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Album routes
+    Route::prefix('album')->name('album.')->group(function () {
+        // Main album CRUD routes
+        Route::get('/', [AlbumController::class, 'index'])->name('index');
+
+        Route::get('/create', [AlbumController::class, 'create'])->name('create');
+        Route::post('/store', [AlbumController::class, 'store'])->name('store');
+        Route::get('/{id}', [AlbumController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [AlbumController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [AlbumController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AlbumController::class, 'destroy'])->name('destroy');
+
+        // Additional album functionality
+        Route::get('/gallery', [AlbumController::class, 'gallery'])->name('gallery');
+        Route::get('/category/{kategoriId}', [AlbumController::class, 'byKategori'])->name('by-kategori');
+        Route::get('/my-albums', [AlbumController::class, 'myAlbums'])->name('my-albums');
+        Route::post('/search', [AlbumController::class, 'search'])->name('search');
+
+        // Photo management within albums
+        Route::post('/{id}/photos', [AlbumController::class, 'addPhotos'])->name('add-photos');
+        Route::delete('/{albumId}/photos/{photoId}', [AlbumController::class, 'removePhoto'])->name('remove-photo');
+
+        // Album status toggle
+        Route::patch('/{id}/toggle-status', [AlbumController::class, 'toggleStatus'])->name('toggle-status');
+    });
+
+    Route::resource('kategori', KategoriController::class);
+
+    Route::get('/pemesanan', [PemesananController::class, 'adminIndex'])->name('pemesanan.index');
+    Route::get('/pemesanan/{id}', [PemesananController::class, 'adminShow'])->name('pemesanan.show');
+    Route::get('/pemesanan/{id}/edit', [PemesananController::class, 'adminEdit'])->name('pemesanan.edit');
+    Route::put('/pemesanan/{id}', [PemesananController::class, 'adminUpdate'])->name('pemesanan.update');
+    Route::delete('/pemesanan/{id}', [PemesananController::class, 'adminDestroy'])->name('pemesanan.destroy');
+
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [UserController::class, 'update'])->name('update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
+    });
+});
+
+// // Login dan Logout
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// // Signup
+// Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup');
+// Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
 
 // Produk dan Kategori
-Route::get('/shop', [ProductController::class, 'index'])->name('products.index');
-Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
-Route::get('/kategori', [CategoryProductController::class, 'index'])->name('categories');
-Route::get('/kategori/{id}', [CategoryProductController::class, 'show'])->name('categories.show');
+// Route::get('/shop', [ProductController::class, 'index'])->name('products.index');
+// Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
+// Route::get('/kategori', [CategoryProductController::class, 'index'])->name('categories');
+// Route::get('/kategori/{id}', [CategoryProductController::class, 'show'])->name('categories.show');
 
 // Keranjang
-Route::prefix('cart')->group(function () {
-    Route::post('/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::get('/', [CartController::class, 'showCart'])->name('cart.view');
-    Route::delete('/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::put('/update/{itemId}', [CartController::class, 'updateQuantity']);
-});
+// Route::prefix('cart')->group(function () {
+//     Route::post('/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+//     Route::get('/', [CartController::class, 'showCart'])->name('cart.view');
+//     Route::delete('/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+//     Route::put('/update/{itemId}', [CartController::class, 'updateQuantity']);
+// });
 
 // Checkout dan Transaksi
-Route::post('/checkout/single/{productId}', [PaymentController::class, 'checkoutSingleProduct'])->name('checkout.single');
-Route::post('/submit-payment-proof', [PaymentController::class, 'store']);
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-Route::get('/pesanan', [TransaksiController::class, 'showPesanan'])->name('pesanan');
-Route::put('/pesanan/{id}', [TransaksiController::class, 'updateStatusByUser'])->name('pesanan.updatebyuser');
+// Route::post('/checkout/single/{productId}', [PaymentController::class, 'checkoutSingleProduct'])->name('checkout.single');
+// Route::post('/submit-payment-proof', [PaymentController::class, 'store']);
+// Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+// Route::get('/pesanan', [TransaksiController::class, 'showPesanan'])->name('pesanan');
+// Route::put('/pesanan/{id}', [TransaksiController::class, 'updateStatusByUser'])->name('pesanan.updatebyuser');
 
-// Halaman Tambahan
-Route::view('/riwayat', 'riwayat')->name('riwayat');
-Route::view('/contact-us', 'pages.users.kontak')->name('contact_us');
-Route::view('/about', 'pages.users.about_us')->name('about');
+// // Halaman Tambahan
+// Route::view('/riwayat', 'riwayat')->name('riwayat');
+// Route::view('/contact-us', 'pages.users.kontak')->name('contact_us');
+// Route::view('/about', 'pages.users.about_us')->name('about');
 
-// Dashboard untuk Admin
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::get('/', [AdminProfileController::class, 'viewProfile'])->name('admin.profile');
-    Route::put('/profile/update', [AdminProfileController::class, 'updateProfile'])->name('admin.update');
-
-    // Produk di Dashboard
-    Route::prefix('produk')->group(function () {
-        Route::get('/', [ProductController::class, 'showProduct'])->name('dashboard.products');
-        Route::get('/create', [ProductController::class, 'create'])->name('products.create');
-        Route::post('/', [ProductController::class, 'store'])->name('products.store');
-        Route::get('/{id}', [ProductController::class, 'show'])->name('products.show');
-        Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-        Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
-    });
-
-    // Kategori di Dashboard
-    Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryProductController::class, 'kategori_dashboard'])->name('dashboard.kategori.index');
-        Route::get('/tambah', [CategoryProductController::class, 'create'])->name('dashboard.category_products.create');
-        Route::post('/', [CategoryProductController::class, 'store'])->name('dashboard.category_products.store');
-        Route::get('/{id}/edit', [CategoryProductController::class, 'edit'])->name('dashboard.category_products.edit');
-        Route::put('/{id}', [CategoryProductController::class, 'update'])->name('dashboard.category_products.update');
-        Route::delete('/{id}', [CategoryProductController::class, 'destroy'])->name('dashboard.category_products.destroy');
-    });
-
-    // Transaksi di Dashboard
-    Route::prefix('transaksi')->group(function () {
-        Route::get('/', [TransaksiController::class, 'showAll'])->name('transaksi.showAll');
-        Route::patch('/{id}/update-status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');
-        Route::delete('/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
-        Route::get('/laporan', [TransaksiController::class, 'showAllLaporan'])->name('transaksi.showAllLaporan');
-        Route::get('/export-pdf/{filter?}', [TransaksiController::class, 'generatePdf'])->name('transaksi.exportPdf');
-    });
-});
-
-// Profile
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [UserController::class, 'viewProfile'])->name('user.profile');
-    Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('user.edit');
-    Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('user.update');
-    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
-});
+/*
+ * |--------------------------------------------------------------------------
+ * | Admin Routes
+ * |--------------------------------------------------------------------------
+ * |
+ * | Here is where you can register admin routes for your application.
+ * |
+ */

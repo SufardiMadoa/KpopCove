@@ -2,48 +2,53 @@
 
 @section('content')
     <!-- Dashboard Header -->
-    <div class="rounded-xl mt-20  w-full ">
-        <div class="flex justify-between items-center mb-4 p-4 text-slate-950 rounded-t-xl bg-linen ">
+    <div class="rounded-xl mt-20 w-full">
+        <div class="flex justify-between items-center mb-4 p-4 text-slate-950 rounded-t-xl bg-linen">
             <h1 class="text-2xl font-bold">Kelola Semua Kategori</h1>
-            <a href="{{ route('dashboard.category_products.create') }}">
+            <a href="{{ route('admin.kategori.create') }}">
                 <button
                     class="btn bg-white text-slate-900 hover:bg-gray-200 font-semibold px-4 py-2 rounded-lg shadow-md">Tambah
                     Kategori</button>
             </a>
         </div>
         <div class="overflow-x-auto px-4 my-3 mb-9">
-            <!-- Input Pencarian -->
-
+            @if (session('success'))
+                <div class="alert alert-success mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <table id="myTable" class="w-full text-sm text-left text-gray-500">
                 <thead class="bg-gray-200 text-gray-800 text-lg">
                     <tr>
                         <th class="py-4 px-6 text-left">No</th>
-                        <th class="py-4 px-6 text-left">Nama</th>
-                        <th class="py-4 px-6 text-left">Deskripsi</th>
-                        <th class="py-4 px-6 text-left">Cover</th>
+                        <th class="py-4 px-6 text-left">ID Kategori</th>
+                        <th class="py-4 px-6 text-left">Nama Kategori</th>
                         <th class="py-4 px-6 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $index => $category)
+                    @foreach ($kategoris as $index => $kategori)
                         <tr class="border-b"
                             style="background-color: #ffffff; border-bottom: 1px solid #d1d5db; color: black;">
                             <th>{{ $index + 1 }}</th>
-                            <td>{{ $category->nama }}</td>
-                            <td>{{ Str::words($category->deskripsi, 5, '...') }}</td>
+                            <td>{{ $kategori->id_kategori_222305 }}</td>
+                            <td>{{ $kategori->nama_kategori_222305 }}</td>
                             <td>
-                                @if ($category->path_img)
-                                    <img src="{{ Str::startsWith($category->path_img, 'http') ? $category->path_img : asset('storage/' . $category->path_img) }}"
-                                        alt="Category Image" class="w-20 h-20 object-cover rounded-full">
-                                @else
-                                    <span class="text-sm text-gray-500">Tidak ada gambar</span>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="flex gap-3">
+                                <div class="flex gap-3 justify-center">
+                                    <!-- Detail Button -->
+                                    <a href="{{ route('admin.kategori.show', $kategori->id_kategori_222305) }}" class="tooltip"
+                                        data-tip="Detail">
+                                        <button class="btn btn-info p-2 rounded-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-5 h-5 text-white" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                    
                                     <!-- Edit Button -->
-                                    <a href="{{ route('dashboard.category_products.edit', $category->id) }}" class="tooltip"
+                                    <a href="{{ route('admin.kategori.edit', $kategori->id_kategori_222305) }}" class="tooltip"
                                         data-tip="Edit">
                                         <button class="btn btn-warning p-2 rounded-lg">
                                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -66,7 +71,7 @@
                                     </a>
 
                                     <!-- Delete Button -->
-                                    <form action="{{ route('dashboard.category_products.destroy', $category->id) }}"
+                                    <form action="{{ route('admin.kategori.destroy', $kategori->id_kategori_222305) }}"
                                         method="POST"
                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
                                         @csrf
@@ -88,41 +93,13 @@
             </table>
         </div>
     </div>
-
-    <!-- Confirmation Dialog for Delete -->
-  
 @endsection
 
 @section('scripts')
     <script>
-
-function confirmDelete() {
-            return confirm('Apakah Anda yakin ingin menghapus barang ini?');
-        }
-
-        // Fungsi untuk mencari produk
-        function searchProducts() {
-            const input = document.getElementById('search');
-            const filter = input.value.toLowerCase();
-            const table = document.getElementById('product-table');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                let match = false;
-
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j]) {
-                        const cellValue = cells[j].textContent || cells[j].innerText;
-                        if (cellValue.toLowerCase().indexOf(filter) > -1) {
-                            match = true;
-                            break;
-                        }
-                    }
-                }
-
-                rows[i].style.display = match ? '' : 'none';
-            }
+        // Fungsi untuk konfirmasi hapus
+        function confirmDelete() {
+            return confirm('Apakah Anda yakin ingin menghapus kategori ini?');
         }
 
         // Inisialisasi DataTables
@@ -130,7 +107,6 @@ function confirmDelete() {
             new DataTable('#myTable', {
                 searchable: true,
                 fixedHeight: true,
-                
             });
         });
     </script>

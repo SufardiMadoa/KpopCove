@@ -53,7 +53,7 @@
     @include('components.navbar')
 
     <!-- Main Content -->
-    <main class="relative px-24 mt-14">
+    <main class="relative px-24 mt-16">
         @yield('content')
     </main>
 

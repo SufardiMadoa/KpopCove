@@ -1,57 +1,64 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Home | Kpop Cove')
 
 @section('content')
 
     <section class="">
-        <div class=" h-[500px] w-full overflow-hidden bg-linen flex items-center font-jost   ">
-            <div class="flex gap-2 items-center justify-between w-full h-full ">
+        <div class="h-[500px] w-full overflow-hidden bg-slate-50 flex items-center font-jost">
+            <div class="flex gap-2 items-center justify-between w-full h-full">
                 <div class="translate-x-20">
-                    <h1 class="text-6xl font-semibold">SUMMER 2025 ARRIVALS </h1>
-                    <P class="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto optio reiciendis
-                        labore laborum laudantium nihil eum explicabo enim saepe iusto.</P>
-                    <button class="border mt-10 border-slate-950 px-4 py-1">SHOP NOW</button>
+                    <h1 class="text-6xl font-semibold text-slate-800">NEW RELEASES 2025</h1>
+                    <P class="mt-2 text-slate-600">Discover the latest K-pop albums from your favorite artists. Limited editions, exclusive photobooks, and special gifts with purchase!</P>
+                    <button class="border mt-10 border-cyan-500 bg-cyan-500 text-white hover:bg-cyan-600 transition px-6 py-2">SHOP NOW</button>
                 </div>
-                <img src="{{ asset('images/banner.png') }}" alt=""
-                    class="w-[130%] h-full object-cover object-[30%_0%]  ">
+                <img src="https://img.freepik.com/free-vector/retro-advertising-sale-banner-design-template_23-2149639577.jpg?t=st=1746535587~exp=1746539187~hmac=7dad6bb2d0b73a0f52c48ce49c345b6a2a6f98baf0e3ac7a9e9e2f85c6de6eb1&w=1800" alt="New K-pop Albums Banner"
+                    class="w-[130%] h-full object-cover object-[30%_0%]">
             </div>
         </div>
-        <div class=" flex gap-4 py-4">
-            <div class="w-1/2 h-40 bg-linen"></div>
-            <div class="w-1/2 h-40 bg-linen"></div>
+        <div class="flex gap-4 py-4">
+            <div class="w-1/2 h-40 bg-slate-100 flex items-center justify-center">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-slate-800">GIRL GROUPS</h3>
+                    <p class="text-slate-600 mt-1">BLACKPINK, TWICE, NewJeans, aespa & more</p>
+                    <button class="mt-2 text-cyan-500 hover:underline">Explore →</button>
+                </div>
+            </div>
+            <div class="w-1/2 h-40 bg-slate-100 flex items-center justify-center">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-slate-800">BOY GROUPS</h3>
+                    <p class="text-slate-600 mt-1">BTS, Stray Kids, SEVENTEEN, EXO & more</p>
+                    <button class="mt-2 text-cyan-500 hover:underline">Explore →</button>
+                </div>
+            </div>
         </div>
     </section>
-    <section class=" py-10">
-        <h1 class="font-semibold text-xl text-center">NEW ARRIVALS</h1>
+    <section class="py-10">
+        <h1 class="font-semibold text-xl text-center text-slate-800">ALBUM FAVORIT</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
             <!-- Product 1 -->
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
+            <x-shop.card_product path="/album/detail" title="Stray Kids - ROCK-STAR " price="Rp 200.000" image="https://img.freepik.com/free-psd/music-band-template-design_23-2151659152.jpg?t=st=1746536437~exp=1746540037~hmac=bbd8bf9a0fc03ff625780d62f04a03c52dd6f1a01fe19c8d8391ae4eefb701e7&w=900"
                 class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
+            <x-shop.card_product path="/album/detail" title="aespa - Drama" price="Rp 150.000" image="https://img.freepik.com/free-psd/korean-restaurant-flyer-template-design_23-2151934251.jpg?t=st=1746536479~exp=1746540079~hmac=22db791c92e523673ee624ff0b11c848c1e54c19f50267c6270d3ded24f8f59d&w=900"
                 class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
+            <x-shop.card_product path="/album/detail" title="BTS - Proof" price="Rp 100.000" image="https://img.freepik.com/free-psd/korean-restaurant-flyer-template-design_23-2151934251.jpg?t=st=1746536479~exp=1746540079~hmac=22db791c92e523673ee624ff0b11c848c1e54c19f50267c6270d3ded24f8f59d&w=900"
                 class="custom-class" />
-            <x-shop.card_product path="produk/black-hoodie" title="Black Hoodie" price="108.00" image="images/banner.png"
+            <x-shop.card_product path="/album/detail" title="IVE - I'VE CHOICE" price="Rp 123.000" image="https://img.freepik.com/free-psd/gradient-sweet-16-poster-template_23-2149541065.jpg?t=st=1746536520~exp=1746540120~hmac=33866e536365b7abfa5bd98791057fb958a9ce21d4c5c9ca55a35a833d2c1830&w=900"
                 class="custom-class" />
-
-
-
+            </div>
     </section>
 
     <section>
-
-
-        <!-- Product Section -->
-        <div class=" mx-auto py-10 ">
-            <div class="relative w-full bg-linen h-96  flex items-center justify-between">
-                <img src="{{ asset('images/banner.png') }}" alt=""
-                    class="w-[70%] h-full object-cover object-[30%_0%]  -translate-x-10">
+        <!-- Featured Product Section -->
+        <div class="mx-auto py-10">
+            <div class="relative w-full bg-slate-100 h-96 flex items-center justify-between">
+                <img src="{{ asset('images/albums/newjeans-feature.png') }}" alt="NewJeans Album Feature"
+                    class="w-[70%] h-full object-cover object-[30%_0%] -translate-x-10">
                 <div class="pr-10">
-                    <h1 class="text-3xl font-bold">ACTIVE WEAR</h1>
-                    <p class="text-gray-700 mt-2">New collection now available online and in stores. Comes in a variety of
-                        colors, fabrics, and styles.</p>
-                    <a href="#" class="mt-4 inline-block bg-black text-white px-4 py-2">SHOP NOW →</a>
+                    <h1 class="text-3xl font-bold text-slate-800">FEATURED ALBUM</h1>
+                    <h2 class="text-xl font-semibold text-cyan-500 mt-2">NewJeans - Get Up</h2>
+                    <p class="text-slate-600 mt-2">Limited restock of the hit EP with exclusive photocard sets and posters. Includes fan-favorite tracks "Super Shy" and "ETA".</p>
+                    <a href="#" class="mt-4 inline-block bg-cyan-500 hover:bg-cyan-600 transition text-white px-4 py-2">SHOP NOW →</a>
                 </div>
             </div>
 
@@ -59,48 +66,49 @@
     </section>
 
     <section>
-        <div class=" mx-auto py-10 ">
+        <div class="mx-auto py-10">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-semibold">CATEGORIES</h2>
-                <a href="#" class="text-gray-500 hover:underline">VIEW ALL →</a>
+                <h2 class="text-2xl font-semibold text-slate-800">CATEGORIES</h2>
+                <a href="#" class="text-cyan-500 hover:underline">VIEW ALL →</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Category 1 -->
-                <div class="relative group bg-linen">
-                    <img src="{{ asset('images/banner.png') }}" alt="Tops" class="w-full h-auto object-cover">
+                <div class="relative group bg-slate-100">
+                    <img src="{{ asset('images/categories/albums.png') }}" alt="Albums" class="w-full h-auto object-cover">
                     <div class="absolute mx-6 bottom-4 left-0 right-0 bg-white text-center py-2">
-                        <span class="font-semibold text-gray-800">TOPS</span>
+                        <span class="font-semibold text-slate-800">ALBUMS</span>
                     </div>
                 </div>
 
                 <!-- Category 2 -->
-                <div class="relative group bg-linen">
-                    <img src="{{ asset('images/banner.png') }}" alt="Shoes" class="w-full h-auto object-cover">
+                <div class="relative group bg-slate-100">
+                    <img src="{{ asset('images/categories/lightsticks.png') }}" alt="Lightsticks" class="w-full h-auto object-cover">
                     <div class="absolute mx-6 bottom-4 left-0 right-0 bg-white text-center py-2">
-                        <span class="font-semibold text-gray-800">SHOES</span>
+                        <span class="font-semibold text-slate-800">LIGHTSTICKS</span>
                     </div>
                 </div>
 
                 <!-- Category 3 -->
-                <div class="relative group bg-linen">
-                    <img src="{{ asset('images/banner.png') }}" alt="Accessories" class="w-full h-auto object-cover">
+                <div class="relative group bg-slate-100">
+                    <img src="{{ asset('images/categories/photocards.png') }}" alt="Photocards" class="w-full h-auto object-cover">
                     <div class="absolute mx-6 bottom-4 left-0 right-0 bg-white text-center py-2">
-                        <span class="font-semibold text-gray-800">ACCESSORIES</span>
+                        <span class="font-semibold text-slate-800">PHOTOCARDS</span>
                     </div>
                 </div>
 
                 <!-- Category 4 -->
-                <div class="relative group bg-linen">
-                    <img src="{{ asset('images/banner.png') }}" alt="Sweatshirts" class="w-full h-auto object-cover">
+                <div class="relative group bg-slate-100">
+                    <img src="{{ asset('images/categories/merch.png') }}" alt="Merchandise" class="w-full h-auto object-cover">
                     <div class="absolute mx-6 bottom-4 left-0 right-0 bg-white text-center py-2">
-                        <span class="font-semibold text-gray-800">SWEATSHIRTS</span>
+                        <span class="font-semibold text-slate-800">MERCHANDISE</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+ 
 
 @endsection
 
@@ -162,7 +170,7 @@
                 }
 
                 try {
-                    const response = await fetch(`{{ route('cart.add', ':id') }}`.replace(':id',
+                    const response = await fetch(`#`.replace(':id',
                         productId), {
                         method: 'POST',
                         headers: {
@@ -184,7 +192,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil!',
-                        text: 'Produk berhasil ditambahkan ke keranjang.',
+                        text: 'Album berhasil ditambahkan ke keranjang.',
                         timer: 2000,
                         showConfirmButton: false
                     });
@@ -229,7 +237,7 @@
             const scrollToTopButton = document.getElementById("scrollToTopButton");
 
             window.addEventListener("scroll", () => {
-                if (window.scrollY > 00) {
+                if (window.scrollY > 300) {
                     scrollToTopButton.classList.remove("hidden");
                 } else {
                     scrollToTopButton.classList.add("hidden");

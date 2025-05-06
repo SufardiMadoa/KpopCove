@@ -1,6 +1,7 @@
-<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
+<!-- Mobile Toggle Button -->
+<button data-drawer-target="main-sidebar" data-drawer-toggle="main-sidebar" aria-controls="main-sidebar"
     type="button"
-    class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+    class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300">
     <span class="sr-only">Open sidebar</span>
     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path clip-rule="evenodd" fill-rule="evenodd"
@@ -9,119 +10,147 @@
     </svg>
 </button>
 
-<aside id="default-sidebar" class="font-jost fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-<nav role="navigation" aria-label="Main">
-    <div class="h-full px-3 py-4 overflow-y-auto"
-    >
-
-
-    <div class="text-center mb-4">
-  <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 font-sans">
-    KPop <span class="font-light">Cove</span>
-  </h1>
-</div>
-        <ul class="space-y-2 font-medium mt-6 px-5">
-            <x-dashboard.menulink path="/dashboard" title="Dashboard"><svg xmlns="http://www.w3.org/2000/svg"
-                    class="group-hover:stroke-[var(--color-[#A2D2FF])] stroke-black" viewBox="-0.5 -0.5 16 16" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round" id="Layout-Grid-Remove--Streamline-Tabler"
-                    height="20" width="20">
-                    <desc>Layout Grid Remove Streamline Icon: https://streamlinehq.com</desc>
-                    <path
-                        d="M2.5 3.125a0.625 0.625 0 0 1 0.625 -0.625h2.5a0.625 0.625 0 0 1 0.625 0.625v2.5a0.625 0.625 0 0 1 -0.625 0.625H3.125a0.625 0.625 0 0 1 -0.625 -0.625V3.125z"
-                        stroke-width="1"></path>
-                    <path
-                        d="M8.75 3.125a0.625 0.625 0 0 1 0.625 -0.625h2.5a0.625 0.625 0 0 1 0.625 0.625v2.5a0.625 0.625 0 0 1 -0.625 0.625h-2.5a0.625 0.625 0 0 1 -0.625 -0.625V3.125z"
-                        stroke-width="1"></path>
-                    <path
-                        d="M2.5 9.375a0.625 0.625 0 0 1 0.625 -0.625h2.5a0.625 0.625 0 0 1 0.625 0.625v2.5a0.625 0.625 0 0 1 -0.625 0.625H3.125a0.625 0.625 0 0 1 -0.625 -0.625v-2.5z"
-                        stroke-width="1"></path>
-                    <path d="M8.75 10.625h3.75" stroke-width="1"></path>
-                </svg></x-dashboard.menulink>
-            <x-dashboard.menulink path="{{ route('admin.profile') }}" title="Profile">
-            <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" height="20" width="20">
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4Z" />
-            </svg>
-            </x-dashboard.menulink>
-            <x-dashboard.menulink path="{{ route('dashboard.products') }}" title="Produk">
-                <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    id="List-Details--Streamline-Tabler" height="20" width="20">
-                    <desc>List Details Streamline Icon: https://streamlinehq.com</desc>
-                    <path d="M8.125 3.125h5" stroke-width="1"></path>
-                    <path d="M8.125 5.625h3.125" stroke-width="1"></path>
-                    <path d="M8.125 9.375h5" stroke-width="1"></path>
-                    <path d="M8.125 11.875h3.125" stroke-width="1"></path>
-                    <path
-                        d="M1.875 3.125a0.625 0.625 0 0 1 0.625 -0.625h2.5a0.625 0.625 0 0 1 0.625 0.625v2.5a0.625 0.625 0 0 1 -0.625 0.625H2.5a0.625 0.625 0 0 1 -0.625 -0.625z"
-                        stroke-width="1"></path>
-                    <path
-                        d="M1.875 9.375a0.625 0.625 0 0 1 0.625 -0.625h2.5a0.625 0.625 0 0 1 0.625 0.625v2.5a0.625 0.625 0 0 1 -0.625 0.625H2.5a0.625 0.625 0 0 1 -0.625 -0.625z"
-                        stroke-width="1"></path>
-                </svg>
-            </x-dashboard.menulink>
-            <x-dashboard.menulink path="{{ route('dashboard.kategori.index') }}" title="Kategori"><svg
-                    class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    id="Table-Column--Streamline-Tabler" height="20" width="20">
-                    <desc>Table Column Streamline Icon: https://streamlinehq.com</desc>
-                    <path
-                        d="M1.875 3.125a1.25 1.25 0 0 1 1.25 -1.25h8.75a1.25 1.25 0 0 1 1.25 1.25v8.75a1.25 1.25 0 0 1 -1.25 1.25H3.125a1.25 1.25 0 0 1 -1.25 -1.25V3.125z"
-                        stroke-width="1"></path>
-                    <path d="M6.25 6.25h6.875" stroke-width="1"></path>
-                    <path d="M6.25 1.875v11.25" stroke-width="1"></path>
-                    <path d="M5.625 1.875 1.875 5.625" stroke-width="1"></path>
-                    <path d="m6.25 4.375 -4.375 4.375" stroke-width="1"></path>
-                    <path d="m6.25 7.5 -4.375 4.375" stroke-width="1"></path>
-                    <path d="m6.25 10.625 -2.5 2.5" stroke-width="1"></path>
-                </svg></x-dashboard.menulink>
-
-
-
-            <x-dashboard.menulink path="{{ route('transaksi.showAll') }}" title="Transaksi">
-                <svg class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    id="Devices-Dollar--Streamline-Tabler" height="20" width="20">
-                    <desc>Devices Dollar Streamline Icon: https://streamlinehq.com</desc>
-                    <path
-                        d="M8.125 11.875V5.625a0.625 0.625 0 0 1 0.625 -0.625h3.75a0.625 0.625 0 0 1 0.625 0.625v0.9375"
-                        stroke-width="1"></path>
-                    <path
-                        d="M11.25 5V3.125a0.625 0.625 0 0 0 -0.625 -0.625H2.5a0.625 0.625 0 0 0 -0.625 0.625v7.5a0.625 0.625 0 0 0 0.625 0.625h5.625"
-                        stroke-width="1"></path>
-                    <path d="M10 5.625h1.25" stroke-width="1"></path>
-                    <path d="M13.125 9.375h-1.5625a0.9375 0.9375 0 0 0 0 1.875h0.625a0.9375 0.9375 0 0 1 0 1.875H10.625"
-                        stroke-width="1"></path>
-                    <path d="M11.875 13.125v0.625m0 -5v0.625" stroke-width="1"></path>
-                </svg>
-            </x-dashboard.menulink>
-            <x-dashboard.menulink path="{{ route('transaksi.showAllLaporan') }}" title="Laporan"><svg
-                    class="group-hover:stroke-[var(--color-[#A2D2FF])]  stroke-black" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="-0.5 -0.5 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                    id="Table-Column--Streamline-Tabler" height="20" width="20">
-                    <desc>Table Column Streamline Icon: https://streamlinehq.com</desc>
-                    <path
-                        d="M1.875 3.125a1.25 1.25 0 0 1 1.25 -1.25h8.75a1.25 1.25 0 0 1 1.25 1.25v8.75a1.25 1.25 0 0 1 -1.25 1.25H3.125a1.25 1.25 0 0 1 -1.25 -1.25V3.125z"
-                        stroke-width="1"></path>
-                    <path d="M6.25 6.25h6.875" stroke-width="1"></path>
-                    <path d="M6.25 1.875v11.25" stroke-width="1"></path>
-                    <path d="M5.625 1.875 1.875 5.625" stroke-width="1"></path>
-                    <path d="m6.25 4.375 -4.375 4.375" stroke-width="1"></path>
-                    <path d="m6.25 7.5 -4.375 4.375" stroke-width="1"></path>
-                    <path d="m6.25 10.625 -2.5 2.5" stroke-width="1"></path>
-                </svg>
-            </x-dashboard.menulink>
+<!-- Sidebar -->
+<aside id="main-sidebar" class="font-jost fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-white shadow-lg" aria-label="Sidebar">
+    <nav role="navigation" aria-label="Main" class="h-full">
+        <div class="h-full flex flex-col">
+            <!-- Logo Section -->
+            <div class="px-6 pt-8 pb-6 border-b border-gray-200">
+                <div class="flex justify-center">
+                    <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 font-sans">
+                        KPop <span class="font-light">Cove</span>
+                      </h1>
+                </div>
+            </div>
             
-           
-
-
-
-
-
-        </ul>
-
-    </div>
+            <!-- Navigation Menu -->
+            <div class="flex-1 px-3 py-4 overflow-y-auto">
+                <ul class="space-y-1.5">
+                    <!-- Dashboard -->
+                    <li>
+                        <a href="/dashboard" 
+                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500  group-hover:text-cyan-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Dashboard</span>
+                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-cyan-800 bg-cyan-100 rounded-full">
+                                3
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- Album -->
+                    <li>
+                        <a href="{{ route('admin.album.index') }}" 
+                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                    <polyline points="21 15 16 10 5 21"></polyline>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Album</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Kategori -->
+                    <li>
+                        <a href="{{ route('admin.kategori.index') }}" 
+                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18"></path>
+                                    <path d="M3 12h18"></path>
+                                    <path d="M3 18h18"></path>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Kategori</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Transaksi -->
+                    <li>
+                        <a href="{{ route('admin.pemesanan.index') }}" 
+                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Pemesanan</span>
+                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">
+                                5
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- Laporan -->
+                    <li>
+                        <a href="#" 
+                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Laporan</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- User Profile Section -->
+            <div class="px-4 py-4 mt-auto border-t border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <img class="w-10 h-10 rounded-full object-cover border-2 border-cyan-500" 
+                        src="{{ Auth::user()->profile_photo ?? asset('images/produk.png') }}" 
+                        alt="User avatar">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate">
+                            {{ Auth::user()->name ?? 'Admin User' }}
+                        </p>
+                        <p class="text-xs text-gray-500 truncate">
+                            {{ Auth::user()->email ?? 'admin@terrashop.com' }}
+                        </p>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST" class="inline-flex">
+                        @csrf
+                        <button type="submit" class="p-1 rounded-full text-gray-500 hover:bg-gray-100 hover:text-red-500 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </nav>
 </aside>
+
+<!-- JS for Sidebar Toggle on Mobile (place this at the end of your body) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButton = document.querySelector('[data-drawer-toggle="main-sidebar"]');
+        const sidebar = document.getElementById('main-sidebar');
+        
+        if (toggleButton && sidebar) {
+            toggleButton.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+        }
+    });
+</script>
