@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Dashboard Header -->
-    <div class="rounded-xl pt-20 w-full ">
+    <div class="rounded-xl mt-20  w-full ">
         <div class="flex justify-between items-center mb-4 p-4 text-slate-950 rounded-t-xl bg-linen ">
             <h1 class="text-2xl font-bold">Kelola Semua Kategori</h1>
             <a href="{{ route('dashboard.category_products.create') }}">
@@ -11,11 +11,11 @@
                     Kategori</button>
             </a>
         </div>
-        <div class="overflow-x-auto px-4">
+        <div class="overflow-x-auto px-4 my-3 mb-9">
             <!-- Input Pencarian -->
 
 
-            <table class="table-auto w-full border-collapse rounded-xl overflow-hidden shadow-lg">
+            <table id="myTable" class="w-full text-sm text-left text-gray-500">
                 <thead class="bg-gray-200 text-gray-800 text-lg">
                     <tr>
                         <th class="py-4 px-6 text-left">No</th>
@@ -90,8 +90,13 @@
     </div>
 
     <!-- Confirmation Dialog for Delete -->
+  
+@endsection
+
+@section('scripts')
     <script>
-        function confirmDelete() {
+
+function confirmDelete() {
             return confirm('Apakah Anda yakin ingin menghapus barang ini?');
         }
 
@@ -119,5 +124,14 @@
                 rows[i].style.display = match ? '' : 'none';
             }
         }
+
+        // Inisialisasi DataTables
+        document.addEventListener("DOMContentLoaded", function () {
+            new DataTable('#myTable', {
+                searchable: true,
+                fixedHeight: true,
+                
+            });
+        });
     </script>
 @endsection

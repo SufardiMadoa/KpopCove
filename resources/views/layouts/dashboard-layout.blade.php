@@ -9,7 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.3.0/css/dataTables.tailwindcss.css" rel="stylesheet" />
+
+    <!-- Font Awesome (jika belum ada) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <title>Lumbung Pangan Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -34,6 +38,14 @@
     <script src="{{ asset('js/handleModalProduct.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.0/js/dataTables.tailwindcss.js"></script>
+  
+
+
 </body>
 
 </html>

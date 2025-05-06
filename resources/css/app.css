@@ -1,14 +1,18 @@
 @import 'tailwindcss';
 @plugin "daisyui";
-
+@plugin "flowbite/plugin";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@source "../views";
+
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.cssr")
+@import "flowbite/src/themes/default";
+
+@source "../node_modules/flowbite";
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
@@ -17,3 +21,10 @@
     --color-beige:#F5F5DC;
     --color-linen:#FAF0E6;
 }
+@custom-variant light (&:where(.dark, .dark *));
+
+@layer base {
+    html {
+      color-scheme: light !important;
+    }
+  }
