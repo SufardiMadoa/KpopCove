@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Keranjang;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -52,8 +53,8 @@ class AuthController extends Controller
 
     // Attempt login menggunakan kolom yang sudah disesuaikan
     if (Auth::attempt([
-      'email_222305'    => $credentials['email'],
-      'password_222305' => $credentials['password']
+      'email_222305' => $credentials['email'],
+      'password'     => $credentials['password']
     ])) {
       // Regenerasi session ID untuk keamanan
       $request->session()->regenerate();
@@ -70,7 +71,7 @@ class AuthController extends Controller
       if (Auth::user()->role === 'admin') {
         return redirect()->intended(route('admin.album,index'))->with('success', 'Login berhasil!');
       } else {
-        return redirect()->intended('/')->with('success', 'Login berhasil!');
+        return redirect()->intended('/admin')->with('success', 'Login berhasil!');
       }
     }
 

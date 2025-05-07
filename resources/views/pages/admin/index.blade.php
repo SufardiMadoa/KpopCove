@@ -1,11 +1,10 @@
 <!-- resources/views/dashboard.blade.php -->
 @extends('layouts.dashboard-layout') <!-- Menggunakan layout utama yang sudah dibuat -->
 
-@section('title', $title) <!-- Mengisi judul halaman -->
 
 @section('content')
     <!-- Dashboard Stat Cards -->
-    <div class="bg-white shadow rounded-lg p-4 pt-20">
+    <div class="bg-white shadow rounded-lg p-4 pt-28">
         <div class="grid grid-cols-4 gap-4 mb-4">
             <div class="flex flex-col items-center justify-center h-24 rounded bg-gray-100 dark:bg-gray-800 gap-2">
                 <div class="flex gap-2">
@@ -108,11 +107,76 @@
 
         </div>
     </div>
+    
 
     <div class="flex overflow-hidden gap-3 mt-3">
         <x-dashboard.chart></x-dashboard.chart>
         <x-dashboard.piechart></x-dashboard.piechart>
     </div>
+
+    <div class="mt-6 bg-white rounded-lg shadow-lg p-4 border-t-4 border-cyan-500">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-slate-800">Transaksi Terbaru</h2>
+            <a href="#" class="text-cyan-600 hover:text-cyan-700 text-sm font-medium">View All</a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-slate-700">
+                <thead class="text-xs uppercase bg-slate-50 text-slate-700">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 rounded-l-lg">Order ID</th>
+                        <th scope="col" class="px-6 py-3">Album</th>
+                        <th scope="col" class="px-6 py-3">Artist</th>
+                        <th scope="col" class="px-6 py-3">Customer</th>
+                        <th scope="col" class="px-6 py-3">Price</th>
+                        <th scope="col" class="px-6 py-3 rounded-r-lg">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-slate-50 border-b border-slate-200">
+                        <td class="px-6 py-4">#KP-3782</td>
+                        <td class="px-6 py-4">The Album</td>
+                        <td class="px-6 py-4">BLACKPINK</td>
+                        <td class="px-6 py-4">Alex Kim</td>
+                        <td class="px-6 py-4">$32.99</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-cyan-100 text-cyan-800">Delivered</span></td>
+                    </tr>
+                    <tr class="bg-white border-b border-slate-200">
+                        <td class="px-6 py-4">#KP-3781</td>
+                        <td class="px-6 py-4">Proof</td>
+                        <td class="px-6 py-4">BTS</td>
+                        <td class="px-6 py-4">Jamie Park</td>
+                        <td class="px-6 py-4">$45.99</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Shipped</span></td>
+                    </tr>
+                    <tr class="bg-slate-50 border-b border-slate-200">
+                        <td class="px-6 py-4">#KP-3780</td>
+                        <td class="px-6 py-4">Get Up</td>
+                        <td class="px-6 py-4">NewJeans</td>
+                        <td class="px-6 py-4">Chris Wong</td>
+                        <td class="px-6 py-4">$29.50</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-cyan-100 text-cyan-800">Delivered</span></td>
+                    </tr>
+                    <tr class="bg-white border-b border-slate-200">
+                        <td class="px-6 py-4">#KP-3779</td>
+                        <td class="px-6 py-4">BORN PINK</td>
+                        <td class="px-6 py-4">BLACKPINK</td>
+                        <td class="px-6 py-4">Sarah Johnson</td>
+                        <td class="px-6 py-4">$36.75</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800">Processing</span></td>
+                    </tr>
+                    <tr class="bg-slate-50">
+                        <td class="px-6 py-4">#KP-3778</td>
+                        <td class="px-6 py-4">Formula of Love</td>
+                        <td class="px-6 py-4">TWICE</td>
+                        <td class="px-6 py-4">Mike Garcia</td>
+                        <td class="px-6 py-4">$27.99</td>
+                        <td class="px-6 py-4"><span class="px-2 py-1 text-xs rounded-full bg-cyan-100 text-cyan-800">Delivered</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
 
 
 

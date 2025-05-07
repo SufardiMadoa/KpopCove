@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('pages.admin.index');
+    })->name('dashboard');
     // Album routes
     Route::prefix('album')->name('album.')->group(function () {
         // Main album CRUD routes

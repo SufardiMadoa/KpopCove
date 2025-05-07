@@ -28,9 +28,9 @@
                 <ul class="space-y-1.5">
                     <!-- Dashboard -->
                     <li>
-                        <a href="/dashboard" 
-                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
-                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500  group-hover:text-cyan-600 transition-colors duration-300">
+                        <a href="{{ route('admin.dashboard') }}" 
+                           class="{{ request()->routeIs('admin.dashboard') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.dashboard') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="3" width="7" height="7"></rect>
                                     <rect x="14" y="3" width="7" height="7"></rect>
@@ -38,7 +38,7 @@
                                     <rect x="3" y="14" width="7" height="7"></rect>
                                 </svg>
                             </div>
-                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Dashboard</span>
+                            <span class="flex-1 font-medium">Dashboard</span>
                             <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-cyan-800 bg-cyan-100 rounded-full">
                                 3
                             </span>
@@ -48,44 +48,44 @@
                     <!-- Album -->
                     <li>
                         <a href="{{ route('admin.album.index') }}" 
-                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
-                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                           class="{{ request()->routeIs('admin.album.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.album.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                                     <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                     <polyline points="21 15 16 10 5 21"></polyline>
                                 </svg>
                             </div>
-                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Album</span>
+                            <span class="flex-1 font-medium">Album</span>
                         </a>
                     </li>
                     
                     <!-- Kategori -->
                     <li>
                         <a href="{{ route('admin.kategori.index') }}" 
-                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
-                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                           class="{{ request()->routeIs('admin.kategori.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.kategori.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M3 6h18"></path>
                                     <path d="M3 12h18"></path>
                                     <path d="M3 18h18"></path>
                                 </svg>
                             </div>
-                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Kategori</span>
+                            <span class="flex-1 font-medium">Kategori</span>
                         </a>
                     </li>
                     
                     <!-- Transaksi -->
                     <li>
                         <a href="{{ route('admin.pemesanan.index') }}" 
-                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
-                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                           class="{{ request()->routeIs('admin.pemesanan.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.pemesanan.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                                     <line x1="2" y1="10" x2="22" y2="10"></line>
                                 </svg>
                             </div>
-                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Pemesanan</span>
+                            <span class="flex-1 font-medium">Pemesanan</span>
                             <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">
                                 5
                             </span>
@@ -95,8 +95,8 @@
                     <!-- Laporan -->
                     <li>
                         <a href="#" 
-                           class="group flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-cyan-50 transition-all duration-300">
-                            <div class="flex-shrink-0 w-5 h-5 mr-3 text-gray-500 group-hover:text-cyan-600 transition-colors duration-300">
+                           class="{{ request()->routeIs('#') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.laporan.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                     <polyline points="14 2 14 8 20 8"></polyline>
@@ -105,7 +105,7 @@
                                     <polyline points="10 9 9 9 8 9"></polyline>
                                 </svg>
                             </div>
-                            <span class="flex-1 font-medium group-hover:text-cyan-600 transition-colors duration-300">Laporan</span>
+                            <span class="flex-1 font-medium">Laporan</span>
                         </a>
                     </li>
                 </ul>

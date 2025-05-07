@@ -29,14 +29,31 @@ class Users extends Authenticatable
         'role_222305',
     ];
 
+    public function getAuthPassword()
+    {
+        return $this->password_222305;
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id_user_222305';
+    }
+
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->{$this->getAuthIdentifierName()};
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password_222305',
-    ];
 
     /**
      * Get the albums created by the user.
