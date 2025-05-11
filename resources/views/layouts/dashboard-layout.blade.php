@@ -16,7 +16,7 @@
 
     <title>Lumbung Pangan Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+ @livewireStyles
 </head>
 
 <body class="font-jost">
@@ -29,14 +29,14 @@
     </x-dashboard.header>
 
     <!-- Main Content -->
-    <div class="py-2 px-3 pt-0 sm:ml-64 shadow-md min-h-screen max-h-full">
+    <div class="py-2 px-3 mt-[80px] pt-0 sm:ml-64 shadow-md min-h-screen max-h-full">
         <div class="p-3 h">
             @yield('content')
         </div>
+        
     </div>
     @yield('scripts')
     <script src="{{ asset('js/handleModalProduct.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -45,7 +45,7 @@
 <script src="https://cdn.datatables.net/2.3.0/js/dataTables.tailwindcss.js"></script>
   
 
-
+@livewireScripts
 </body>
 
 </html>

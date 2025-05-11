@@ -46,6 +46,7 @@
     </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body class="font-jost">
 
@@ -103,5 +104,6 @@
     </script>
 
     @yield('scripts')
+    @livewireScripts
 </body>
 </html>

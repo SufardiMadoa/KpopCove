@@ -83,7 +83,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::patch('/{id}/toggle-status', [AlbumController::class, 'toggleStatus'])->name('toggle-status');
     });
 
+
     Route::resource('kategori', KategoriController::class);
+
 
     Route::get('/pemesanan', [PemesananController::class, 'adminIndex'])->name('pemesanan.index');
     Route::get('/pemesanan/{id}', [PemesananController::class, 'adminShow'])->name('pemesanan.show');
