@@ -1,5 +1,5 @@
 <div class="w-full">
-    <header class="w-[81%] left-64 top-0 flex fixed items-center justify-between p-4 bg-white shadow-md z-50 px-9 pl-6 border-b border-gray-100">
+    <header class="w-[85%] start-64 max-w-screen-xl top-0 flex fixed items-center justify-between p-4 bg-white shadow-md z-50 px-9 pl-6 border-b border-gray-100">
         <div class="flex items-center gap-3">
             <div class="bg-cyan-500 rounded-lg p-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">

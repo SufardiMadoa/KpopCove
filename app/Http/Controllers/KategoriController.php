@@ -116,4 +116,14 @@ class KategoriController extends Controller
       ->route('pages.admin.kategori.index')
       ->with('success', 'Kategori berhasil dihapus.');
   }
+
+public function search(Request $request)
+{
+    $query = $request->get('q');
+    $kategoris = Kategori::where('nama_kategori_222305', 'like', '%' . $query . '%')->get();
+    return response()->json($kategoris);
+}
+
+
+
 }
