@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph-Based Testing Universitas DIPA</title>
+    <!-- Tambahkan Mermaid JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .mermaid {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Graph-Based Testing untuk Website Universitas DIPA</h1>
+    
+    <h2>Graph Test Path - Program Studi</h2>
+    <div class="mermaid">
+    graph TD
+        A[Halaman Utama] --> B[Program Studi]
+        
+        B --> B1[Sistem Informasi]
+        B --> B2[Teknik Informatika]
+        B --> B3[Manajemen Informatika]
+        B --> B4[Rekayasa Perangkat Lunak]
+        B --> B5[Bisnis Digital]
+        B --> B6[Kewirausahaan]
+        B --> B7[Magister Informatika]
+        
+        B1 --> A
+        B2 --> B1
+        B2 --> A
+        B3 --> A
+        B4 --> A
+        B5 --> A
+        B6 --> A
+        B7 --> A
+        
+        classDef cepat fill:#d4f9d4,stroke:#5cb85c
+        classDef sedang fill:#fff5cc,stroke:#f0ad4e
+        
+        class A cepat
+        class B cepat
+        class B1,B2,B3,B4,B5,B6,B7 sedang
+    </div>
+    
+    <h2>Graph Test Path - Penerimaan Mahasiswa Baru</h2>
+    <div class="mermaid">
+    graph TD
+        A[Halaman Utama] --> C[Penerimaan Mahasiswa Baru]
+        
+        C --> C1[Alur PMB]
+        C --> C2[Timeline]
+        C --> C3[Brosur Pendaftaran]
+        C --> C4[Daftar Akun]
+        
+        C1 --> C4
+        C1 --> C
+        C2 --> C
+        C3 --> C
+        C4 --> C
+        C --> A
+        
+        classDef cepat fill:#d4f9d4,stroke:#5cb85c
+        classDef sedang fill:#fff5cc,stroke:#f0ad4e
+        
+        class A cepat
+        class C cepat
+        class C1,C2,C3,C4 sedang
+    </div>
+    
+    <h2>Graph Test Path - Layanan</h2>
+    <div class="mermaid">
+    graph TD
+        A[Halaman Utama] --> E[Layanan]
+        
+        E --> E1[Akademik Online/SIAKA]
+        E --> E2[Pembelajaran Virtual/LMS]
+        E --> E3[Perpustakaan Digital]
+        E --> E4[Jurnal Penelitian]
+        E --> E5[Dosen Pembimbing Akademik]
+        E --> E6[Kuliah Kerja Lapangan]
+        E --> E7[MBKM]
+        E --> E8[Galeri]
+        
+        E1 --> E
+        E2 --> E3
+        E2 --> E
+        E3 --> E
+        E4 --> E
+        E5 --> E
+        E6 --> E
+        E7 --> E
+        E8 --> E
+        E --> A
+        
+        classDef cepat fill:#d4f9d4,stroke:#5cb85c
+        classDef lambat fill:#ffd9d9,stroke:#d9534f
+        
+        class A cepat
+        class E cepat
+        class E1,E2,E3,E4,E5,E6,E7,E8 lambat
+    </div>
+    
+    <h2>Graph Test Path - Mahasiswa</h2>
+    <div class="mermaid">
+    graph TD
+        A[Halaman Utama] --> F[Mahasiswa]
+        
+        F --> F1[Study Club]
+        F --> F2[Minat Bakat]
+        F --> F3[Keagamaan]
+        
+        F1 --> F1a[DCC]
+        F2 --> F2a[Mahadipa]
+        F3 --> F3a[PMK]
+        
+        F1 --> F2
+        F1 --> F3
+        F2 --> F1
+        F2 --> F3
+        F3 --> F1
+        F3 --> F2
+        
+        F1a --> F1
+        F2a --> F2
+        F3a --> F3
+        
+        F1 --> F
+        F2 --> F
+        F3 --> F
+        F --> A
+        
+        classDef cepat fill:#d4f9d4,stroke:#5cb85c
+        classDef sedang fill:#fff5cc,stroke:#f0ad4e
+        classDef lambat fill:#ffd9d9,stroke:#d9534f
+        
+        class A cepat
+        class F cepat
+        class F1,F2,F3 sedang
+        class F1a,F2a,F3a lambat
+    </div>
+    
+    <h2>Graph Test Path - Berita dan Kontak</h2>
+    <div class="mermaid">
+    graph TD
+        A[Halaman Utama] --> D[Berita]
+        A --> G[Kontak]
+        
+        D --> D1[Artikel Berita]
+        D1 --> D
+        D --> A
+        G --> A
+        
+        classDef cepat fill:#d4f9d4,stroke:#5cb85c
+        classDef sedang fill:#fff5cc,stroke:#f0ad4e
+        
+        class A cepat
+        class D cepat
+        class G cepat
+        class D1 sedang
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose'
+            });
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

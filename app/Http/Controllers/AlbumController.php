@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
+
 use App\Models\Album;
 use App\Models\Foto;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -22,20 +23,21 @@ class AlbumController extends Controller
     $albums = Album::with(['user', 'kategoris', 'fotos'])->get();
     return view('pages.admin.album.index', compact('albums'));
   }
-public function user()
-{
+
+  public function user()
+  {
     $albums = Album::with(['user', 'kategoris', 'fotos'])->get();
 
     return view('pages.users.album', compact('albums'));
-}
-public function userShow($id)
-{
+  }
+
+  public function userShow($id)
+  {
     // Ambil data album lengkap dengan relasi
     $album = Album::with(['user', 'kategoris', 'fotos'])->findOrFail($id);
 
     return view('pages.users.album-detail', compact('album'));
-}
-
+  }
 
   /**
    * Show the form for creating a new album.
@@ -88,14 +90,14 @@ public function userShow($id)
 
     // Attach categories
     foreach ($request->kategori_ids as $kategoriId) {
-        DB::table('album_kategori_222305')->insert([
+      DB::table('album_kategori_222305')->insert([
         'id_album_kategori_222305' => Str::uuid()->toString(),
-            'id_album_222305' => $album->id_album_222305,
-            'id_kategori_222305' => $kategoriId
-        ]);
+        'id_album_222305'          => $album->id_album_222305,
+        'id_kategori_222305'       => $kategoriId
+      ]);
     }
 
-   return redirect()->route('admin.album.index')->with('success', 'Album berhasil dibuat!');
+    return redirect()->route('admin.album.index')->with('success', 'Album berhasil dibuat!');
   }
 
   /**
@@ -138,7 +140,7 @@ public function userShow($id)
       'judul_222305'     => 'required|string|max:255',
       'deskripsi_222305' => 'required|string',
       'harga_222305'     => 'required|numeric|min:0',
-      'status_222305'    => 'required|in:aktif,nonaktif',
+      'status_222305'    => 'required|in:tersedia,tidak tersedia',
       'cover_image'      => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
       'kategori_ids'     => 'required|array',
       'kategori_ids.*'   => 'exists:kategori_222305,id_kategori_222305',
@@ -172,7 +174,7 @@ public function userShow($id)
     $album->kategoris()->sync($request->kategori_ids);
 
     return redirect()
-      ->route('album.show', $album->id_album_222305)
+      ->route('admin.album.index', $album->id_album_222305)
       ->with('success', 'Album berhasil diperbarui!');
   }
 
