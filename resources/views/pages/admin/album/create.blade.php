@@ -82,21 +82,24 @@
                     </div>
 
                     <div>
-                        <label for="kategori_ids" class="block text-sm font-medium text-gray-700">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
                             Kategori <span class="text-red-500">*</span>
                         </label>
-                        <select name="kategori_ids[]" id="kategori_ids" multiple
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md
-                            @error('kategori_ids') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
-                            required>
+                        <div class="bg-white border border-gray-300 rounded-md shadow-sm p-2 max-h-48 overflow-y-auto">
                             @foreach($kategoris as $kategori)
-                                <option value="{{ $kategori->id_kategori_222305 }}" 
-                                    {{ (is_array(old('kategori_ids')) && in_array($kategori->id_kategori_222305, old('kategori_ids'))) ? 'selected' : '' }}>
+                            <div class="flex items-center mb-2 last:mb-0">
+                                <input type="checkbox" name="kategori_ids[]" id="kategori_{{ $kategori->id_kategori_222305 }}" 
+                                    value="{{ $kategori->id_kategori_222305 }}" 
+                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                    {{ (is_array(old('kategori_ids')) && in_array($kategori->id_kategori_222305, old('kategori_ids'))) ? 'checked' : '' }}>
+                                <label for="kategori_{{ $kategori->id_kategori_222305 }}" 
+                                    class="ml-2 block text-sm text-gray-700">
                                     {{ $kategori->nama_kategori_222305 }}
-                                </option>
+                                </label>
+                            </div>
                             @endforeach
-                        </select>
-                        <p class="mt-1 text-xs text-gray-500">Pilih satu atau lebih kategori (gunakan tombol Ctrl atau Cmd untuk memilih banyak)</p>
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500">Pilih satu atau lebih kategori dengan mencentang kotak</p>
                         @error('kategori_ids')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -147,27 +150,9 @@
 </div>
 @endsection
 
-@push('scripts')
+@section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize select2 with Tailwind classes
-        if (document.querySelector('#kategori_ids')) {
-            new Choices('#kategori_ids', {
-                removeItemButton: true,
-                classNames: {
-                    containerOuter: 'relative w-full',
-                    containerInner: 'w-full',
-                    input: 'bg-white',
-                    inputCloned: 'bg-white',
-                    listItems: 'rounded',
-                    item: 'bg-indigo-100 text-indigo-800 rounded-sm',
-                    itemChoice: 'bg-white',
-                    activeState: 'bg-indigo-600 text-white',
-                    highlightedState: 'bg-indigo-100 text-indigo-800',
-                }
-            });
-        }
-        
         // Image preview
         const input = document.getElementById('cover_image');
         const preview = document.getElementById('preview');
@@ -244,12 +229,10 @@
                     preview.src = '#';
                 }
                 
-                // Reset select2 if exists
-                if (window.Choices && document.querySelector('#kategori_ids')) {
-                    const selectElement = document.querySelector('#kategori_ids');
-                    const choices = new Choices(selectElement);
-                    choices.clearStore();
-                }
+                // Reset checkboxes
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
                 
                 // Remove validation errors
                 document.querySelectorAll('.text-red-600').forEach(el => {
@@ -263,4 +246,4 @@
         }
     });
 </script>
-@endpush
+@endsection

@@ -11,6 +11,8 @@ use App\Models\Kategori;
 use App\Models\Keranjang;
 use App\Models\Pemesanan;
 use App\Models\User;
+use App\Models\Users;
+use Illuminate\Support\Facades\DB;
 
 class IDGenerator
 {
@@ -21,7 +23,7 @@ class IDGenerator
   public static function generateUserID()
   {
     $prefix   = 'USR';
-    $lastUser = User::orderBy('id_user_222305', 'desc')->first();
+    $lastUser = Users::orderBy('id_user_222305', 'desc')->first();
 
     if (!$lastUser) {
       return $prefix . '001';
@@ -77,18 +79,26 @@ class IDGenerator
    */
   public static function generateAlbumKategoriID()
   {
-    $prefix            = 'AK';
-    $lastAlbumKategori = AlbumKategori::orderBy('id_album_kategori_222305', 'desc')->first();
+    return DB::transaction(function () {
+      $prefix = 'AK';
 
-    if (!$lastAlbumKategori) {
-      return $prefix . '001';
-    }
+      // Lock baris terakhir untuk menghindari race condition
+      $lastAlbumKategori = AlbumKategori::lockForUpdate()
+        ->orderBy('id_album_kategori_222305', 'desc')
+        ->first();
 
-    $lastNumber = (int) substr($lastAlbumKategori->id_album_kategori_222305, 2);
-    $newNumber  = $lastNumber + 1;
+      if (!$lastAlbumKategori) {
+        return $prefix . '001';
+      }
 
-    return $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+      $lastNumber = (int) substr($lastAlbumKategori->id_album_kategori_222305, 2);
+      $newNumber  = $lastNumber + 1;
+
+      return $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+    });
   }
+
+  // Fungsi helper untuk memastikan ID yang dihasilkan unik
 
   /**
    * Generate ID for Foto

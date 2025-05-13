@@ -78,7 +78,6 @@ class AlbumController extends Controller
 
     // Create album
     $album = Album::create([
-      'id_album_222305'  => Str::uuid()->toString(),
       'id_user_222305'   => Auth::id(),
       'judul_222305'     => $request->judul_222305,
       'deskripsi_222305' => $request->deskripsi_222305,
@@ -171,7 +170,7 @@ class AlbumController extends Controller
     $album->save();
 
     // Sync categories
-    $album->kategoris()->sync($request->kategori_ids);
+    $album->syncKategorisWithCustomIds($request->kategori_ids);
 
     return redirect()
       ->route('admin.album.index', $album->id_album_222305)

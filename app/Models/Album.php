@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\IDGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,6 +26,15 @@ class Album extends Model
         'path_img_222305',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id_album_222305 = IDGenerator::generateAlbumID();
+        });
+    }
+
     /**
      * Get the user that owns the album.
      */
@@ -46,6 +56,31 @@ class Album extends Model
             'id_album_222305',
             'id_kategori_222305'
         );
+    }
+
+    public function kategorialbums()
+    {
+        return $this->belongsToMany(
+            Kategori::class,
+            'album_kategori_222305',
+            'id_album_222305',
+            'id_kategori_222305'
+        )->using(AlbumKategori::class);
+    }
+
+    public function syncKategorisWithCustomIds(array $kategoriIds)
+    {
+        // Hapus semua relasi yang ada
+        $this->kategorialbums()->detach();
+
+        // Tambahkan relasi baru dengan custom ID
+        foreach ($kategoriIds as $kategoriId) {
+            AlbumKategori::create([
+                'id_album_kategori_222305' => IDGenerator::generateAlbumKategoriID(),
+                'id_album_222305'          => $this->id_album_222305,
+                'id_kategori_222305'       => $kategoriId
+            ]);
+        }
     }
 
     /**

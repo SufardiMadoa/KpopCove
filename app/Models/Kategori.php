@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\IDGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,15 @@ class Kategori extends Model
         'id_kategori_222305',
         'nama_kategori_222305',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id_kategori_222305 = IDGenerator::generateKategoriID();
+        });
+    }
 
     /**
      * The albums that belong to the kategori.

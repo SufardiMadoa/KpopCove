@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\IDGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,6 +29,16 @@ class Users extends Authenticatable
         'no_telp_222305',
         'role_222305',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Generate ID sebelum model disimpan
+            $model->id_user_222305 = IDGenerator::generateUserID();
+        });
+    }
 
     public function getAuthPassword()
     {
