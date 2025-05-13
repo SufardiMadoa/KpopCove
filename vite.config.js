@@ -10,4 +10,7 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    css: {
+        devSourcemap: true,
+    },
 });

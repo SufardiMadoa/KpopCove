@@ -73,8 +73,8 @@
                             class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md
                             @error('status_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
                             required>
-                            <option value="aktif" {{ old('status_222305') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                            <option value="nonaktif" {{ old('status_222305') == 'nonaktif' ? 'selected' : '' }}>Non-aktif</option>
+                            <option value="tersedia" {{ old('status_222305') == 'tersedia' ? 'selected' : '' }}>tersedia</option>
+                            <option value="tidak tersedia" {{ old('status_222305') == 'tidak tersedia' ? 'selected' : '' }}>tidak Tersedia</option>
                         </select>
                         @error('status_222305')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>

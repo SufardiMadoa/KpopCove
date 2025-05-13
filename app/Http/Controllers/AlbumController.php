@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Album;
 use App\Models\Foto;
 use App\Models\Kategori;
@@ -22,6 +22,20 @@ class AlbumController extends Controller
     $albums = Album::with(['user', 'kategoris', 'fotos'])->get();
     return view('pages.admin.album.index', compact('albums'));
   }
+public function user()
+{
+    $albums = Album::with(['user', 'kategoris', 'fotos'])->get();
+
+    return view('pages.users.album', compact('albums'));
+}
+public function userShow($id)
+{
+    // Ambil data album lengkap dengan relasi
+    $album = Album::with(['user', 'kategoris', 'fotos'])->findOrFail($id);
+
+    return view('pages.users.album-detail', compact('album'));
+}
+
 
   /**
    * Show the form for creating a new album.
@@ -46,7 +60,7 @@ class AlbumController extends Controller
       'judul_222305'     => 'required|string|max:255',
       'deskripsi_222305' => 'required|string',
       'harga_222305'     => 'required|numeric|min:0',
-      'status_222305'    => 'required|in:aktif,nonaktif',
+      'status_222305'    => 'required|in:tersedia,tidak tersedia',
       'cover_image'      => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
       'kategori_ids'     => 'required|array',
       'kategori_ids.*'   => 'exists:kategori_222305,id_kategori_222305',
@@ -68,15 +82,20 @@ class AlbumController extends Controller
       'deskripsi_222305' => $request->deskripsi_222305,
       'harga_222305'     => $request->harga_222305,
       'status_222305'    => $request->status_222305,
+      'kategori_222305'  => $request->kategori_222305,
       'path_img_222305'  => $path,
     ]);
 
     // Attach categories
-    $album->kategoris()->attach($request->kategori_ids);
+    foreach ($request->kategori_ids as $kategoriId) {
+        DB::table('album_kategori_222305')->insert([
+        'id_album_kategori_222305' => Str::uuid()->toString(),
+            'id_album_222305' => $album->id_album_222305,
+            'id_kategori_222305' => $kategoriId
+        ]);
+    }
 
-    return redirect()
-      ->route('album.show', $album->id_album_222305)
-      ->with('success', 'Album berhasil dibuat!');
+   return redirect()->route('admin.album.index')->with('success', 'Album berhasil dibuat!');
   }
 
   /**

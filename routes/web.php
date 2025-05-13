@@ -24,12 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.users.home');
 });
-Route::get('/album', function () {
-    return view('pages.users.album');
-});
-Route::get('/album/detail', function () {
-    return view('pages.users.album-detail');
-});
+Route::get('/album', [AlbumController::class, 'user'])->name('user.album');
+ Route::get('/album/{id}', [AlbumController::class, 'userShow'])->name('user.album-detail');
 Route::middleware('guest')->group(function () {
     // Login routes
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
