@@ -35,7 +35,10 @@
                     <!-- Product Details -->
                     <div class="md:w-1/2 p-8">
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">New Release</span>
+                             @foreach ($album->kategoris as $kategori)
+            <span class="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">{{ $kategori->nama_kategori ?? '-' }}</span>
+        @endforeach
+    
                             <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Limited Edition</span>
                         </div>
 
@@ -353,14 +356,14 @@
             return {
                 product: {
                     id: 1,
-                    name: 'Stray Kids - ROCK-STAR (Limited Edition)',
-                    price: 350000,
+                    name: '{{ $album->judul_222305 }}',
+                    price: {{ $album->harga_222305}},
                     rating: 5,
                     stock: 25,
-                    description: 'Limited Edition album featuring exclusive photobook, member photocards, poster, sticker sheet, and special holographic cover. Includes all tracks from the ROCK-STAR album plus 2 bonus tracks.',
-                    image: 'https://img.freepik.com/free-psd/gradient-sweet-16-poster-template_23-2149541065.jpg?t=st=1746536520~exp=1746540120~hmac=33866e536365b7abfa5bd98791057fb958a9ce21d4c5c9ca55a35a833d2c1830&w=900',
+                    description: '{{ $album->deskripsi_222305 }}',
+                    image: '{{ asset('storage/' . $album->path_img_222305) }}',
                     thumbnails: [
-                        'https://img.freepik.com/free-psd/gradient-sweet-16-poster-template_23-2149541065.jpg?t=st=1746536520~exp=1746540120~hmac=33866e536365b7abfa5bd98791057fb958a9ce21d4c5c9ca55a35a833d2c1830&w=900',
+                        '{{ asset('storage/' . $album->path_img_222305) }}',
                         'https://img.freepik.com/free-psd/korean-restaurant-flyer-template-design_23-2151934251.jpg?t=st=1746536479~exp=1746540079~hmac=22db791c92e523673ee624ff0b11c848c1e54c19f50267c6270d3ded24f8f59d&w=900'
                     ]
                 },

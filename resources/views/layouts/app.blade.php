@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Toko Pakaian - @yield('title', 'Laravel')</title>
+    <title>Toko Album - @yield('title', 'Laravel')</title>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
     @vite('resources/css/app.css')
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,7 +15,7 @@
     <!-- Tailwind + Flowbite + DataTables -->
     <link href="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/2.3.0/css/dataTables.tailwindcss.css" rel="stylesheet" />
-
+<script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Styles -->
     <style>
         /* Custom warna terang untuk select page length */
@@ -63,10 +64,7 @@
 
     <!-- Script includes -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.tailwindcss.js"></script>
-    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
+
 
     <!-- DataTables Setup -->
     <script>

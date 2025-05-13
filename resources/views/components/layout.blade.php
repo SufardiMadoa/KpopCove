@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Lumbung Pangan Indonesia</title>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
     @vite('resources/css/app.css')
 
     <!-- Fonts -->

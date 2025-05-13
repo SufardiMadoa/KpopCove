@@ -30,7 +30,7 @@
             </button>
             
             <!-- Profile Dropdown -->
-            <div class="dropdown dropdown-end">
+            <!-- <div class="dropdown dropdown-end">
                 <div class="flex gap-3 items-center font-medium p-1 px-4 cursor-pointer">
                     <div class="text-right">
                         <div class="font-semibold text-slate-800">Username</div>
@@ -73,7 +73,7 @@
                         </form>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </header>
 </div>
