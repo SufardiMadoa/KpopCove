@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('nama_222305');
             $table->string('email_222305')->unique();
             $table->string('password_222305');
-            $table->string('no_telp_222305');
             $table->string('role_222305')->default('user');  // 'admin' or 'user'
             $table->timestamps();
         });

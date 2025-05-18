@@ -68,10 +68,10 @@ class AuthController extends Controller
       ]);
 
       // Redirect berdasarkan peran pengguna
-      if (Auth::user()->role === 'admin') {
-        return redirect()->intended(route('admin.album,index'))->with('success', 'Login berhasil!');
+      if (Auth::user()->role_222305 === 'admin') {
+        return redirect()->intended(route('admin.album.index'))->with('success', 'Login berhasil!');
       } else {
-        return redirect()->intended('/admin')->with('success', 'Login berhasil!');
+        return redirect()->intended('/')->with('success', 'Login berhasil!');
       }
     }
 
@@ -101,48 +101,27 @@ class AuthController extends Controller
   public function register(Request $request)
   {
     $request->validate([
-      'nama_222305'    => 'required|string|max:255',
-      'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305',
-      'password'       => 'required|string|min:8|confirmed',
-      'no_telp_222305' => 'required|string|max:15',
+      'name'     => 'required|string|max:255',
+      'email'    => 'required|string|email|max:255|unique:users_222305,email_222305',
+      'password' => 'required|string|min:8|confirmed',
     ]);
 
     // Begin transaction
-    DB::beginTransaction();
 
-    try {
-      // Create user
-      $userId = Str::uuid()->toString();
-      $user   = Users::create([
-        'id_user_222305'  => $userId,
-        'nama_222305'     => $request->nama_222305,
-        'email_222305'    => $request->email_222305,
-        'password_222305' => Hash::make($request->password),
-        'no_telp_222305'  => $request->no_telp_222305,
-        'role_222305'     => 'user',  // Default role for new registrations
-      ]);
+    // Create user
+    $user = Users::create([
+      'nama_222305'     => $request->name,
+      'email_222305'    => $request->email,
+      'password_222305' => Hash::make($request->password),
+      'role_222305'     => 'user',  // Default role for new registrations
+    ]);
 
-      // Create empty shopping cart for the user
-      Keranjang::create([
-        'id_keranjang_222305' => Str::uuid()->toString(),
-        'id_user_222305'      => $userId,
-        'total_harga_222305'  => 0,
-      ]);
+    // Login the user after registration
+    // Auth::login($user);
 
-      DB::commit();
-
-      // Login the user after registration
-      Auth::login($user);
-
-      return redirect()
-        ->route('home')
-        ->with('success', 'Pendaftaran berhasil! Selamat datang di aplikasi kami.');
-    } catch (\Exception $e) {
-      DB::rollback();
-      return back()
-        ->withErrors(['error' => 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.'])
-        ->withInput();
-    }
+    return redirect()
+      ->route('login')
+      ->with('success', 'Pendaftaran berhasil! Selamat datang di aplikasi kami.');
   }
 
   /**

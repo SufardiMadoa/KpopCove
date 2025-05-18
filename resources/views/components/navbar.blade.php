@@ -1,105 +1,125 @@
 <header
-    class="flex top-0 justify-between items-center py-3 px-24 bg-white z-50 w-full fixed font-sans shadow-md border-b border-slate-100">
+    class="flex top-0 justify-between items-center py-4 px-6 md:px-16 lg:px-24 bg-gradient-to-r from-pink-100 via-white to-purple-100 z-50 w-full fixed font-sans shadow-md">
     <!-- Logo -->
     <div class="flex items-center space-x-2">
-        <div class="text-2xl font-bold">
-            <span class="text-cyan-600">KPOP</span><span class="text-slate-800">COVE</span>
+        <div class="text-2xl font-bold tracking-wider">
+            <span class="text-pink-500">KPOP</span><span class="text-purple-600">COVE</span>
+            <span class="text-xs font-normal text-gray-500 ml-1">케이팝코브</span>
         </div>
     </div>
 
     <!-- Desktop navigation menu -->
     <nav class="hidden md:flex items-center">
-        <div class="flex space-x-1">
-            <a href="/" class="relative group px-4 py-2 {{ request()->routeIs('home') ? 'text-cyan-600 font-medium' : 'text-slate-700' }}">
-                Beranda
-                <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600 transform {{ request()->routeIs('/') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform"></span>
+        <div class="flex space-x-3">
+            <a href="/" class="relative group px-4 py-2 {{ request()->routeIs('home') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    Beranda
+                </span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('/') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="{{ route('user.album') }}" class="relative group px-4 py-2 {{ request()->routeIs('user.album') ? 'text-cyan-600 font-medium' : 'text-slate-700' }}">
-                Album
-                <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600 transform {{ request()->routeIs('user.album') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform"></span>
+            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('user.album') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    Album
+                </span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('user.album') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('category.index') ? 'text-cyan-600 font-medium' : 'text-slate-700' }}">
-                Kategori
-                <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600 transform {{ request()->routeIs('category.index') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform"></span>
+            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('category.index') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    </svg>
+                    Kategori
+                </span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('category.index') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-cyan-600 font-medium' : 'text-slate-700' }}">
-                Tentang Kami
-                <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600 transform {{ request()->routeIs('about') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform"></span>
+            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Tentang Kami
+                </span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('about') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-cyan-600 font-medium' : 'text-slate-700' }}">
-                Kontak
-                <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-600 transform {{ request()->routeIs('contact') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform"></span>
+            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Kontak
+                </span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('contact') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
         </div>
     </nav>
 
     <!-- Right section -->
-    <div class="flex items-center space-x-4">
-        <!-- Search button with dropdown -->
+    <div class="flex items-center space-x-3">
+        <!-- Search button with k-pop style dropdown -->
         <div x-data="{ open: false }" class="relative">
-            <button @click="open = !open" class="p-2 rounded-full hover:bg-cyan-50 transition-colors">
+            <button @click="open = !open" class="p-2 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-slate-600">
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
             </button>
 
             <!-- Search Form -->
-            <div x-show="open" x-transition class="absolute top-12 right-0 bg-white shadow-lg rounded-lg p-4 w-72">
-                <div class="flex items-center bg-slate-100 rounded-lg px-3 py-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500 mr-2" fill="none"
+            <div x-show="open" x-transition class="absolute top-12 right-0 bg-white shadow-lg rounded-2xl border border-purple-100 p-4 w-72">
+                <div class="flex items-center bg-gray-50 rounded-xl px-3 py-2 border border-pink-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400 mr-2" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                     <input type="text" placeholder="Cari produk Kpop..."
-                        class="bg-transparent border-none w-full focus:outline-none text-sm text-slate-700">
+                        class="bg-transparent border-none w-full focus:outline-none text-sm text-gray-700">
                 </div>
-                <div class="mt-2 text-xs text-slate-500">
-                    <p>Pencarian populer: Album, Lightstick, Photocard</p>
+                <div class="mt-2 p-2 bg-purple-50 rounded-xl">
+                    <p class="text-xs text-purple-500 font-medium">인기 검색어: <span class="text-gray-500">Album, Lightstick, Photocard</span></p>
                 </div>
             </div>
         </div>
 
         <!-- Cart icon with badge -->
-      
-
-        <!-- User profile menu - Show only when logged in -->
         @auth
-          <a href="#" class="relative p-2 rounded-full hover:bg-cyan-50 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-600" fill="none" viewBox="0 0 24 24"
+        <a href="#" class="relative p-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-500 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             @if(Auth::check() && Auth::user()->cart && Auth::user()->cart->items_count > 0)
-                <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-cyan-600 rounded-full">
+                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-pink-500 rounded-full border-2 border-white">
                     {{ Auth::user()->cart->items_count }}
                 </span>
             @endif
         </a>
+
+        <!-- User profile menu - Show only when logged in -->
         <div x-data="{ drawerOpen: false }">
             <button @click="drawerOpen = true"
-                class="flex items-center cursor-pointer space-x-2 border border-slate-200 rounded-full pr-3 pl-1 py-1 hover:bg-cyan-50 transition-colors">
-                <div class="h-8 w-8 rounded-full overflow-hidden bg-slate-300">
+                class="flex items-center cursor-pointer space-x-2 border border-purple-200 rounded-full pr-3 pl-1 py-1 hover:bg-purple-50 transition-colors">
+                <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 border-2 border-white">
                     @if(Auth::user()->profile_photo_path)
                         <img alt="{{ Auth::user()->name }}" class="h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}">
                     @else
                         <img alt="{{ Auth::user()->name }}" class="h-full w-full object-cover" src="{{ asset('images/default-avatar.jpg') }}">
                     @endif
                 </div>
-                <span class="text-sm font-medium text-slate-700 hidden sm:inline">{{ Auth::user()->name }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500" fill="none"
+                <span class="text-sm font-medium text-gray-700 hidden sm:inline">{{ Auth::user()->name }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-400" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -117,10 +137,10 @@
                 class="fixed inset-y-0 right-0 z-50 min-h-full w-80 sm:w-96 bg-white shadow-xl transform">
 
                 <!-- Sidebar header -->
-                <div class="p-6 bg-cyan-600 text-white">
+                <div class="p-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">Account</h2>
-                        <button @click="drawerOpen = false" class="p-1 rounded-full hover:bg-cyan-700">
+                        <h2 class="text-xl font-bold">내 계정</h2>
+                        <button @click="drawerOpen = false" class="p-1 rounded-full hover:bg-white hover:bg-opacity-20">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -129,7 +149,7 @@
                         </button>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="h-16 w-16 rounded-full bg-white p-1">
+                        <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
                             @if(Auth::user()->profile_photo_path)
                                 <img class="w-full h-full rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}">
                             @else
@@ -138,46 +158,46 @@
                         </div>
                         <div>
                             <h2 class="text-xl font-bold">{{ Auth::user()->name }}</h2>
-                            <p class="text-cyan-200 text-sm">{{ Auth::user()->email }}</p>
+                            <p class="text-pink-100 text-sm">{{ Auth::user()->email }}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Navigation menu -->
                 <nav class="p-4">
-                    <p class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-4">Menu</p>
+                    <p class="text-xs font-medium text-purple-400 uppercase tracking-wider mb-4">메뉴</p>
 
                     <a href="#"
-                        class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-cyan-50 mb-1 {{ request()->routeIs('profile.show') ? 'bg-cyan-50' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-600" fill="none"
+                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('profile.show') ? 'bg-pink-50' : '' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                        <span class="font-medium text-slate-700">Profile Saya</span>
+                        <span class="font-medium text-gray-700">Profile Saya</span>
                     </a>
 
-                    <a href="{{ route('orders.index') }}"
-                        class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-cyan-50 mb-1 {{ request()->routeIs('orders.index') ? 'bg-cyan-50' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-600" fill="none"
+                    <a href="#"
+                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('orders.index') ? 'bg-pink-50' : '' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
-                        <span class="font-medium text-slate-700">Pesanan Saya</span>
+                        <span class="font-medium text-gray-700">Pesanan Saya</span>
                     </a>
 
-                    <div class="border-t border-slate-200 my-4"></div>
+                    <div class="border-t border-gray-200 my-4"></div>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-red-50 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none"
+                        <button type="submit" class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-50 w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
-                            <span class="font-medium text-red-600">Logout</span>
+                            <span class="font-medium text-red-500">Logout</span>
                         </button>
                     </form>
                 </nav>
@@ -186,11 +206,32 @@
         @else
         <!-- Login/Register buttons when not logged in -->
         <div class="flex items-center space-x-2">
-            <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-medium text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors">Login</a>
-            <a href="{{ route('register') }}" class="px-4 py-2 text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg transition-colors">Register</a>
+            <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-medium text-pink-500 hover:bg-pink-50 rounded-lg transition-colors border border-pink-200">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    Login
+                </span>
+            </a>
+            <a href="{{ route('register') }}" class="px-4 py-2 text-sm font-medium text-slate-950 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-lg transition-colors shadow-sm">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    Register
+                </span>
+            </a>
         </div>
         @endauth
+    </div>
 
-       
+    <!-- Mobile menu button - Only visible on mobile -->
+    <div class="md:hidden">
+        <button x-data="{ open: false }" @click="open = !open" class="p-2 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-500 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
     </div>
 </header>

@@ -26,7 +26,6 @@ class Users extends Authenticatable
         'nama_222305',
         'email_222305',
         'password_222305',
-        'no_telp_222305',
         'role_222305',
     ];
 

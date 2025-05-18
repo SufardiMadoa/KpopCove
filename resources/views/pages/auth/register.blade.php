@@ -13,11 +13,7 @@
 <body>
     <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 via-purple-300 to-pink-200 relative overflow-hidden">
         <!-- Decorative elements -->
-        <div class="absolute top-0 left-0 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute top-0 right-0 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         
-        <div class="absolute inset-0 bg-white opacity-10 backdrop-filter backdrop-blur-sm"></div>
         
         <div class="max-w-md w-full p-8 bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm rounded-2xl shadow-2xl z-10 transform transition-all duration-500 hover:scale-[1.02] my-8">
             <div class="text-center mb-6">
