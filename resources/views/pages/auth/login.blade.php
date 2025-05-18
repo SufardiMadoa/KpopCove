@@ -82,7 +82,7 @@
             </form>
         </div>
     </div>
-    
+
     <style>
     .animate-blob {
         animation: blob 7s infinite;
