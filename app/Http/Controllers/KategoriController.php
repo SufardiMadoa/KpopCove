@@ -50,7 +50,7 @@ class KategoriController extends Controller
     ]);
 
     return redirect()
-      ->route('pages.admin.kategori.index')
+      ->route('admin.kategori.index')
       ->with('success', 'Kategori berhasil ditambahkan.');
   }
 
@@ -97,7 +97,7 @@ class KategoriController extends Controller
     ]);
 
     return redirect()
-      ->route('pages.admin.kategori.index')
+      ->route('admin.kategori.index')
       ->with('success', 'Kategori berhasil diperbarui.');
   }
 
@@ -113,17 +113,14 @@ class KategoriController extends Controller
     $kategori->delete();
 
     return redirect()
-      ->route('pages.admin.kategori.index')
+      ->route('admin.kategori.index')
       ->with('success', 'Kategori berhasil dihapus.');
   }
 
-public function search(Request $request)
-{
-    $query = $request->get('q');
+  public function search(Request $request)
+  {
+    $query     = $request->get('q');
     $kategoris = Kategori::where('nama_kategori_222305', 'like', '%' . $query . '%')->get();
     return response()->json($kategoris);
-}
-
-
-
+  }
 }
