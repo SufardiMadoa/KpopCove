@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('id_album_222305')->primary();
             $table->string('email_222305');
             $table->string('judul_222305');
+            $table->integer('stok_222305');
             $table->text('deskripsi_222305');
             $table->decimal('harga_222305', 10, 2);
             $table->enum('status_222305', ['tersedia', 'tidak tersedia'])->default('tersedia');

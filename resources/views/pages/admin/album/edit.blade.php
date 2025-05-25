@@ -63,6 +63,18 @@
                     @error('deskripsi_222305')
                         <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                     @enderror
+                    <div>
+                        <label for="stok_222305" class="block text-sm font-medium text-gray-700">
+                            Stok<span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" name="stok_222305" id="stok_222305" value="{{ old('stok_222305', $album->stok_222305) }}" min="0"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                            @error('stok_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
+                            required>
+                        @error('stok_222305')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">

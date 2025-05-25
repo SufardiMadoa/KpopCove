@@ -95,11 +95,13 @@
                     @enderror
                 </div>
 
-                <div class="mt-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
+                    <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">
                         Kategori <span class="text-red-500">*</span>
                     </label>
                     <div class="bg-white border border-gray-300 rounded-md shadow-sm p-2 max-h-48 overflow-y-auto">
+                       
                         @foreach($kategoris as $kategori)
                         <div class="flex items-center mb-2 last:mb-0">
                             <input type="checkbox" name="kategori_ids[]" id="kategori_{{ $kategori->id_kategori_222305 }}" 
@@ -112,6 +114,19 @@
                             </label>
                         </div>
                         @endforeach
+                    </div>  
+                    </div>
+                    <div>
+                        <label for="stok_222305" class="block text-sm font-medium text-gray-700">
+                            Stok <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" name="stok_222305" id="stok_222305" value="{{ old('stok_222305') }}" min="0"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                            @error('stok_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
+                            required>
+                        @error('stok_222305')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                     <p class="mt-1 text-xs text-gray-500">Pilih satu atau lebih kategori dengan mencentang kotak</p>
                     @error('kategori_ids')

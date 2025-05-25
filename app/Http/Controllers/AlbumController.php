@@ -85,6 +85,7 @@ class AlbumController extends Controller
       'deskripsi_222305' => $request->deskripsi_222305,
       'harga_222305'     => $request->harga_222305,
       'status_222305'    => $request->status_222305,
+      'stok_222305'      => $request->stok_222305,
       'kategori_222305'  => $request->kategori_222305,
       'path_img_222305'  => $path,
     ]);
@@ -169,6 +170,7 @@ class AlbumController extends Controller
     $album->deskripsi_222305 = $request->deskripsi_222305;
     $album->harga_222305     = $request->harga_222305;
     $album->status_222305    = $request->status_222305;
+    $album->stok_222305      = $request->stok_222305;
     $album->save();
 
     // Sync categories

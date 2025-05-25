@@ -22,6 +22,7 @@ class Album extends Model
         'judul_222305',
         'deskripsi_222305',
         'harga_222305',
+        'stok_222305',
         'status_222305',
         'path_img_222305',
     ];
