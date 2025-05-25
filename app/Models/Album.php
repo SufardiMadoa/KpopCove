@@ -18,7 +18,7 @@ class Album extends Model
 
     protected $fillable = [
         'id_album_222305',
-        'id_user_222305',
+        'email_222305',
         'judul_222305',
         'deskripsi_222305',
         'harga_222305',
@@ -26,21 +26,12 @@ class Album extends Model
         'path_img_222305',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id_album_222305 = IDGenerator::generateAlbumID();
-        });
-    }
-
     /**
      * Get the user that owns the album.
      */
     public function user()
     {
-        return $this->belongsTo(Users::class, 'id_user_222305', 'id_user_222305');
+        return $this->belongsTo(Users::class, 'email_222305', 'email_222305');
     }
 
     /**

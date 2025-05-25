@@ -14,7 +14,7 @@
     <!-- Font Awesome (jika belum ada) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <title>Lumbung Pangan Dashboard</title>
+    <title>Admin Album</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
  @livewireStyles
 </head>

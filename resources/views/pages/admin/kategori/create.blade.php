@@ -20,10 +20,31 @@
                 @endif
                 
                 <div class="mb-4">
-                    <label for="nama_kategori_222305" class="block text-gray-700 font-bold mb-2">Nama Kategori</label>
+                    <label for="id_kategori_222305" class="block text-gray-700 font-bold mb-2">
+                        Kode Kategori <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="id_kategori_222305" id="id_kategori_222305" 
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 @error('id_kategori_222305') border-red-500 @enderror" 
+                        value="{{ old('id_kategori_222305') }}" 
+                        placeholder="Masukkan kode kategori (contoh: KTG-001)" 
+                        required>
+                    @error('id_kategori_222305')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label for="nama_kategori_222305" class="block text-gray-700 font-bold mb-2">
+                        Nama Kategori <span class="text-red-500">*</span>
+                    </label>
                     <input type="text" name="nama_kategori_222305" id="nama_kategori_222305" 
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
-                        value="{{ old('nama_kategori_222305') }}" required>
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 @error('nama_kategori_222305') border-red-500 @enderror" 
+                        value="{{ old('nama_kategori_222305') }}" 
+                        placeholder="Masukkan nama kategori"
+                        required>
+                    @error('nama_kategori_222305')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 
                 <div class="flex justify-between mt-6">

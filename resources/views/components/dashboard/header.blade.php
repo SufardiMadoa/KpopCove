@@ -12,7 +12,7 @@
                 <p class="text-xs text-gray-500">Dashboard Control Panel</p>
             </div>
         </div>
-        
+      
        
     </header>
 </div>

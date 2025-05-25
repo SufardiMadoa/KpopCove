@@ -17,7 +17,7 @@ class Keranjang extends Model
 
     protected $fillable = [
         'id_keranjang_222305',
-        'id_user_222305',
+        'email_222305',
     ];
 
     /**
@@ -25,7 +25,7 @@ class Keranjang extends Model
      */
     public function user()
     {
-        return $this->belongsTo(Users::class, 'id_user_222305', 'id_user_222305');
+        return $this->belongsTo(Users::class, 'email_222305', 'email_222305');
     }
 
     /**

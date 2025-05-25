@@ -48,7 +48,6 @@ class UserController extends Controller
         ]);
 
         $user = Users::create([
-            'id_user_222305'  => Str::uuid()->toString(),
             'nama_222305'     => $request->nama_222305,
             'email_222305'    => $request->email_222305,
             'password_222305' => Hash::make($request->password),
@@ -98,7 +97,7 @@ class UserController extends Controller
 
         $rules = [
             'nama_222305'    => 'required|string|max:255',
-            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $id . ',id_user_222305',
+            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $id . ',email_222305',
             'no_telp_222305' => 'required|string|max:15',
             'role_222305'    => 'required|in:admin,user',
         ];

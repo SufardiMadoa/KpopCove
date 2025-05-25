@@ -38,14 +38,12 @@ class KategoriController extends Controller
   public function store(Request $request)
   {
     $request->validate([
+      'id_kategori_222305'   => 'required|string|max:255|unique:kategori_222305,id_kategori_222305',
       'nama_kategori_222305' => 'required|string|max:255',
     ]);
 
-    // Generate a unique ID for the kategori
-    $id = 'KTG-' . Str::random(6);
-
     Kategori::create([
-      'id_kategori_222305'   => $id,
+      'id_kategori_222305'   => $request->id_kategori_222305,
       'nama_kategori_222305' => $request->nama_kategori_222305,
     ]);
 

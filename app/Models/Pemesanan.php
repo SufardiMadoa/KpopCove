@@ -17,7 +17,7 @@ class Pemesanan extends Model
 
     protected $fillable = [
         'id_pemesanan_222305',
-        'id_user_222305',
+        'email_222305',
         'tanggal_pemesanan_222305',
         'total_harga_222305',
         'metode_pembayaran_222305',
@@ -29,7 +29,7 @@ class Pemesanan extends Model
      */
     public function user()
     {
-        return $this->belongsTo(Users::class, 'id_user_222305', 'id_user_222305');
+        return $this->belongsTo(Users::class, 'email_222305', 'email_222305');
     }
 
     /**

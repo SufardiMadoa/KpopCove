@@ -15,7 +15,7 @@ class PemesananSeeder extends Seeder
         DB::table('pemesanan_222305')->insert([
             [
                 'id_pemesanan_222305'      => 'PMS001',
-                'id_user_222305'           => 'USR002',
+                'email_222305'             => 'USR002',
                 'tanggal_pemesanan_222305' => '2023-04-15',
                 'total_harga_222305'       => 670000,
                 'metode_pembayaran_222305' => 'Transfer Bank',
@@ -23,7 +23,7 @@ class PemesananSeeder extends Seeder
             ],
             [
                 'id_pemesanan_222305'      => 'PMS002',
-                'id_user_222305'           => 'USR003',
+                'email_222305'             => 'USR003',
                 'tanggal_pemesanan_222305' => '2023-04-18',
                 'total_harga_222305'       => 320000,
                 'metode_pembayaran_222305' => 'E-Wallet',

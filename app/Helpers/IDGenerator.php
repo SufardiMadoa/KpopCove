@@ -23,13 +23,13 @@ class IDGenerator
   public static function generateUserID()
   {
     $prefix   = 'USR';
-    $lastUser = Users::orderBy('id_user_222305', 'desc')->first();
+    $lastUser = Users::orderBy('email_222305', 'desc')->first();
 
     if (!$lastUser) {
       return $prefix . '001';
     }
 
-    $lastNumber = (int) substr($lastUser->id_user_222305, 3);
+    $lastNumber = (int) substr($lastUser->email_222305, 3);
     $newNumber  = $lastNumber + 1;
 
     return $prefix . str_pad($newNumber, 3, '0', STR_PAD_LEFT);

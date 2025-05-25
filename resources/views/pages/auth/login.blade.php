@@ -46,6 +46,7 @@
             <form method="POST" action="{{ route('login') }}" class="space-y-6">
                 @csrf
                 
+              
                 <div class="transform transition-all duration-300 hover:translate-x-1">
                     <label for="email" class="block text-sm font-medium text-indigo-700 mb-1">Email</label>
                     <input id="email" name="email" type="email" required 
@@ -58,6 +59,18 @@
                     <input id="password" name="password" type="password" required 
                         class="w-full px-4 py-3 border border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm" 
                         placeholder="••••••••">
+                </div>
+
+                  <div class="relative">
+                    <label for="role" class="block text-slate-950 text-sm font-medium mb-2">Login sebagai:</label>
+                    <select id="role" name="role" 
+                            class="w-full px-3 py-2 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded text-slate-950 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 appearance-none cursor-pointer"
+                            required>
+                        <option value="" disabled {{ old('role') ? '' : 'selected' }} class=" text-slate-950">Pilih role...</option>
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }} class=" text-slate-950">👨‍💼 Admin</option>
+                        <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }} class=" text-slate-950">👤 Customer</option>
+                    </select>
+                 
                 </div>
                 
                 <div>

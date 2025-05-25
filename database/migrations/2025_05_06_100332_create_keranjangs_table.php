@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('keranjang_222305', function (Blueprint $table) {
             $table->string('id_keranjang_222305')->primary();
-            $table->string('id_user_222305');
+            $table->string('email_222305');
 
             $table
-                ->foreign('id_user_222305')
-                ->references('id_user_222305')
+                ->foreign('email_222305')
+                ->references('email_222305')
                 ->on('users_222305')
                 ->onDelete('cascade');
         });

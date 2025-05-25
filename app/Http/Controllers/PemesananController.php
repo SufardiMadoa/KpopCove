@@ -102,8 +102,8 @@ class PemesananController extends Controller
    */
   public function userIndex()
   {
-    $user_id    = Auth::user()->id_user_222305;
-    $pemesanans = Pemesanan::where('id_user_222305', $user_id)
+    $user_id    = Auth::user()->email_222305;
+    $pemesanans = Pemesanan::where('email_222305', $user_id)
       ->orderBy('tanggal_pemesanan_222305', 'desc')
       ->get();
 
@@ -175,7 +175,7 @@ class PemesananController extends Controller
     // Create new order
     $pemesanan                           = new Pemesanan();
     $pemesanan->id_pemesanan_222305      = 'ORD-' . Str::random(10);
-    $pemesanan->id_user_222305           = Auth::user()->id_user_222305;
+    $pemesanan->email_222305             = Auth::user()->email_222305;
     $pemesanan->tanggal_pemesanan_222305 = now();
     $pemesanan->total_harga_222305       = $total;
     $pemesanan->metode_pembayaran_222305 = $request->metode_pembayaran_222305;
@@ -211,7 +211,7 @@ class PemesananController extends Controller
   public function userShow($id)
   {
     $pemesanan = Pemesanan::with(['itemPesanans.produk'])
-      ->where('id_user_222305', Auth::user()->id_user_222305)
+      ->where('email_222305', Auth::user()->email_222305)
       ->findOrFail($id);
 
     return view('pages.users.pemesanan.show', compact('pemesanan'));
@@ -225,7 +225,7 @@ class PemesananController extends Controller
    */
   public function cancelOrder($id)
   {
-    $pemesanan = Pemesanan::where('id_user_222305', Auth::user()->id_user_222305)
+    $pemesanan = Pemesanan::where('email_222305', Auth::user()->email_222305)
       ->findOrFail($id);
 
     // Only allow cancellation if status is pending
@@ -258,7 +258,7 @@ class PemesananController extends Controller
       return back()->withErrors($validator)->withInput();
     }
 
-    $pemesanan = Pemesanan::where('id_user_222305', Auth::user()->id_user_222305)
+    $pemesanan = Pemesanan::where('email_222305', Auth::user()->email_222305)
       ->findOrFail($id);
 
     // Only allow payment confirmation if status is pending

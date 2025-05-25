@@ -59,6 +59,7 @@ class AlbumController extends Controller
   public function store(Request $request)
   {
     $request->validate([
+      'id_album_222305'  => 'required|string|max:255|unique:album_222305,id_album_222305',
       'judul_222305'     => 'required|string|max:255',
       'deskripsi_222305' => 'required|string',
       'harga_222305'     => 'required|numeric|min:0',
@@ -78,7 +79,8 @@ class AlbumController extends Controller
 
     // Create album
     $album = Album::create([
-      'id_user_222305'   => Auth::id(),
+      'id_album_222305'  => $request->id_album_222305,
+      'email_222305'     => Auth::id(),
       'judul_222305'     => $request->judul_222305,
       'deskripsi_222305' => $request->deskripsi_222305,
       'harga_222305'     => $request->harga_222305,
@@ -250,7 +252,7 @@ class AlbumController extends Controller
    */
   public function myAlbums()
   {
-    $albums = Album::where('id_user_222305', Auth::id())
+    $albums = Album::where('email_222305', Auth::id())
       ->with(['kategoris', 'fotos'])
       ->get();
 
@@ -274,7 +276,7 @@ class AlbumController extends Controller
     $album = Album::findOrFail($id);
 
     // Check if user is authorized to add photos to this album
-    if ($album->id_user_222305 != Auth::id()) {
+    if ($album->email_222305 != Auth::id()) {
       return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menambahkan foto ke album ini.');
     }
 
@@ -310,7 +312,7 @@ class AlbumController extends Controller
     $photo = Foto::findOrFail($photoId);
 
     // Check if user is authorized to remove photos from this album
-    if ($album->id_user_222305 != Auth::id()) {
+    if ($album->email_222305 != Auth::id()) {
       return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menghapus foto dari album ini.');
     }
 
@@ -343,7 +345,7 @@ class AlbumController extends Controller
     $album = Album::findOrFail($id);
 
     // Check if user is authorized to modify this album
-    if ($album->id_user_222305 != Auth::id()) {
+    if ($album->email_222305 != Auth::id()) {
       return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengubah status album ini.');
     }
 

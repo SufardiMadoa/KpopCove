@@ -33,11 +33,12 @@ class AuthController extends Controller
    */
   public function login(Request $request)
   {
-    // Validasi input
+    // Validasi input termasuk role
     $credentials = $request->validate(
       [
         'email'    => ['required', 'email'],
         'password' => 'required|min:8|max:10',
+        'role'     => 'required|in:admin,customer',
       ],
       [
         'email.required'    => 'Email wajib diisi.',
@@ -45,41 +46,58 @@ class AuthController extends Controller
         'password.required' => 'Password wajib diisi.',
         'password.min'      => 'Password harus memiliki minimal 8 karakter.',
         'password.max'      => 'Password tidak boleh lebih dari 10 karakter.',
+        'role.required'     => 'Role wajib dipilih.',
+        'role.in'           => 'Role harus admin atau customer.',
       ]
     );
 
     // Menambahkan log percobaan login
-    Log::info('Attempting login for:', $credentials);  // Menyimpan log
+    Log::info('Attempting login for:', [
+      'email' => $credentials['email'],
+      'role'  => $credentials['role']
+    ]);
 
-    // Attempt login menggunakan kolom yang sudah disesuaikan
+    // Attempt login dengan role yang dipilih
     if (Auth::attempt([
       'email_222305' => $credentials['email'],
-      'password'     => $credentials['password']
+      'password'     => $credentials['password'],
+      'role_222305'  => $credentials['role']
     ])) {
       // Regenerasi session ID untuk keamanan
       $request->session()->regenerate();
 
-      // Menyimpan data tambahan ke session, termasuk role
+      // Menyimpan data tambahan ke session
       session([
-        'user_id'   => Auth::user()->id_user_222305,
-        'user_role' => Auth::user()->role_222305,  // Role user, misalnya 'admin' atau 'user'
-        'email'     => Auth::user()->email,  // Role user, misalnya 'admin' atau 'user'
+        'user_role' => Auth::user()->role_222305,
+        'email'     => Auth::user()->email_222305,
         'name'      => Auth::user()->nama_222305,
+      ]);
+
+      Log::info('Login successful for user:', [
+        'email' => Auth::user()->email_222305,
+        'role'  => Auth::user()->role_222305
       ]);
 
       // Redirect berdasarkan peran pengguna
       if (Auth::user()->role_222305 === 'admin') {
-        return redirect()->intended(route('admin.album.index'))->with('success', 'Login berhasil!');
+        return redirect()
+          ->intended(route('admin.album.index'))
+          ->with('success', 'Login sebagai Admin berhasil!');
       } else {
-        return redirect()->intended('/')->with('success', 'Login berhasil!');
+        return redirect()
+          ->intended('/')
+          ->with('success', 'Login sebagai Customer berhasil!');
       }
     }
 
-    Log::info('Session data after login attempt:', $request->session()->all());
+    Log::warning('Login failed for:', [
+      'email' => $credentials['email'],
+      'role'  => $credentials['role']
+    ]);
 
     return back()->withErrors([
-      'email' => 'Password dan email anda salah',
-    ]);
+      'email' => 'Email, password, atau role yang Anda masukkan salah.',
+    ])->withInput($request->except('password'));
   }
 
   /**
@@ -113,7 +131,7 @@ class AuthController extends Controller
       'nama_222305'     => $request->name,
       'email_222305'    => $request->email,
       'password_222305' => Hash::make($request->password),
-      'role_222305'     => 'user',  // Default role for new registrations
+      'role_222305'     => 'customer',  // Default role for new registrations
     ]);
 
     // Login the user after registration
@@ -165,7 +183,7 @@ class AuthController extends Controller
 
     $request->validate([
       'nama_222305'    => 'required|string|max:255',
-      'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $user->id_user_222305 . ',id_user_222305',
+      'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $user->email_222305 . ',email_222305',
       'no_telp_222305' => 'required|string|max:15',
     ]);
 

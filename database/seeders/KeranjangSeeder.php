@@ -15,11 +15,11 @@ class KeranjangSeeder extends Seeder
         DB::table('keranjang_222305')->insert([
             [
                 'id_keranjang_222305' => 'KRJ001',
-                'id_user_222305'      => 'USR002',
+                'email_222305'        => 'USR002',
             ],
             [
                 'id_keranjang_222305' => 'KRJ002',
-                'id_user_222305'      => 'USR003',
+                'email_222305'        => 'USR003',
             ],
         ]);
     }

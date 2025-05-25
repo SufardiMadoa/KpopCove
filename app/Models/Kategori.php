@@ -21,15 +21,6 @@ class Kategori extends Model
         'nama_kategori_222305',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id_kategori_222305 = IDGenerator::generateKategoriID();
-        });
-    }
-
     /**
      * The albums that belong to the kategori.
      */

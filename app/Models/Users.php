@@ -12,7 +12,7 @@ class Users extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table      = 'users_222305';
-    protected $primaryKey = 'id_user_222305';
+    protected $primaryKey = 'email_222305';
     public $incrementing  = false;
     protected $keyType    = 'string';
 
@@ -22,22 +22,11 @@ class Users extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_user_222305',
         'nama_222305',
         'email_222305',
         'password_222305',
         'role_222305',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            // Generate ID sebelum model disimpan
-            $model->id_user_222305 = IDGenerator::generateUserID();
-        });
-    }
 
     public function getAuthPassword()
     {
@@ -46,7 +35,7 @@ class Users extends Authenticatable
 
     public function getAuthIdentifierName()
     {
-        return 'id_user_222305';
+        return 'email_222305';
     }
 
     /**
@@ -70,7 +59,7 @@ class Users extends Authenticatable
      */
     public function albums()
     {
-        return $this->hasMany(Album::class, 'id_user_222305', 'id_user_222305');
+        return $this->hasMany(Album::class, 'email_222305', 'email_222305');
     }
 
     /**
@@ -78,7 +67,7 @@ class Users extends Authenticatable
      */
     public function keranjang()
     {
-        return $this->hasOne(Keranjang::class, 'id_user_222305', 'id_user_222305');
+        return $this->hasOne(Keranjang::class, 'email_222305', 'email_222305');
     }
 
     /**
@@ -86,6 +75,6 @@ class Users extends Authenticatable
      */
     public function pemesanan()
     {
-        return $this->hasMany(Pemesanan::class, 'id_user_222305', 'id_user_222305');
+        return $this->hasMany(Pemesanan::class, 'email_222305', 'email_222305');
     }
 }

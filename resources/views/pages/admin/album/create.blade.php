@@ -25,6 +25,19 @@
             <div class="px-6 py-4">
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
+                        <label for="id_album_222305" class="block text-sm font-medium text-gray-700">
+                            Kode Album <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="id_album_222305" id="id_album_222305" value="{{ old('id_album_222305') }}" 
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                            @error('id_album_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror" 
+                            placeholder="Masukkan kode album" required>
+                        @error('id_album_222305')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
                         <label for="judul_222305" class="block text-sm font-medium text-gray-700">
                             Judul Album <span class="text-red-500">*</span>
                         </label>
@@ -36,7 +49,9 @@
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+                </div>
 
+                <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
                     <div>
                         <label for="harga_222305" class="block text-sm font-medium text-gray-700">
                             Harga (Rp) <span class="text-red-500">*</span>
@@ -46,6 +61,22 @@
                             @error('harga_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
                             required>
                         @error('harga_222305')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="status_222305" class="block text-sm font-medium text-gray-700">
+                            Status <span class="text-red-500">*</span>
+                        </label>
+                        <select name="status_222305" id="status_222305"
+                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md
+                            @error('status_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
+                            required>
+                            <option value="tersedia" {{ old('status_222305') == 'tersedia' ? 'selected' : '' }}>tersedia</option>
+                            <option value="tidak tersedia" {{ old('status_222305') == 'tidak tersedia' ? 'selected' : '' }}>tidak Tersedia</option>
+                        </select>
+                        @error('status_222305')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -64,46 +95,28 @@
                     @enderror
                 </div>
 
-                <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
-                    <div>
-                        <label for="status_222305" class="block text-sm font-medium text-gray-700">
-                            Status <span class="text-red-500">*</span>
-                        </label>
-                        <select name="status_222305" id="status_222305"
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md
-                            @error('status_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror"
-                            required>
-                            <option value="tersedia" {{ old('status_222305') == 'tersedia' ? 'selected' : '' }}>tersedia</option>
-                            <option value="tidak tersedia" {{ old('status_222305') == 'tidak tersedia' ? 'selected' : '' }}>tidak Tersedia</option>
-                        </select>
-                        @error('status_222305')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Kategori <span class="text-red-500">*</span>
-                        </label>
-                        <div class="bg-white border border-gray-300 rounded-md shadow-sm p-2 max-h-48 overflow-y-auto">
-                            @foreach($kategoris as $kategori)
-                            <div class="flex items-center mb-2 last:mb-0">
-                                <input type="checkbox" name="kategori_ids[]" id="kategori_{{ $kategori->id_kategori_222305 }}" 
-                                    value="{{ $kategori->id_kategori_222305 }}" 
-                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                    {{ (is_array(old('kategori_ids')) && in_array($kategori->id_kategori_222305, old('kategori_ids'))) ? 'checked' : '' }}>
-                                <label for="kategori_{{ $kategori->id_kategori_222305 }}" 
-                                    class="ml-2 block text-sm text-gray-700">
-                                    {{ $kategori->nama_kategori_222305 }}
-                                </label>
-                            </div>
-                            @endforeach
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Kategori <span class="text-red-500">*</span>
+                    </label>
+                    <div class="bg-white border border-gray-300 rounded-md shadow-sm p-2 max-h-48 overflow-y-auto">
+                        @foreach($kategoris as $kategori)
+                        <div class="flex items-center mb-2 last:mb-0">
+                            <input type="checkbox" name="kategori_ids[]" id="kategori_{{ $kategori->id_kategori_222305 }}" 
+                                value="{{ $kategori->id_kategori_222305 }}" 
+                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                {{ (is_array(old('kategori_ids')) && in_array($kategori->id_kategori_222305, old('kategori_ids'))) ? 'checked' : '' }}>
+                            <label for="kategori_{{ $kategori->id_kategori_222305 }}" 
+                                class="ml-2 block text-sm text-gray-700">
+                                {{ $kategori->nama_kategori_222305 }}
+                            </label>
                         </div>
-                        <p class="mt-1 text-xs text-gray-500">Pilih satu atau lebih kategori dengan mencentang kotak</p>
-                        @error('kategori_ids')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        @endforeach
                     </div>
+                    <p class="mt-1 text-xs text-gray-500">Pilih satu atau lebih kategori dengan mencentang kotak</p>
+                    @error('kategori_ids')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mt-6">
