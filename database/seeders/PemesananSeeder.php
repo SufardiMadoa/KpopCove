@@ -19,7 +19,7 @@ class PemesananSeeder extends Seeder
                 'tanggal_pemesanan_222305' => '2023-04-15',
                 'total_harga_222305'       => 670000,
                 'metode_pembayaran_222305' => 'Transfer Bank',
-                'status_pembayaran_222305' => 'sudah dibayar',
+                'status_pembayaran_222305' => 'pending',
             ],
             [
                 'id_pemesanan_222305'      => 'PMS002',
@@ -27,7 +27,7 @@ class PemesananSeeder extends Seeder
                 'tanggal_pemesanan_222305' => '2023-04-18',
                 'total_harga_222305'       => 320000,
                 'metode_pembayaran_222305' => 'E-Wallet',
-                'status_pembayaran_222305' => 'belum dibayar',
+                'status_pembayaran_222305' => 'dibayar',
             ],
         ]);
     }

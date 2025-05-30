@@ -37,14 +37,14 @@ class AuthController extends Controller
     $credentials = $request->validate(
       [
         'email'    => ['required', 'email'],
-        'password' => 'required|min:8|max:10',
+        'password' => 'required|min:8|max:15',
       ],
       [
         'email.required'    => 'Email wajib diisi.',
         'email.email'       => 'Masukkan email yang valid.',
         'password.required' => 'Password wajib diisi.',
         'password.min'      => 'Password harus memiliki minimal 8 karakter.',
-        'password.max'      => 'Password tidak boleh lebih dari 10 karakter.',
+        'password.max'      => 'Password tidak boleh lebih dari 15 karakter.',
       ]
     );
 

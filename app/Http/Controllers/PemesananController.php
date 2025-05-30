@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ItemPesanan;
 use App\Models\Pemesanan;
-use App\Models\Produk;
+use App\Models\Album;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +60,7 @@ class PemesananController extends Controller
   public function adminUpdate(Request $request, $id)
   {
     $validator = Validator::make($request->all(), [
-      'status_pembayaran_222305' => 'required|in:pending,paid,cancelled,completed',
+      'status_pembayaran_222305' => 'required|in:pending,dibayar,dibatalkan,selesai',
     ]);
 
     if ($validator->fails()) {
@@ -233,7 +233,7 @@ class PemesananController extends Controller
       return back()->with('error', 'Hanya pemesanan dengan status pending yang dapat dibatalkan.');
     }
 
-    $pemesanan->status_pembayaran_222305 = 'cancelled';
+    $pemesanan->status_pembayaran_222305 = 'dibatalkan';
     $pemesanan->save();
 
     return redirect()
@@ -277,7 +277,7 @@ class PemesananController extends Controller
       // In a real application, you should have a separate table/model for payment proofs
 
       // Update order status to processing
-      $pemesanan->status_pembayaran_222305 = 'paid';
+      $pemesanan->status_pembayaran_222305 = 'dibayar';
       $pemesanan->save();
     }
 
