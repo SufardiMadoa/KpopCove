@@ -46,17 +46,17 @@
                                         Pending
                                     </span>
                                     @break
-                                @case('paid')
+                                @case('dibayar')
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                         Dibayar
                                     </span>
                                     @break
-                                @case('completed')
+                                @case('selesai')
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                         Selesai
                                     </span>
                                     @break
-                                @case('cancelled')
+                                @case('dibatalkan')
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                         Dibatalkan
                                     </span>
@@ -116,23 +116,23 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                @if ($item->produk->gambar_222305)
+                                @if ($item->album->gambar_222305)
                                 <div class="flex-shrink-0 h-10 w-10">
                                     <img class="h-10 w-10 rounded-md object-cover" src="{{ asset('storage/' . $item->produk->gambar_222305) }}" alt="{{ $item->produk->nama_produk_222305 }}">
                                 </div>
                                 @endif
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $item->produk->nama_produk_222305 }}
+                                        {{ $item->nama_222305 }}
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        {{ Str::limit($item->produk->deskripsi_222305, 50) }}
+                                        {{ Str::limit($item->album->deskripsi_222305, 50) }}
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Rp {{ number_format($item->produk->harga_222305, 0, ',', '.') }}
+                            Rp {{ number_format($item->album->harga_222305, 0, ',', '.') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $item->jumlah_222305 }}

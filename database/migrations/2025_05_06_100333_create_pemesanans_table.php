@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->date('tanggal_pemesanan_222305');
             $table->decimal('total_harga_222305', 10, 2);
             $table->string('metode_pembayaran_222305');
-            $table->enum('status_pembayaran_222305', ['belum dibayar', 'sudah dibayar'])->default('belum dibayar');
+            $table->enum('status_pembayaran_222305', ['pending', 'dibayar', 'selesai', 'dibatalkan' ])->default('pending');
 
             $table
                 ->foreign('id_user_222305')

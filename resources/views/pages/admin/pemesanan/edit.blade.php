@@ -65,17 +65,17 @@
                                     Pending
                                 </span>
                                 @break
-                            @case('paid')
+                            @case('dibayar')
                                 <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                     Dibayar
                                 </span>
                                 @break
-                            @case('completed')
+                            @case('selesai')
                                 <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     Selesai
                                 </span>
                                 @break
-                            @case('cancelled')
+                            @case('dibatalkan')
                                 <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                     Dibatalkan
                                 </span>
@@ -111,24 +111,24 @@
                     </div>
                     
                     <div class="relative">
-                        <input type="radio" id="status_paid" name="status_pembayaran_222305" value="paid" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'paid' ? 'checked' : '' }}>
-                        <label for="status_paid" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
+                        <input type="radio" id="status_dibayar" name="status_pembayaran_222305" value="dibayar" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'dibayar' ? 'checked' : '' }}>
+                        <label for="status_dibayar" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
                             <div class="w-full text-lg font-semibold text-center">Dibayar</div>
                             <div class="w-full text-sm text-center">Pembayaran diterima</div>
                         </label>
                     </div>
                     
                     <div class="relative">
-                        <input type="radio" id="status_completed" name="status_pembayaran_222305" value="completed" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'completed' ? 'checked' : '' }}>
-                        <label for="status_completed" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
+                        <input type="radio" id="status_selesai" name="status_pembayaran_222305" value="selesai" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'selesai' ? 'checked' : '' }}>
+                        <label for="status_selesai" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
                             <div class="w-full text-lg font-semibold text-center">Selesai</div>
                             <div class="w-full text-sm text-center">Transaksi selesai</div>
                         </label>
                     </div>
                     
                     <div class="relative">
-                        <input type="radio" id="status_cancelled" name="status_pembayaran_222305" value="cancelled" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'cancelled' ? 'checked' : '' }}>
-                        <label for="status_cancelled" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
+                        <input type="radio" id="status_dibatalkan" name="status_pembayaran_222305" value="dibatalkan" class="hidden peer" {{ $pemesanan->status_pembayaran_222305 == 'dibatalkan' ? 'checked' : '' }}>
+                        <label for="status_dibatalkan" class="flex flex-col items-center justify-center p-4 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-cyan-600 peer-checked:bg-cyan-50 hover:bg-gray-50">
                             <div class="w-full text-lg font-semibold text-center">Dibatalkan</div>
                             <div class="w-full text-sm text-center">Pesanan dibatalkan</div>
                         </label>
