@@ -21,7 +21,7 @@
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('/') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('user.album') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="{{ route('user.album') }}" class="relative group px-4 py-2 {{ request()->routeIs('user.album') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -94,7 +94,7 @@
 
         <!-- Cart icon with badge -->
         @auth
-        <a href="#" class="relative p-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-500 transition-colors">
+        <a href="{{ route('users.pemesanan.index') }}" class="relative p-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-500 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -177,8 +177,8 @@
                         <span class="font-medium text-gray-700">Profile Saya</span>
                     </a>
 
-                    <a href="#"
-                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('orders.index') ? 'bg-pink-50' : '' }}">
+                    <a href="{{ route('users.pemesanan.index') }}"
+                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('users.pemesanan.*') ? 'bg-pink-50' : '' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

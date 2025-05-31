@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('id_album_222305');
             $table->decimal('harga_satuan_222305', 10, 2);
             $table->integer('jumlah_222305');
-            $table->decimal('total_harga_222305', 10, 2);
 
             $table
                 ->foreign('id_pemesanan_222305')

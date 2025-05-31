@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\ItemPesanan;
 use App\Models\Pemesanan;
-use App\Models\Produk;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +34,7 @@ class PemesananController extends Controller
    */
   public function adminShow($id)
   {
-    $pemesanan = Pemesanan::with(['user', 'itemPesanans.produk'])->findOrFail($id);
+    $pemesanan = Pemesanan::with(['user', 'itemPesanans.album'])->findOrFail($id);
     return view('pages.admin.pemesanan.show', compact('pemesanan'));
   }
 
@@ -60,15 +60,15 @@ class PemesananController extends Controller
   public function adminUpdate(Request $request, $id)
   {
     $validator = Validator::make($request->all(), [
-      'status_pembayaran_222305' => 'required|in:pending,paid,cancelled,completed',
+      'status_222305' => 'required|in:pending,paid,cancelled,completed',
     ]);
 
     if ($validator->fails()) {
       return back()->withErrors($validator)->withInput();
     }
 
-    $pemesanan                           = Pemesanan::findOrFail($id);
-    $pemesanan->status_pembayaran_222305 = $request->status_pembayaran_222305;
+    $pemesanan                = Pemesanan::findOrFail($id);
+    $pemesanan->status_222305 = $request->status_222305;
     $pemesanan->save();
 
     return redirect()->route('admin.pemesanan.index')->with('success', 'Status pemesanan berhasil diperbarui.');
@@ -128,12 +128,12 @@ class PemesananController extends Controller
     $items = [];
 
     foreach ($cart_items as $id => $details) {
-      $produk   = Produk::findOrFail($id);
-      $subtotal = $produk->harga_222305 * $details['quantity'];
+      $album    = Album::findOrFail($id);
+      $subtotal = $album->harga_222305 * $details['quantity'];
       $total   += $subtotal;
 
       $items[] = [
-        'produk'   => $produk,
+        'album'    => $album,
         'quantity' => $details['quantity'],
         'subtotal' => $subtotal
       ];
@@ -150,56 +150,61 @@ class PemesananController extends Controller
    */
   public function store(Request $request)
   {
-    $validator = Validator::make($request->all(), [
-      'metode_pembayaran_222305' => 'required|in:transfer,cod,e-wallet',
-    ]);
+    try {
+      $validator = Validator::make($request->all(), [
+        'metode_pembayaran_222305' => 'required|in:transfer,cod,e-wallet',
+        'album_id'                 => 'required|exists:album_222305,id_album_222305',
+        'quantity'                 => 'required|integer|min:1'
+      ]);
 
-    if ($validator->fails()) {
-      return back()->withErrors($validator)->withInput();
-    }
+      if ($validator->fails()) {
+        return response()->json([
+          'success' => false,
+          'message' => 'Validation error',
+          'errors'  => $validator->errors()
+        ], 422);
+      }
 
-    // Get cart data
-    $cart_items = session('cart', []);
+      // Create new order
+      $pemesanan                           = new Pemesanan();
+      $pemesanan->id_pemesanan_222305      = 'ORD-' . Str::random(10);
+      $pemesanan->email_222305             = Auth::user()->email_222305;
+      $pemesanan->tanggal_pemesanan_222305 = now();
+      $pemesanan->total_harga_222305       = $request->total_harga_222305;
+      $pemesanan->metode_pembayaran_222305 = $request->metode_pembayaran_222305;
+      $pemesanan->status_222305            = 'belum dibayar';
+      $pemesanan->save();
 
-    if (empty($cart_items)) {
-      return redirect()->route('produk.index')->with('error', 'Keranjang anda kosong!');
-    }
-
-    // Calculate total
-    $total = 0;
-    foreach ($cart_items as $id => $details) {
-      $produk = Produk::findOrFail($id);
-      $total += $produk->harga_222305 * $details['quantity'];
-    }
-
-    // Create new order
-    $pemesanan                           = new Pemesanan();
-    $pemesanan->id_pemesanan_222305      = 'ORD-' . Str::random(10);
-    $pemesanan->email_222305             = Auth::user()->email_222305;
-    $pemesanan->tanggal_pemesanan_222305 = now();
-    $pemesanan->total_harga_222305       = $total;
-    $pemesanan->metode_pembayaran_222305 = $request->metode_pembayaran_222305;
-    $pemesanan->status_pembayaran_222305 = 'pending';
-    $pemesanan->save();
-
-    // Save order items
-    foreach ($cart_items as $id => $details) {
-      $produk = Produk::findOrFail($id);
-
+      // Save order item
       $itemPesanan                      = new ItemPesanan();
       $itemPesanan->id_pemesanan_222305 = $pemesanan->id_pemesanan_222305;
-      $itemPesanan->id_produk_222305    = $id;
-      $itemPesanan->jumlah_222305       = $details['quantity'];
-      $itemPesanan->subtotal_222305     = $produk->harga_222305 * $details['quantity'];
+      $itemPesanan->id_album_222305     = $request->album_id;
+      $itemPesanan->jumlah_222305       = $request->quantity;
+      $itemPesanan->harga_satuan_222305 = $request->total_harga_222305;
       $itemPesanan->save();
+
+      // Handle file upload if payment proof is provided
+      if ($request->hasFile('bukti_pembayaran')) {
+        $file     = $request->file('bukti_pembayaran');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/bukti_pembayaran', $filename);
+
+        // Update order status to paid if payment proof is provided
+        $pemesanan->status_222305 = 'pending';
+        $pemesanan->save();
+      }
+
+      return response()->json([
+        'success'  => true,
+        'message'  => 'Pemesanan berhasil dibuat!',
+        'redirect' => route('users.pemesanan.show', $pemesanan->id_pemesanan_222305)
+      ]);
+    } catch (\Exception $e) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+      ], 500);
     }
-
-    // Clear cart
-    session()->forget('cart');
-
-    return redirect()
-      ->route('users.pemesanan.show', $pemesanan->id_pemesanan_222305)
-      ->with('success', 'Pemesanan berhasil dibuat!');
   }
 
   /**
@@ -210,7 +215,7 @@ class PemesananController extends Controller
    */
   public function userShow($id)
   {
-    $pemesanan = Pemesanan::with(['itemPesanans.produk'])
+    $pemesanan = Pemesanan::with(['itemPesanans.album'])
       ->where('email_222305', Auth::user()->email_222305)
       ->findOrFail($id);
 
@@ -229,11 +234,11 @@ class PemesananController extends Controller
       ->findOrFail($id);
 
     // Only allow cancellation if status is pending
-    if ($pemesanan->status_pembayaran_222305 !== 'pending') {
+    if ($pemesanan->status_222305 !== 'pending') {
       return back()->with('error', 'Hanya pemesanan dengan status pending yang dapat dibatalkan.');
     }
 
-    $pemesanan->status_pembayaran_222305 = 'cancelled';
+    $pemesanan->status_222305 = 'cancelled';
     $pemesanan->save();
 
     return redirect()
@@ -262,7 +267,7 @@ class PemesananController extends Controller
       ->findOrFail($id);
 
     // Only allow payment confirmation if status is pending
-    if ($pemesanan->status_pembayaran_222305 !== 'pending') {
+    if ($pemesanan->status_222305 !== 'pending') {
       return back()->with('error', 'Hanya pemesanan dengan status pending yang dapat dikonfirmasi pembayarannya.');
     }
 
@@ -277,7 +282,7 @@ class PemesananController extends Controller
       // In a real application, you should have a separate table/model for payment proofs
 
       // Update order status to processing
-      $pemesanan->status_pembayaran_222305 = 'paid';
+      $pemesanan->status_222305 = 'paid';
       $pemesanan->save();
     }
 

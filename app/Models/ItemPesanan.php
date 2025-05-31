@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\IDGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,8 +22,16 @@ class ItemPesanan extends Model
         'id_album_222305',
         'harga_satuan_222305',
         'jumlah_222305',
-        'total_harga_222305',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id_item_pesanan_222305 = IDGenerator::generateItemPesananID();
+        });
+    }
 
     /**
      * Get the pemesanan that owns the item pesanan.

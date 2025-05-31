@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('pages.users.home');
 });
 Route::get('/album', [AlbumController::class, 'user'])->name('user.album');
- Route::get('/album/{id}', [AlbumController::class, 'userShow'])->name('user.album-detail');
+Route::get('/album/{id}', [AlbumController::class, 'userShow'])->name('user.album-detail');
 Route::middleware('guest')->group(function () {
     // Login routes
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -47,6 +47,15 @@ Route::middleware('auth')->group(function () {
     // Password change
     Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.update');
+
+    // Order routes
+    Route::prefix('orders')->name('users.pemesanan.')->group(function () {
+        Route::get('/', [PemesananController::class, 'userIndex'])->name('index');
+        Route::post('/store', [PemesananController::class, 'store'])->name('store');
+        Route::get('/{id}', [PemesananController::class, 'userShow'])->name('show');
+        Route::post('/{id}/cancel', [PemesananController::class, 'cancelOrder'])->name('cancel');
+        Route::post('/{id}/confirm-payment', [PemesananController::class, 'confirmPayment'])->name('confirm-payment');
+    });
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -79,9 +88,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::patch('/{id}/toggle-status', [AlbumController::class, 'toggleStatus'])->name('toggle-status');
     });
 
-
     Route::resource('kategori', KategoriController::class);
-
 
     Route::get('/pemesanan', [PemesananController::class, 'adminIndex'])->name('pemesanan.index');
     Route::get('/pemesanan/{id}', [PemesananController::class, 'adminShow'])->name('pemesanan.show');
@@ -99,47 +106,3 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
     });
 });
-
-// // Login dan Logout
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// // Signup
-// Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup');
-// Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
-
-// Produk dan Kategori
-// Route::get('/shop', [ProductController::class, 'index'])->name('products.index');
-// Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
-// Route::get('/kategori', [CategoryProductController::class, 'index'])->name('categories');
-// Route::get('/kategori/{id}', [CategoryProductController::class, 'show'])->name('categories.show');
-
-// Keranjang
-// Route::prefix('cart')->group(function () {
-//     Route::post('/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
-//     Route::get('/', [CartController::class, 'showCart'])->name('cart.view');
-//     Route::delete('/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-//     Route::put('/update/{itemId}', [CartController::class, 'updateQuantity']);
-// });
-
-// Checkout dan Transaksi
-// Route::post('/checkout/single/{productId}', [PaymentController::class, 'checkoutSingleProduct'])->name('checkout.single');
-// Route::post('/submit-payment-proof', [PaymentController::class, 'store']);
-// Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-// Route::get('/pesanan', [TransaksiController::class, 'showPesanan'])->name('pesanan');
-// Route::put('/pesanan/{id}', [TransaksiController::class, 'updateStatusByUser'])->name('pesanan.updatebyuser');
-
-// // Halaman Tambahan
-// Route::view('/riwayat', 'riwayat')->name('riwayat');
-// Route::view('/contact-us', 'pages.users.kontak')->name('contact_us');
-// Route::view('/about', 'pages.users.about_us')->name('about');
-
-/*
- * |--------------------------------------------------------------------------
- * | Admin Routes
- * |--------------------------------------------------------------------------
- * |
- * | Here is where you can register admin routes for your application.
- * |
- */
