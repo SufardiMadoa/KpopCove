@@ -60,7 +60,7 @@ class PemesananController extends Controller
   public function adminUpdate(Request $request, $id)
   {
     $validator = Validator::make($request->all(), [
-      'status_222305' => 'required|in:pending,paid,cancelled,completed',
+      'status_222305' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -152,7 +152,7 @@ class PemesananController extends Controller
   {
     try {
       $validator = Validator::make($request->all(), [
-        'metode_pembayaran_222305' => 'required|in:transfer,cod,e-wallet',
+        'metode_pembayaran_222305' => 'required|in:qris,transfer,cod,e-wallet',
         'album_id'                 => 'required|exists:album_222305,id_album_222305',
         'quantity'                 => 'required|integer|min:1'
       ]);
@@ -172,7 +172,7 @@ class PemesananController extends Controller
       $pemesanan->tanggal_pemesanan_222305 = now();
       $pemesanan->total_harga_222305       = $request->total_harga_222305;
       $pemesanan->metode_pembayaran_222305 = $request->metode_pembayaran_222305;
-      $pemesanan->status_222305            = 'belum dibayar';
+      $pemesanan->status_222305            = 'pending';
       $pemesanan->save();
 
       // Save order item
@@ -183,6 +183,13 @@ class PemesananController extends Controller
       $itemPesanan->harga_satuan_222305 = $request->total_harga_222305;
       $itemPesanan->save();
 
+      // Decrement album stock quantity
+      $album = Album::find($request->album_id);
+      if ($album) {
+        $album->stok_222305 = max(0, $album->stok_222305 - $request->quantity);
+        $album->save();
+      }
+
       // Handle file upload if payment proof is provided
       if ($request->hasFile('bukti_pembayaran')) {
         $file     = $request->file('bukti_pembayaran');
@@ -190,7 +197,7 @@ class PemesananController extends Controller
         $file->storeAs('public/bukti_pembayaran', $filename);
 
         // Update order status to paid if payment proof is provided
-        $pemesanan->status_222305 = 'pending';
+        $pemesanan->status_222305 = 'dibayar';
         $pemesanan->save();
       }
 

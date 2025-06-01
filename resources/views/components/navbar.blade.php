@@ -111,12 +111,8 @@
         <div x-data="{ drawerOpen: false }">
             <button @click="drawerOpen = true"
                 class="flex items-center cursor-pointer space-x-2 border border-purple-200 rounded-full pr-3 pl-1 py-1 hover:bg-purple-50 transition-colors">
-                <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 border-2 border-white">
-                    @if(Auth::user()->profile_photo_path)
-                        <img alt="{{ Auth::user()->name }}" class="h-full w-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}">
-                    @else
-                        <img alt="{{ Auth::user()->name }}" class="h-full w-full object-cover" src="{{ asset('images/default-avatar.jpg') }}">
-                    @endif
+                <div class="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-pink-200 to-purple-200 flex items-center justify-center text-pink-600 font-medium">
+                    {{ Auth::check() ? strtoupper(substr(Auth::user()->nama_222305, 0, 2)) : 'AD' }}
                 </div>
                 <span class="text-sm font-medium text-gray-700 hidden sm:inline">{{ Auth::user()->name }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-400" fill="none"
@@ -150,15 +146,15 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
-                            @if(Auth::user()->profile_photo_path)
-                                <img class="w-full h-full rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}">
+                            @if(Auth::user()->profile_photo_path_222305)
+                                <img class="w-full h-full text-pink-700 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->nama_222305 }}">
                             @else
-                                <img class="w-full h-full rounded-full object-cover" src="{{ asset('images/default-avatar.jpg') }}" alt="{{ Auth::user()->name }}">
+                                <img class="w-full h-full rounded-full text-pink-700 object-cover" src="{{ asset('images/default-avatar.jpg') }}" alt="{{ Auth::user()->nama_222305 }}">
                             @endif
                         </div>
                         <div>
-                            <h2 class="text-xl font-bold">{{ Auth::user()->name }}</h2>
-                            <p class="text-pink-100 text-sm">{{ Auth::user()->email }}</p>
+                            <h2 class="text-xl font-bold text-pink-700">{{ Auth::user()->nama_222305 }}</h2>
+                            <p class="text-pink-700 text-sm">{{ Auth::user()->email_222305 }}</p>
                         </div>
                     </div>
                 </div>

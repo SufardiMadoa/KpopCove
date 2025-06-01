@@ -3,33 +3,21 @@
 @section('title', 'K-pop Album Details')
 
 @section('content')
-    <div x-data="productPage()" class="py-20 bg-gray-50">
+    <div x-data="productPage()" class="py-20 bg-gray-50 font-jost">
         <div class="container mx-auto px-4">
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="md:flex">
                     <!-- Product Images -->
                     <div class="md:w-1/2">
                         <div class="relative">
-                            <img :src="product.image" :alt="product.name" class="w-full h-96 object-cover">
+                            <img :src="product.image" :alt="product.name" class="w-full h-[500px] object-cover">
                             <span
                                 class="absolute top-4 left-4 bg-cyan-600 text-white px-3 py-1 rounded-full text-sm font-medium">
                                 Limited Edition
                             </span>
                         </div>
 
-                        <!-- Thumbnail Images -->
-                        <div class="grid grid-cols-4 gap-2 p-4">
-                            <template x-for="(img, index) in product.thumbnails" :key="index">
-                                <div @click="setMainImage(img)" class="cursor-pointer border-2 rounded overflow-hidden"
-                                    :class="{
-                                        'border-cyan-600': product.image === img,
-                                        'border-gray-200': product.image !==
-                                            img
-                                    }">
-                                    <img :src="img" class="w-full h-20 object-cover">
-                                </div>
-                            </template>
-                        </div>
+                        
                     </div>
 
                     <!-- Product Details -->
@@ -52,7 +40,6 @@
                                     <span x-html="i <= product.rating ? '★' : '☆'"></span>
                                 </template>
                             </div>
-                            <span class="ml-2 text-gray-600">(120 Reviews)</span>
                         </div>
 
                         <p class="text-3xl font-bold text-cyan-700 mb-4" x-text="formatRupiah(product.price)"></p>
@@ -170,22 +157,26 @@
                         <h3 class="text-lg font-semibold mb-4">Payment Method</h3>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Select Payment Method</label>
+                                <div class="flex justify-between mt-2 text-lg font-bold">
+                                    <span>Total:</span>
+                                    <span x-text="formatRupiah(product.price * quantity)"></span>
+                                </div>
+                                <label class="block text-sm font-medium text-gray-700 p-2">Select Payment Method</label>
                                 <select name="metode_pembayaran_222305" x-model="paymentMethod"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-cyan-500 focus:ring-cyan-500"
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 focus:border-cyan-500 focus:ring-cyan-500"
                                     required>
-                                    <option value="">Choose a payment method</option>
-                                    <option value="qris">QRIS</option>
-                                    <option value="transfer">Bank Transfer</option>
-                                    <option value="cod">Cash on Delivery</option>
-                                    <option value="e-wallet">E-Wallet (DANA)</option>
+                                    <option  value="">Choose a payment method</option>
+                                    <option  value="qris">QRIS</option>
+                                    <option  value="transfer">Bank Transfer</option>
+                                    <option  value="cod">Cash on Delivery</option>
+                                    <option  value="e-wallet">E-Wallet (DANA)</option>
                                 </select>
                             </div>
 
                             <!-- Payment Method Details -->
                             <div x-show="paymentMethod === 'qris'" class="mt-4 p-4 bg-gray-50 rounded-lg">
                                 <h4 class="font-medium text-gray-900 mb-2">QRIS Payment</h4>
-                                <img src="{{ asset('images/qris-dummy.png') }}" alt="QRIS Code"
+                                <img src="{{ asset('images/qris.png') }}" alt="QRIS Code"
                                     class="w-48 mx-auto mb-2">
                                 <p class="text-sm text-gray-600 text-center">Scan QR code to pay</p>
                             </div>
@@ -259,7 +250,7 @@
                                 <p x-text="customerInfo.address"></p>
                             </div>
                             <div>
-                                <p><strong>Payment Method:</strong> <span x-text="paymentMethod"></span></p>
+                                <p><strong class="p-2">Payment Method:</strong> <span x-text="paymentMethod"></span></p>
                             </div>
                         </div>
                     </div>
@@ -286,22 +277,22 @@
         </div>
     </div>
 
-    <script>
+      <script>
         function productPage() {
             return {
-                product: {
-                    id: '{{ $album->id_album_222305 }}',
-                    name: '{{ $album->judul_222305 }}',
-                    price: {{ $album->harga_222305 }},
-                    rating: 5,
-                    stock: 25,
-                    description: '{{ $album->deskripsi_222305 }}',
-                    image: '{{ asset('storage/' . $album->path_img_222305) }}',
-                    thumbnails: [
-                        '{{ asset('storage/' . $album->path_img_222305) }}',
-                        'https://img.freepik.com/free-psd/korean-restaurant-flyer-template-design_23-2151934251.jpg?t=st=1746536479~exp=1746540079~hmac=22db791c92e523673ee624ff0b11c848c1e54c19f50267c6270d3ded24f8f59d&w=900'
-                    ]
-                },
+                    product: {
+                        id: '{{ $album->id_album_222305 }}',
+                        name: '{{ $album->judul_222305 }}',
+                        price: {{ $album->harga_222305 }},
+                        rating: 5,
+                        stock: {{ $album->stok_222305 }},
+                        description: '{{ $album->deskripsi_222305 }}',
+                        image: '{{ asset('storage/' . $album->path_img_222305) }}',
+                        thumbnails: [
+                            '{{ asset('storage/' . $album->path_img_222305) }}',
+                            'https://img.freepik.com/free-psd/korean-restaurant-flyer-template-design_23-2151934251.jpg?t=st=1746536479~exp=1746540079~hmac=22db791c92e523673ee624ff0b11c848c1e54c19f50267c6270d3ded24f8f59d&w=900'
+                        ]
+                    },
                 quantity: 1,
                 activeTab: 'description',
                 isCheckoutModalOpen: false,
@@ -475,3 +466,6 @@
             };
         }
     </script>
+@endsection
+  
+

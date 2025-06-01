@@ -38,15 +38,9 @@
                                     <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($pemesanan->tanggal_pemesanan_222305)->format('d F Y') }}</p>
                                 </div>
                                 <div>
-                                    @if($pemesanan->status_222305 == 'belum dibayar')
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                            Belum Dibayar
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 capitalize">
+                                            {{ $pemesanan->status_222305 }}
                                         </span>
-                                    @elseif($pemesanan->status_222305 == 'pending')
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                            Pending
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
 

@@ -47,7 +47,7 @@
                         <span class="capitalize">{{ $pemesanan->metode_pembayaran_222305 }}</span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        @switch($pemesanan->status_pembayaran_222305)
+                        @switch($pemesanan->status_222305)
                             @case('pending')
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                     Pending
@@ -56,6 +56,16 @@
                             @case('dibayar')
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                     Dibayar
+                                </span>
+                                @break
+                            @case('dikemas')
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-cyan-100 text-cyan-800">
+                                    Dikemas
+                                </span>
+                                @break
+                            @case('dikirim')
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-fuchsia-100 text-fuchsia-800">
+                                    Dikirim
                                 </span>
                                 @break
                             @case('selesai')

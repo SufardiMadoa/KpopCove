@@ -26,6 +26,25 @@
             <!-- Navigation Menu -->
             <div class="flex-1 px-3 py-4 overflow-y-auto">
                 <ul class="space-y-1.5">
+                    <!-- Dashboard -->
+                    {{-- <li>
+                        <a href="{{ route('admin.dashboard') }}" 
+                           class="{{ request()->routeIs('admin.dashboard') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.dashboard') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium">Dashboard</span>
+                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-cyan-800 bg-cyan-100 rounded-full">
+                                3
+                            </span>
+                        </a>
+                    </li> --}}
+                    
                     <!-- Album -->
                     <li>
                         <a href="{{ route('admin.album.index') }}" 
@@ -55,15 +74,49 @@
                             <span class="flex-1 font-medium">Kategori</span>
                         </a>
                     </li>
+                    
+                    <!-- Transaksi -->
+                    <li>
+                        <a href="{{ route('admin.pemesanan.index') }}" 
+                           class="{{ request()->routeIs('admin.pemesanan.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.pemesanan.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium">Pemesanan</span>
+                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">
+                                5
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <!-- Laporan -->
+                    {{-- <li>
+                        <a href="#" 
+                           class="{{ request()->routeIs('#') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.laporan.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium">Laporan</span>
+                        </a>
+                    </li> --}}
                 </ul>
             </div>
             
             <!-- User Profile Section -->
             <div class="px-4 py-4 mt-auto border-t border-gray-200">
                 <div class="flex items-center space-x-3">
-                    <img class="w-10 h-10 rounded-full object-cover border-2 border-cyan-500" 
-                        src="{{ Auth::user()->profile_photo ?? asset('images/produk.png') }}" 
-                        alt="User avatar">
+                    <div class="w-10 h-10 rounded-full border-2 border-cyan-500 bg-cyan-100 flex items-center justify-center text-cyan-600 font-medium">
+                        {{ Auth::check() ? strtoupper(substr(Auth::user()->nama_222305, 0, 2)) : 'AD' }}
+                    </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate">
                             {{ Auth::user()->nama_222305 ?? 'Admin User' }}

@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="bg-white shadow-lg rounded-lg p-6 mx-auto max-w-6xl">
+<div class="bg-white shadow-lg rounded-lg p-6 mx-auto ">
     <!-- Header with back button -->
     <div class="flex justify-between items-center mb-6">
         <div class="flex items-center">

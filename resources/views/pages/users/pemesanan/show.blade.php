@@ -24,15 +24,10 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm text-gray-500">Order Status</p>
-                        @if($pemesanan->status_222305 == 'belum dibayar')
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                Belum dibayar
+                       
+                           <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 capitalize">
+                            {{ $pemesanan->status_222305 }}
                             </span>
-                        @elseif($pemesanan->status_222305 == 'pending')
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                                pending
-                            </span>
-                        @endif
                     </div>
                     <div class="text-right">
                         <p class="text-sm text-gray-500">Order Date</p>
