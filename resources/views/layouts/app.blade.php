@@ -19,6 +19,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom Styles -->
     <style>
+        [x-cloak] {
+    display: none !important;
+}
         /* Custom warna terang untuk select page length */
         select[data-dt-length] {
             background-color: #ffffff !important;
@@ -65,7 +68,13 @@
     <!-- Script includes -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {},
+    },
+  }
+</script>
     <!-- DataTables Setup -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {

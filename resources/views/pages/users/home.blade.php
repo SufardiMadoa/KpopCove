@@ -43,33 +43,35 @@
 <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <h2 class="text-2xl font-medium text-center text-gray-800 mb-8">ALBUM FAVORIT</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Product 1 -->
-            @foreach($albums as $album)
-            <a href="/album/{{ $album->id_album_222305 }}">
 
-                <div class="bg-white group">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="{{ asset('storage/' . $album->path_img_222305) }}" alt="Stray Kids - ROCK-STAR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        <div class="flex justify-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach($albums as $album)
+                <a href="/album/{{ $album->id_album_222305 }}">
+                    <div class="bg-white group w-64">
+                        <div class="aspect-square overflow-hidden">
+                            <img src="{{ asset('storage/' . $album->path_img_222305) }}" alt="{{ $album->judul_222305 }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-800">
+                                {{ $album->judul_222305 }}
+                                @if ($album->kategoris->isNotEmpty())
+                                - <span class="text-gray-600">
+                                    {{ $album->kategoris->pluck('nama_kategori_222305')->join(', ') }}
+                                </span>
+                                @endif
+                            </h3>
+                            <p class="text-cyan-500 mt-2">Rp {{ number_format($album->harga_222305, 0, ',', '.') }}</p>
+                            <button class="w-full mt-3 border border-gray-800 text-gray-800 py-2 hover:bg-gray-800 hover:text-white transition-colors">Add to Cart</button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-gray-800">
-                            {{ $album->judul_222305 }}
-                            @if ($album->kategoris->isNotEmpty())
-                            - <span class="font-medium text-gray-800">
-                                {{ $album->kategoris->pluck('nama_kategori_222305')->join(', ') }}
-                            </span>
-                            @endif
-                        </h3>
-                        <p class="text-cyan-500 mt-2">Rp {{ number_format($album->harga_222305, 0, ',', '.') }}</p>
-                        <button class="w-full mt-3 border border-gray-800 text-gray-800 py-2 hover:bg-gray-800 hover:text-white transition-colors">Add to Cart</button>
-                    </div>
-                </div>
-            </a>
-            @endforeach
+                </a>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
+
 
 <!-- Featured Album Section - Simple Banner Style -->
 <section class="py-12 bg-white">

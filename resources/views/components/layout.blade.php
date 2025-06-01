@@ -21,6 +21,9 @@
 
     <!-- Styles -->
     <style>
+        [x-cloak] {
+    display: none !important;
+}
         .border_custom {
             border-radius: 600px 400px 600px 400px;
             -webkit-border-radius: 600px 400px 600px 400px;
