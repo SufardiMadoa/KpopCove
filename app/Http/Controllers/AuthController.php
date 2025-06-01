@@ -122,6 +122,7 @@ class AuthController extends Controller
       'name'     => 'required|string|max:255',
       'email'    => 'required|string|email|max:255|unique:users_222305,email_222305',
       'password' => 'required|string|min:8|confirmed',
+      'role'     => 'required|in:admin,customer',
     ]);
 
     // Begin transaction
@@ -131,7 +132,7 @@ class AuthController extends Controller
       'nama_222305'     => $request->name,
       'email_222305'    => $request->email,
       'password_222305' => Hash::make($request->password),
-      'role_222305'     => 'customer',  // Default role for new registrations
+      'role_222305'     => $request->role,
     ]);
 
     // Login the user after registration

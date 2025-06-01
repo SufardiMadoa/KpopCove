@@ -194,7 +194,10 @@ class PemesananController extends Controller
       if ($request->hasFile('bukti_pembayaran')) {
         $file     = $request->file('bukti_pembayaran');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('public/bukti_pembayaran', $filename);
+        $file->storeAs('bukti_pembayaran', $filename, 'public');
+
+        // Save filename to model
+        $pemesanan->bukti_pembayaran_222305 = $filename;
 
         // Update order status to paid if payment proof is provided
         $pemesanan->status_222305 = 'dibayar';
@@ -282,7 +285,7 @@ class PemesananController extends Controller
     if ($request->hasFile('bukti_pembayaran')) {
       $file     = $request->file('bukti_pembayaran');
       $filename = time() . '_' . $file->getClientOriginalName();
-      $file->storeAs('public/bukti_pembayaran', $filename);
+      $file->storeAs('bukti_pembayaran', $filename, 'public');
 
       // Here you would store the payment proof in your database
       // For simplicity, I'm not creating a new model for this

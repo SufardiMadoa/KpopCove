@@ -72,6 +72,16 @@
                         <span class="font-medium text-gray-500 w-1/3">Metode Pembayaran:</span>
                         <span class="text-gray-900 capitalize">{{ $pemesanan->metode_pembayaran_222305 }}</span>
                     </div>
+                    <div class="flex">
+                        <span class="font-medium text-gray-500 w-1/3">Bukti Pembayaran:</span>
+                        <span>
+                            @if($pemesanan->bukti_pembayaran_222305)
+                                <img src="{{ asset('storage/bukti_pembayaran/' . $pemesanan->bukti_pembayaran_222305) }}" alt="Bukti Pembayaran" class="max-w-xs rounded-md shadow-sm">
+                            @else
+                                <span class="text-gray-500">Belum ada bukti pembayaran</span>
+                            @endif
+                        </span>
+                    </div>
                 </div>
             </div>
             <div>
