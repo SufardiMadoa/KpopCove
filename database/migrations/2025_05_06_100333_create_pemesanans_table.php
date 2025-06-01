@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->date('tanggal_pemesanan_222305');
             $table->decimal('total_harga_222305', 10, 2);
             $table->string('metode_pembayaran_222305');
+            $table->string('bukti_pembayaran_222305')->nullable();
             $table->string(
                 'status_222305',
             );

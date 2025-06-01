@@ -95,7 +95,7 @@
     <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Update Status Pemesanan</h2>
         
-        <form action="{{ route('admin.pemesanan.update', $pemesanan->id_pemesanan_222305) }}" method="POST">
+        <form action="{{ route('admin.pemesanan.update', $pemesanan->id_pemesanan_222305) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
@@ -150,6 +150,17 @@
                 </div>
             </div>
             
+            <!-- Payment Proof Upload -->
+            <div class="mb-6">
+                <label for="bukti_pembayaran" class="block text-sm font-medium text-gray-700 mb-2">Bukti Pembayaran</label>
+                @if($pemesanan->bukti_pembayaran_222305)
+                    <div class="mb-2">
+                        <img src="{{ asset('storage/bukti_pembayaran/' . $pemesanan->bukti_pembayaran_222305) }}" alt="Bukti Pembayaran" class="max-w-xs rounded-md shadow-sm">
+                    </div>
+                @endif
+                <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100" accept="image/*">
+            </div>
+
             <!-- Status update notes (optional) -->
             <div class="mb-6">
                 <label for="catatan" class="block text-sm font-medium text-gray-700 mb-2">Catatan (Opsional)</label>
@@ -172,3 +183,4 @@
     </div>
 </div>
 @endsection
+</edit_file>
