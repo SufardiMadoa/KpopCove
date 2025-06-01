@@ -339,11 +339,67 @@
                 },
 
                 // Checkout modal functions
-                openCheckoutModal() {
-                    this.isCheckoutModalOpen = true;
-                    this.checkoutStep = 1;
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                },
+                 openCheckoutModal() {
+    const totalHarga = this.quantity*this.product.price ; // Ganti sesuai kebutuhanmu
+
+    Swal.fire({
+        title: 'Pembayaran via QRIS',
+        html: `
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+        <!-- Kolom Kiri: Informasi dan QRIS -->
+        <div>
+           
+            <div style="margin: 50px 0 ; text-align:left;">
+                <strong>Total Harga:</strong>
+                <p style="text-align:left; font-size: 20px; font-weight: bold; color: #333;">Rp ${totalHarga.toLocaleString('id-ID')}</p>
+            </div>
+          <p style="margin-bottom: 5px; text-align:left;">Upload Bukti Pembayaran:</p>
+            <input type="file" id="buktiBayar" class="swal2-file" accept="image/*" style="width: 100%; padding: 5px;" />
+            <p style="font-size: 12px; color: gray; margin-top: 5px; text-align:left;">Hanya file gambar (jpg, png) yang diperbolehkan.</p>
+      
+        </div>
+
+        <!-- Kolom Kanan: Upload Bukti -->
+        <div>
+         <p >Silakan bayar dengan scan QRIS berikut:</p>
+          <div style="margin: 10px 0;">
+                <img src="/images/qris.jpg" alt="Kode QRIS" style="width: 100%; max-width: 250px; height: auto; display: block; margin: 0 auto;">
+                <p style="font-size: 12px; color: gray; text-align: center;">Scan QRIS untuk membayar</p>
+            </div>
+              </div>
+    </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Saya Sudah Bayar',
+         customClass: {
+    confirmButton: 'btn-confirm-bayar',
+    cancelButton: 'btn-cancel-bayar'
+  },
+        preConfirm: () => {
+            const buktiFile = document.getElementById('buktiBayar').files[0];
+            if (!buktiFile) {
+                Swal.showValidationMessage('Mohon upload bukti pembayaran');
+                return false;
+            }
+            return { buktiFile };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const bukti = result.value.buktiFile;
+            console.log('File bukti bayar:', bukti);
+
+            // Contoh kirim ke backend
+            const formData = new FormData();
+            formData.append('bukti_bayar', bukti);
+            formData.append('total_harga', totalHarga);
+
+            // Lakukan pengiriman ke backend via fetch/axios
+            // axios.post('/api/pembayaran', formData)
+
+            Swal.fire('Berhasil!', 'Bukti pembayaran kamu telah dikirim.', 'success');
+        }
+    });
+},
 
                 closeCheckoutModal() {
                     this.isCheckoutModalOpen = false;
