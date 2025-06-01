@@ -8,7 +8,7 @@
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="md:flex">
                     <!-- Product Images -->
-                    <div class="md:w-1/2">
+                    <div class="md:w-1/2" >
                         <div class="relative">
                             <img :src="product.image" :alt="product.name" class="w-full h-[500px] object-cover">
                             <span
@@ -25,7 +25,7 @@
                         <div class="flex items-center space-x-2 mb-2">
                             @foreach ($album->kategoris as $kategori)
                                 <span
-                                    class="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">{{ $kategori->nama_kategori ?? '-' }}</span>
+                                    class="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">{{ $kategori->nama_kategori_222305 ?? '-' }}</span>
                             @endforeach
 
                             <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Limited
@@ -83,7 +83,7 @@
                                 class="w-full md:w-1/2 bg-white border-2 border-cyan-700 text-cyan-700 hover:bg-cyan-50 py-3 rounded-md font-medium transition duration-300">
                                 Add to Cart
                             </button>
-                            <button type="button" @click="openCheckoutModal"
+                            <button  @click="openCheckoutModal"
                                 class="w-full md:w-1/2 bg-cyan-700 hover:bg-cyan-800 text-white py-3 rounded-md font-medium transition duration-300">
                                 Buy Now
                             </button>
@@ -281,9 +281,9 @@
         function productPage() {
             return {
                     product: {
-                        id: '{{ $album->id_album_222305 }}',
-                        name: '{{ $album->judul_222305 }}',
-                        price: {{ $album->harga_222305 }},
+                        id: @json($album->id_album_222305),
+                name: @json($album->judul_222305),
+                price: @json($album->harga_222305),
                         rating: 5,
                         stock: {{ $album->stok_222305 }},
                         description: '{{ $album->deskripsi_222305 }}',
