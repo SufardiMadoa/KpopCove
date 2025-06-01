@@ -22,6 +22,7 @@ class Pemesanan extends Model
         'tanggal_pemesanan_222305',
         'total_harga_222305',
         'metode_pembayaran_222305',
+        'bukti_pembayaran_222305',
         'status_222305',
     ];
 
