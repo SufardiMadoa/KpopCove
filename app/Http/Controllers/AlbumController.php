@@ -30,6 +30,12 @@ class AlbumController extends Controller
 
     return view('pages.users.album', compact('albums'));
   }
+  public function userHome()
+  {
+    $albums = Album::with(['user', 'kategoris', 'fotos'])->get();
+
+    return view('pages.users.home', compact('albums'));
+  }
 
   public function userShow($id)
   {

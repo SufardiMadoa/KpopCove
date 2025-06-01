@@ -21,9 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Halaman utama
-Route::get('/', function () {
-    return view('pages.users.home');
-});
+Route::get('/', [AlbumController::class, 'userHome'])->name('userHome.home');
 Route::get('/album', [AlbumController::class, 'user'])->name('user.album');
 Route::get('/album/{id}', [AlbumController::class, 'userShow'])->name('user.album-detail');
 Route::middleware('guest')->group(function () {
