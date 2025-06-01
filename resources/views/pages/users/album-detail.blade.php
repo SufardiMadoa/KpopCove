@@ -423,7 +423,12 @@
                         const result = await response.json();
 
                         if (response.ok) {
-                            alert(result.message);
+                           Swal.fire({
+  title: "Pembayaran anda berhasil",
+  icon: "success",
+  draggable: true,
+  
+});
                             this.closeCheckoutModal();
                             if (result.redirect) {
                                 window.location.href = result.redirect;

@@ -16,8 +16,12 @@
     <link href="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/2.3.0/css/dataTables.tailwindcss.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom Styles -->
     <style>
+        [x-cloak] {
+    display: none !important;
+}
         /* Custom warna terang untuk select page length */
         select[data-dt-length] {
             background-color: #ffffff !important;
@@ -64,7 +68,13 @@
     <!-- Script includes -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {},
+    },
+  }
+</script>
     <!-- DataTables Setup -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {

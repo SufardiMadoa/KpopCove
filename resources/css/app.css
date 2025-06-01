@@ -27,3 +27,20 @@
       color-scheme: light !important;
     }
   }
+  .btn-confirm-bayar {
+  background-color: #4f46e5 !important; /* biru */
+  color: white !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  font-weight: bold !important;
+  border-radius: 5px !important;
+}
+
+.btn-cancel-bayar {
+  background-color: #9ca3af !important; /* abu */
+  color: white !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  font-weight: bold !important;
+  border-radius: 5px !important;
+}

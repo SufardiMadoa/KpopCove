@@ -100,15 +100,23 @@ class PemesananController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function userIndex()
-  {
-    $user_id    = Auth::user()->email_222305;
-    $pemesanans = Pemesanan::where('email_222305', $user_id)
-      ->orderBy('tanggal_pemesanan_222305', 'desc')
-      ->get();
+ public function userIndex(Request $request)
+{
+    $user_id = Auth::user()->email_222305;
+    $status  = $request->get('status'); // Ambil status dari query string
+
+    $query = Pemesanan::where('email_222305', $user_id);
+
+    // Filter hanya jika status bukan 'semua' dan tidak kosong
+    if ($status && $status !== 'semua') {
+        $query->where('status_222305', $status);
+    }
+
+    $pemesanans = $query->orderBy('tanggal_pemesanan_222305', 'desc')->get();
 
     return view('pages.users.pemesanan.index', compact('pemesanans'));
-  }
+}
+
 
   /**
    * Show the form for creating a new order / checkout page

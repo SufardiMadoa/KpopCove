@@ -108,97 +108,110 @@
         </a>
 
         <!-- User profile menu - Show only when logged in -->
-        <div x-data="{ drawerOpen: false }">
-            <button @click="drawerOpen = true"
-                class="flex items-center cursor-pointer space-x-2 border border-purple-200 rounded-full pr-3 pl-1 py-1 hover:bg-purple-50 transition-colors">
-                <div class="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-pink-200 to-purple-200 flex items-center justify-center text-pink-600 font-medium">
-                    {{ Auth::check() ? strtoupper(substr(Auth::user()->nama_222305, 0, 2)) : 'AD' }}
-                </div>
-                <span class="text-sm font-medium text-gray-700 hidden sm:inline">{{ Auth::user()->name }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-400" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
+        <div x-data="{ drawerOpen: false }" x-init="drawerOpen = false">
+    <button @click="drawerOpen = true"
+        class="flex items-center cursor-pointer space-x-2 border border-purple-200 rounded-full pr-3 pl-1 py-1 hover:bg-purple-50 transition-colors">
+        <div class="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-pink-200 to-purple-200 flex items-center justify-center text-pink-600 font-medium">
+            {{ Auth::check() ? strtoupper(substr(Auth::user()->nama_222305, 0, 2)) : 'AD' }}
+        </div>
+        <span class="text-sm font-medium text-gray-700 hidden sm:inline">{{ Auth::user()->name }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-400" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </button>
 
-            <!-- Drawer Overlay -->
-            <div x-show="drawerOpen" @click="drawerOpen = false" class="fixed inset-0 bg-black bg-opacity-50 z-40">
+    <!-- Drawer Overlay -->
+    <div x-show="drawerOpen" 
+         x-cloak
+         @click="drawerOpen = false" 
+         class="fixed inset-0 bg-black bg-opacity-50 z-40"
+         x-transition:enter="transition-opacity ease-linear duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-linear duration-300"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+    </div>
+
+    <!-- Drawer Content -->
+    <div x-show="drawerOpen" 
+         x-cloak
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="translate-x-full opacity-0" 
+         x-transition:enter-end="translate-x-0 opacity-100"
+         x-transition:leave="transition ease-in duration-300" 
+         x-transition:leave-start="translate-x-0 opacity-100"
+         x-transition:leave-end="translate-x-full opacity-0"
+         class="fixed inset-y-0 right-0 z-50 min-h-full w-80 sm:w-96 bg-white shadow-xl transform">
+
+        <!-- Sidebar header -->
+        <div class="p-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold">내 계정</h2>
+                <button @click="drawerOpen = false" class="p-1 rounded-full hover:bg-white hover:bg-opacity-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-
-            <!-- Drawer Content -->
-            <div x-show="drawerOpen" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-                x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
-                x-transition:leave-end="translate-x-full"
-                class="fixed inset-y-0 right-0 z-50 min-h-full w-80 sm:w-96 bg-white shadow-xl transform">
-
-                <!-- Sidebar header -->
-                <div class="p-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">내 계정</h2>
-                        <button @click="drawerOpen = false" class="p-1 rounded-full hover:bg-white hover:bg-opacity-20">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
-                            @if(Auth::user()->profile_photo_path_222305)
-                                <img class="w-full h-full text-pink-700 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->nama_222305 }}">
-                            @else
-                                <img class="w-full h-full rounded-full text-pink-700 object-cover" src="{{ asset('images/default-avatar.jpg') }}" alt="{{ Auth::user()->nama_222305 }}">
-                            @endif
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold text-pink-700">{{ Auth::user()->nama_222305 }}</h2>
-                            <p class="text-pink-700 text-sm">{{ Auth::user()->email_222305 }}</p>
-                        </div>
-                    </div>
+            <div class="flex items-center space-x-4">
+                <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
+                    @if(Auth::user()->profile_photo_path_222305)
+                        <img class="w-full h-full text-pink-700 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->nama_222305 }}">
+                    @else
+                        <img class="w-full h-full rounded-full text-pink-700 object-cover" src="{{ asset('images/default-avatar.jpg') }}" alt="{{ Auth::user()->nama_222305 }}">
+                    @endif
                 </div>
-
-                <!-- Navigation menu -->
-                <nav class="p-4">
-                    <p class="text-xs font-medium text-purple-400 uppercase tracking-wider mb-4">메뉴</p>
-
-                    <a href="#"
-                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('profile.show') ? 'bg-pink-50' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        <span class="font-medium text-gray-700">Profile Saya</span>
-                    </a>
-
-                    <a href="{{ route('users.pemesanan.index') }}"
-                        class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('users.pemesanan.*') ? 'bg-pink-50' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
-                        <span class="font-medium text-gray-700">Pesanan Saya</span>
-                    </a>
-
-                    <div class="border-t border-gray-200 my-4"></div>
-
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-50 w-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="font-medium text-red-500">Logout</span>
-                        </button>
-                    </form>
-                </nav>
+                <div>
+                    <h2 class="text-xl font-bold text-pink-700">{{ Auth::user()->nama_222305 }}</h2>
+                    <p class="text-pink-700 text-sm">{{ Auth::user()->email_222305 }}</p>
+                </div>
             </div>
         </div>
+
+        <!-- Navigation menu -->
+        <nav class="p-4">
+            <p class="text-xs font-medium text-purple-400 uppercase tracking-wider mb-4">메뉴</p>
+
+            <a href="#"
+                class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('profile.show') ? 'bg-pink-50' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="font-medium text-gray-700">Profile Saya</span>
+            </a>
+
+            <a href="{{ route('users.pemesanan.index') }}"
+                class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('users.pemesanan.*') ? 'bg-pink-50' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <span class="font-medium text-gray-700">Pesanan Saya</span>
+            </a>
+
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-50 w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span class="font-medium text-red-500">Logout</span>
+                </button>
+            </form>
+        </nav>
+    </div>
+</div>
         @else
         <!-- Login/Register buttons when not logged in -->
         <div class="flex items-center space-x-2">
