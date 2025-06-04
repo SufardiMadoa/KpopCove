@@ -41,7 +41,7 @@
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('category.index') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="about" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -51,7 +51,7 @@
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('about') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="contact" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

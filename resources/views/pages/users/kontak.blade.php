@@ -3,6 +3,45 @@
 @section('title', 'Hubungi Kami')
 
 @section('content')
+
+
+<section class="bg-gradient-to-b from-pink-100 via-purple-100 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold text-pink-600">Let's Connect!</h2>
+    <p class="mt-4 text-lg text-purple-700">Got a question or just want to say hi? Drop your message like your favorite K-Pop idol drops their comeback!</p>
+  </div>
+
+  <form action="#" method="POST" class="mt-10 max-w-xl mx-auto bg-white rounded-3xl shadow-xl p-8 space-y-6">
+    <div>
+      <label for="name" class="block text-sm font-semibold text-purple-700">Name</label>
+      <input type="text" name="name" id="name" required placeholder="Your K-Pop name ✨"
+        class="mt-1 block w-full rounded-xl border border-purple-200 shadow-sm p-3 focus:ring-2 focus:ring-pink-300 focus:outline-none" />
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-semibold text-purple-700">Email</label>
+      <input type="email" name="email" id="email" required placeholder="your@email.com"
+        class="mt-1 block w-full rounded-xl border border-purple-200 shadow-sm p-3 focus:ring-2 focus:ring-pink-300 focus:outline-none" />
+    </div>
+
+    <div>
+      <label for="message" class="block text-sm font-semibold text-purple-700">Message</label>
+      <textarea name="message" id="message" rows="4" placeholder="Say something sweet... 💖"
+        class="mt-1 block w-full rounded-xl border border-purple-200 shadow-sm p-3 focus:ring-2 focus:ring-pink-300 focus:outline-none resize-none"></textarea>
+    </div>
+
+    <div class="text-center">
+      <button type="submit"
+        class="inline-flex items-center px-6 py-3 bg-pink-500 text-white font-semibold rounded-xl shadow-md hover:bg-pink-600 transition duration-300">
+        Send with 💌
+      </button>
+    </div>
+  </form>
+
+  <p class="mt-6 text-center text-sm text-purple-600">You’re daebak! We’ll get back to you soon 💜</p>
+</section>
+
+
     <section class="relative py-6 pt-2 ">
         <div class="w-full max-w-7xl   mx-auto mt-10">
             <div class="w-full flex flex-col items-center gap-10">
