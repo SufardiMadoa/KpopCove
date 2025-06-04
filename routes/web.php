@@ -34,6 +34,13 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
+Route::get('/about', function () {
+    return view('pages.users.about_us');
+});
+Route::get('/contact', function () {
+    return view('pages.users.kontak');
+});
+
 Route::middleware('auth')->group(function () {
     // Logout route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -104,3 +111,4 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
     });
 });
+
