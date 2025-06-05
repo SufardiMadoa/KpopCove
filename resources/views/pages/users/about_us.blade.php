@@ -11,27 +11,28 @@
     <!-- Text Section -->
     <div class="flex flex-col justify-between h-full gap-8 bg-white rounded-xl p-5">
       <div class="flex flex-col gap-3">
-        <span class="text-orange-500 font-semibold">How It Started</span>
-        <h2 class="text-[50px] lg:text-5xl font-bold leading-tight text-gray-900">
-          Our Dream is <br />
-          Global Learning <br />
-          Transformation
-        </h2>
-      </div>
-      <p class="text-gray-600 text-xl leading-relaxed">
-        Kawruh was founded by Robert Anderson, a passionate lifelong learner, and Maria Sanchez, a visionary educator.
-        Their shared dream was to create a digital haven of knowledge accessible to all. United by their belief in the
-        transformational power of education, they embarked on a journey to build ‘Kawruh’. With relentless dedication,
-        they gathered a team of experts and launched this innovative platform, creating a global community of eager
-        learners, all connected by the desire to explore, learn, and grow.
-      </p>
+        <span class="text-pink-500 font-semibold">How It Started</span>
+<h2 class="text-[50px] lg:text-5xl font-bold leading-tight text-gray-900">
+  Our Dream is <br />
+  Spreading K-Pop Love <br />
+  Around the World
+</h2>
+</div>
+<p class="text-gray-600 text-xl leading-relaxed">
+  KpopCove was founded by Hana Lee, a passionate K-Pop fan, and Jisoo Park, a creative content curator.
+  Fueled by their love for Korean music, fashion, and culture, they dreamed of building a cozy digital space where fans
+  could connect, share, and celebrate all things K-Pop. With boundless energy and a heart for fandom, they launched
+  KpopCove — a community-driven platform uniting global K-Pop lovers through content, discussions, and exclusive updates
+  straight from the heart of Seoul.
+</p>
+
     </div>
 
     <!-- Image & Stats Section -->
     <div class="flex flex-col  h-full">
       <!-- Image -->
       <div class="w-full h-[500px]">
-        <img src="https://img.freepik.com/free-photo/high-angle-young-girl-with-skateboard_23-2148478675.jpg?t=st=1742905878~exp=1742909478~hmac=3adfcecc935e87c6925f65549060d59e851a978e4c1b575743c2e92337ecffdf&w=740"
+        <img src="/images/KPOP_COVE.png"
              alt="Learning Image"
              class="rounded-xl w-full h-[480px] object-cover" />
       </div>
