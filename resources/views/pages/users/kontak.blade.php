@@ -42,7 +42,7 @@
 </section>
 
 
-    <section class="relative py-6 pt-2 ">
+    <!-- <section class="relative py-6 pt-2 ">
         <div class="w-full max-w-7xl   mx-auto mt-10">
             <div class="w-full flex flex-col items-center gap-10">
                 <div class="text-center">
@@ -113,5 +113,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 @endsection
