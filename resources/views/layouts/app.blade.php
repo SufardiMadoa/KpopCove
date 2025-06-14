@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Toko Album - @yield('title', 'Laravel')</title>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
     @vite('resources/css/app.css')
@@ -111,6 +112,5 @@
     </script>
 
     @yield('scripts')
-    @livewireScripts
 </body>
 </html>

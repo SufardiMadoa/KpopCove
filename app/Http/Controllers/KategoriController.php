@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 
 class KategoriController extends Controller
@@ -120,5 +121,29 @@ class KategoriController extends Controller
     $query     = $request->get('q');
     $kategoris = Kategori::where('nama_kategori_222305', 'like', '%' . $query . '%')->get();
     return response()->json($kategoris);
+  }
+
+  public function userShow($id_kategori)
+  {
+    // Cari kategori berdasarkan ID bersama dengan album-album di dalamnya
+    $kategori = Kategori::with('albums')->findOrFail($id_kategori);
+
+    // Ambil semua album yang terkait dengan kategori ini
+    $albums = $kategori->albums()->paginate(12);  // Paginate untuk membatasi jumlah album per halaman
+
+    // Kirim data ke view
+    return view('pages.users.albumbycategory', compact('kategori', 'albums'));
+  }
+
+  public function indexUser()
+  {
+    // Ambil semua kategori, dan muat relasi 'albums' untuk setiap kategori.
+    // Kita hanya butuh beberapa gambar album sebagai preview.
+    $kategoris = Kategori::with(['albums' => function ($query) {
+      // Ambil hingga 4 album untuk setiap kategori sebagai preview gambar
+      $query->limit(4);
+    }])->orderBy('nama_kategori_222305', 'asc')->get();
+
+    return view('pages.users.category', compact('kategoris'));
   }
 }

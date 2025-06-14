@@ -92,10 +92,24 @@
                         </a>
                     </li>
                     
+                    <!-- User -->
+                    <li>
+                        <a href="{{ route('admin.users.index') }}" 
+                           class="{{ request()->routeIs('admin.users.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                            <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.users.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.929a10 10 0 11-14.142 0 10 10 0 0114.142 0z" />
+                                </svg>
+                            </div>
+                            <span class="flex-1 font-medium">User</span>
+                        </a>
+                    </li>
+                    
                     <!-- Laporan -->
-                    {{-- <li>
-                        <a href="#" 
-                           class="{{ request()->routeIs('#') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
+                    <li>
+                        <a href="{{ route('admin.laporan.index') }}" 
+                           class="{{ request()->routeIs('admin.laporan.*') ? 'bg-cyan-100 text-cyan-600' : 'text-gray-700 hover:bg-cyan-50 hover:text-cyan-600' }} group flex items-center px-4 py-3 rounded-lg transition-all duration-300">
                             <div class="flex-shrink-0 w-5 h-5 mr-3 {{ request()->routeIs('admin.laporan.*') ? 'text-cyan-600' : 'text-gray-500 group-hover:text-cyan-600' }} transition-colors duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -107,7 +121,7 @@
                             </div>
                             <span class="flex-1 font-medium">Laporan</span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
             

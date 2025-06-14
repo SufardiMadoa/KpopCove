@@ -21,7 +21,6 @@ class ItemKeranjang extends Model
         'id_album_222305',
         'jumlah_222305',
         'harga_222305',
-        'total_harga_222305',
     ];
 
     /**

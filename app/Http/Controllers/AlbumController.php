@@ -30,10 +30,12 @@ class AlbumController extends Controller
 
     return view('pages.users.album', compact('albums'));
   }
+
   public function userHome()
   {
-    $albums = Album::with(['user', 'kategoris', 'fotos'])->orderBy('created_at', 'desc') // data terbaru duluan
-      ->take(4) // ambil 4 data saja
+    $albums = Album::with(['user', 'kategoris', 'fotos'])
+      ->orderBy('id_album_222305', 'desc')  // data terbaru duluan
+      ->take(4)  // ambil 4 data saja
       ->get();
 
     return view('pages.users.home', compact('albums'));

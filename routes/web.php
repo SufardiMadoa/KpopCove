@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PaymentController;
@@ -34,12 +35,16 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
+Route::get('/category', [KategoriController::class, 'indexUser'])->name('user.category');
+
+Route::get('/kategori/{id_kategori}', [KategoriController::class, 'userShow'])->name('user.category.show');
+
 Route::get('/about', function () {
     return view('pages.users.about_us');
-});
+})->name('about');
 Route::get('/contact', function () {
     return view('pages.users.kontak');
-});
+})->name('contact');
 
 Route::middleware('auth')->group(function () {
     // Logout route
@@ -57,10 +62,16 @@ Route::middleware('auth')->group(function () {
     Route::prefix('orders')->name('users.pemesanan.')->group(function () {
         Route::get('/', [PemesananController::class, 'userIndex'])->name('index');
         Route::post('/store', [PemesananController::class, 'store'])->name('store');
+        Route::post('/store-cart', [PemesananController::class, 'storeFromCart'])->name('storeFromCart');
         Route::get('/{id}', [PemesananController::class, 'userShow'])->name('show');
         Route::post('/{id}/cancel', [PemesananController::class, 'cancelOrder'])->name('cancel');
         Route::post('/{id}/confirm-payment', [PemesananController::class, 'confirmPayment'])->name('confirm-payment');
     });
+
+    Route::get('/keranjang', [KeranjangController::class, 'index']);
+    Route::post('/keranjang', [KeranjangController::class, 'store']);
+    Route::put('/keranjang/item/{id_item_keranjang}', [KeranjangController::class, 'update']);
+    Route::delete('/keranjang/item/{id_item_keranjang}', [KeranjangController::class, 'destroy']);
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -110,5 +121,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::put('/{id}', [UserController::class, 'update'])->name('update');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('delete');
     });
-});
 
+    // Laporan routes
+    Route::prefix('laporan')->name('laporan.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\LaporanController::class, 'index'])->name('index');
+        Route::get('/export', [\App\Http\Controllers\LaporanController::class, 'exportPdf'])->name('export');
+    });
+});

@@ -308,6 +308,21 @@
                     address: ''
                 },
 
+                getCsrfToken() {
+                    const tokenElement = document.querySelector('meta[name="csrf-token"]');
+                    if (!tokenElement) {
+                        console.error('CSRF token not found: Please add <meta name="csrf-token" content="{{ csrf_token() }}"> to your layout file.');
+                        Swal.fire({
+                            title: "Configuration Error",
+                            text: "CSRF token is missing. The form cannot be submitted.",
+                            icon: "error"
+                        });
+                        return null;
+                    }
+                    return tokenElement.getAttribute('content');
+                },
+                
+
                 // Handle thumbnail image selection
                 setMainImage(img) {
                     this.product.image = img;
@@ -326,16 +341,30 @@
                     }
                 },
 
-                // Cart functions
-                addToCart() {
-                    // In a real implementation, this would communicate with a cart service
-                    // For now, we'll just show the notification
-                    this.showCartNotification = true;
+                async addToCart() {
+                    const csrfToken = this.getCsrfToken();
+                    if (!csrfToken) return; // Stop execution if token is not found
 
-                    // Hide notification after 3 seconds
-                    setTimeout(() => {
-                        this.showCartNotification = false;
-                    }, 3000);
+                    try {
+                        const response = await fetch('/keranjang', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: JSON.stringify({
+                                id_album_222305: this.product.id,
+                                jumlah_222305: this.quantity
+                            })
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.message || 'Failed to add item.');
+                        
+                        Swal.fire({ title: "Success!", text: result.message, icon: "success", timer: 2000, showConfirmButton: false });
+                    } catch (error) {
+                        Swal.fire({ title: "Error!", text: error.message, icon: "error" });
+                    }
                 },
 
                 // Checkout modal functions

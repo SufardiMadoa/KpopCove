@@ -52,20 +52,6 @@
                     </div>
 
                     <div class="transform transition-all duration-300 hover:translate-x-1">
-                        <label for="role" class="block text-sm font-medium text-indigo-700 mb-1">Role</label>
-                        <select
-                            id="role"
-                            name="role"
-                            required
-                            class="w-full text-sm rounded-lg border border-indigo-200 p-4 leading-relaxed placeholder-gray-500 tracking-wide focus:ring-2 focus:ring-indigo-400 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm"
-                        >
-                            <option value="" disabled selected>Pilih Role</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>Customer</option>
-                        </select>
-                    </div>
-                    
-                    <div class="transform transition-all duration-300 hover:translate-x-1">
                         <label for="password" class="block text-sm font-medium text-indigo-700 mb-1">Password</label>
                         <input
                             class="w-full text-sm rounded-lg border border-indigo-200 p-4 leading-relaxed placeholder-gray-500 tracking-wide focus:ring-2 focus:ring-indigo-400 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm"

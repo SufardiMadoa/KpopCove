@@ -14,7 +14,7 @@ class Album extends Model
     protected $primaryKey = 'id_album_222305';
     public $incrementing  = false;
     protected $keyType    = 'string';
-    public $timestamps    = true;
+    public $timestamps    = false;
 
     protected $fillable = [
         'id_album_222305',

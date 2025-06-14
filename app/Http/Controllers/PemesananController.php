@@ -8,8 +8,10 @@ use App\Models\Pemesanan;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Exception;
 
 class PemesananController extends Controller
 {
@@ -100,23 +102,22 @@ class PemesananController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
- public function userIndex(Request $request)
-{
+  public function userIndex(Request $request)
+  {
     $user_id = Auth::user()->email_222305;
-    $status  = $request->get('status'); // Ambil status dari query string
+    $status  = $request->get('status');  // Ambil status dari query string
 
     $query = Pemesanan::where('email_222305', $user_id);
 
     // Filter hanya jika status bukan 'semua' dan tidak kosong
     if ($status && $status !== 'semua') {
-        $query->where('status_222305', $status);
+      $query->where('status_222305', $status);
     }
 
     $pemesanans = $query->orderBy('tanggal_pemesanan_222305', 'desc')->get();
 
     return view('pages.users.pemesanan.index', compact('pemesanans'));
-}
-
+  }
 
   /**
    * Show the form for creating a new order / checkout page
@@ -221,6 +222,100 @@ class PemesananController extends Controller
       return response()->json([
         'success' => false,
         'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+      ], 500);
+    }
+  }
+
+  public function storeFromCart(Request $request)
+  {
+    // --- 1. Validation ---
+    // Validate the incoming request data, including the array of items.
+    $validator = Validator::make($request->all(), [
+      'nama_penerima_222305'     => 'required|string|max:255',
+      'telepon_penerima_222305'  => 'required|string|max:15',
+      'alamat_pengiriman_222305' => 'required|string',
+      'metode_pembayaran_222305' => 'required|in:qris,transfer,cod,e-wallet',
+      'total_harga_222305'       => 'required|numeric|min:0',
+      'bukti_pembayaran_222305'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+      'items'                    => 'required|array|min:1',  // Ensure items is an array
+      'items.*.album_id'         => 'required|exists:album_222305,id_album_222305',  // Validate each album_id
+      'items.*.quantity'         => 'required|integer|min:1',  // Validate each quantity
+    ]);
+
+    if ($validator->fails()) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Validation error',
+        'errors'  => $validator->errors()
+      ], 422);
+    }
+
+    // Use a database transaction to ensure data integrity.
+    // If anything fails, all database changes will be rolled back.
+    DB::beginTransaction();
+    try {
+      // --- 2. Create the Main Order (Pemesanan) ---
+      $pemesanan                           = new Pemesanan();
+      $pemesanan->id_pemesanan_222305      = 'ORD-' . Str::uuid();
+      $pemesanan->email_222305             = Auth::user()->email_222305;
+      $pemesanan->tanggal_pemesanan_222305 = now();
+      $pemesanan->total_harga_222305       = $request->total_harga_222305;
+      $pemesanan->metode_pembayaran_222305 = $request->metode_pembayaran_222305;
+      $pemesanan->status_222305            = 'pending';
+
+      // Handle file upload for payment proof
+      if ($request->hasFile('bukti_pembayaran_222305')) {
+        $file     = $request->file('bukti_pembayaran_222305');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('bukti_pembayaran', $filename, 'public');
+        $pemesanan->bukti_pembayaran_222305 = $filename;
+        $pemesanan->status_222305           = 'dibayar';  // Update status if proof is provided
+      }
+
+      $pemesanan->save();
+
+      // --- 3. Create Each Order Item (ItemPesanan) ---
+      // Loop through each item sent from the cart.
+      foreach ($request->items as $itemData) {
+        $album = Album::find($itemData['album_id']);
+        if (!$album) {
+          // This case should ideally be caught by validation, but it's good practice.
+          throw new Exception("Album with ID {$itemData['album_id']} not found.");
+        }
+
+        $itemPesanan                      = new ItemPesanan();
+        $itemPesanan->id_pemesanan_222305 = $pemesanan->id_pemesanan_222305;
+        $itemPesanan->id_album_222305     = $album->id_album_222305;
+        $itemPesanan->jumlah_222305       = $itemData['quantity'];
+        // Get the price from the database to prevent price manipulation from the client.
+        $itemPesanan->harga_satuan_222305 = $album->harga_222305;
+        $itemPesanan->save();
+
+        // Decrement album stock
+        $album->stok_222305 = max(0, $album->stok_222305 - $itemData['quantity']);
+        $album->save();
+      }
+
+      // --- 4. Clear the User's Shopping Cart ---
+      $keranjang = Auth::user()->keranjang;
+      if ($keranjang) {
+        // This deletes all item_keranjang associated with the cart, then the cart itself.
+        $keranjang->itemKeranjangs()->delete();
+        $keranjang->delete();
+      }
+
+      DB::commit();  // If everything is successful, commit the changes to the database.
+
+      return response()->json([
+        'success'  => true,
+        'message'  => 'Your order has been placed successfully!',
+        'redirect' => route('users.pemesanan.show', $pemesanan->id_pemesanan_222305)
+      ]);
+    } catch (Exception $e) {
+      DB::rollBack();  // If an error occurs, undo all database changes.
+      return response()->json([
+        'success' => false,
+        'message' => 'An error occurred: ' . $e->getMessage()
       ], 500);
     }
   }

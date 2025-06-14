@@ -11,7 +11,7 @@
     <!-- Desktop navigation menu -->
     <nav class="hidden md:flex items-center">
         <div class="flex space-x-3">
-            <a href="/" class="relative group px-4 py-2 {{ request()->routeIs('home') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="{{ route('userHome.home') }}" class="relative group px-4 py-2 {{ request()->routeIs('userHome.home') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -31,17 +31,17 @@
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('user.album') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="#" class="relative group px-4 py-2 {{ request()->routeIs('category.index') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="{{ route('user.category') }}" class="relative group px-4 py-2 {{ request()->routeIs('user.category') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                     </svg>
                     Kategori
                 </span>
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('category.index') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('user.category') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="about" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="{{ route('about') }}" class="relative group px-4 py-2 {{ request()->routeIs('about') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -51,7 +51,7 @@
                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform {{ request()->routeIs('about') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }} transition-transform origin-left duration-300"></span>
             </a>
 
-            <a href="contact" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
+            <a href="{{ route('contact') }}" class="relative group px-4 py-2 {{ request()->routeIs('contact') ? 'text-pink-500 font-medium' : 'text-gray-700' }}">
                 <span class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -65,36 +65,11 @@
 
     <!-- Right section -->
     <div class="flex items-center space-x-3">
-        <!-- Search button with k-pop style dropdown -->
-        <div x-data="{ open: false }" class="relative">
-            <button @click="open = !open" class="p-2 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-500 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-
-            <!-- Search Form -->
-            <div x-show="open" x-transition class="absolute top-12 right-0 bg-white shadow-lg rounded-2xl border border-purple-100 p-4 w-72">
-                <div class="flex items-center bg-gray-50 rounded-xl px-3 py-2 border border-pink-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400 mr-2" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" placeholder="Cari produk Kpop..."
-                        class="bg-transparent border-none w-full focus:outline-none text-sm text-gray-700">
-                </div>
-                <div class="mt-2 p-2 bg-purple-50 rounded-xl">
-                    <p class="text-xs text-purple-500 font-medium">인기 검색어: <span class="text-gray-500">Album, Lightstick, Photocard</span></p>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- Cart icon with badge -->
         @auth
-        <a href="{{ route('users.pemesanan.index') }}" class="relative p-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-500 transition-colors">
+        <a href="/keranjang" class="relative p-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-500 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -158,13 +133,54 @@
                 </button>
             </div>
             <div class="flex items-center space-x-4">
-                <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
-                    @if(Auth::user()->profile_photo_path_222305)
-                        <img class="w-full h-full text-pink-700 rounded-full object-cover" src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->nama_222305 }}">
-                    @else
-                        <img class="w-full h-full rounded-full text-pink-700 object-cover" src="{{ asset('images/default-avatar.jpg') }}" alt="{{ Auth::user()->nama_222305 }}">
-                    @endif
-                </div>
+                
+@php
+    // Cek jika pengguna sudah login untuk menghindari error
+    $user = Auth::user();
+@endphp
+
+@if ($user)
+    {{-- Cek jika pengguna memiliki foto profil --}}
+    @if ($user->profile_photo_path_222305)
+        <div class="h-16 w-16 rounded-full bg-white p-1 border-2 border-pink-200 shadow-lg">
+            <img class="w-full h-full rounded-full object-cover" 
+                 src="{{ asset('storage/' . $user->profile_photo_path_222305) }}" 
+                 alt="{{ $user->nama_222305 }}">
+        </div>
+    @else
+        {{-- Jika tidak ada foto profil, buat avatar dengan inisial --}}
+        @php
+            $name = $user->nama_222305 ?? 'User';
+            $words = explode(' ', trim($name));
+            $initials = '';
+
+            if (count($words) >= 2) {
+                // Ambil huruf pertama dari dua kata pertama
+                $initials = strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
+            } elseif (count($words) > 0 && !empty($words[0])) {
+                // Ambil dua huruf pertama jika hanya satu kata
+                $initials = strtoupper(substr($words[0], 0, 2));
+            } else {
+                // Default jika nama tidak ada
+                $initials = 'U';
+            }
+
+            // Daftar warna latar belakang
+            $colors = ['bg-pink-500', 'bg-cyan-500', 'bg-emerald-500', 'bg-amber-500', 'bg-violet-500', 'bg-rose-500', 'bg-indigo-500', 'bg-teal-500'];
+            
+            // --- FIX: Mengubah string email menjadi angka untuk operasi modulo ---
+            // Menggunakan panjang string email untuk mendapatkan indeks warna yang konsisten
+            $emailString = $user->email_222305 ?? '';
+            $colorIndex = strlen($emailString) % count($colors);
+            $bgColor = $colors[$colorIndex];
+        @endphp
+
+        <div class="h-16 w-16 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg {{ $bgColor }}">
+            <span>{{ $initials }}</span>
+        </div>
+    @endif
+@endif
+
                 <div>
                     <h2 class="text-xl font-bold text-pink-700">{{ Auth::user()->nama_222305 }}</h2>
                     <p class="text-pink-700 text-sm">{{ Auth::user()->email_222305 }}</p>
@@ -176,14 +192,14 @@
         <nav class="p-4">
             <p class="text-xs font-medium text-purple-400 uppercase tracking-wider mb-4">메뉴</p>
 
-            <a href="#"
+            <a href="keranjang"
                 class="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-pink-50 mb-1 {{ request()->routeIs('profile.show') ? 'bg-pink-50' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span class="font-medium text-gray-700">Profile Saya</span>
+                <span class="font-medium text-gray-700">Keranjang Saya</span>
             </a>
 
             <a href="{{ route('users.pemesanan.index') }}"

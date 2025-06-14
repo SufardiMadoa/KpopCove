@@ -33,12 +33,11 @@ class AuthController extends Controller
    */
   public function login(Request $request)
   {
-    // Validasi input termasuk role
+    // Validasi input tanpa role
     $credentials = $request->validate(
       [
         'email'    => ['required', 'email'],
         'password' => 'required|min:8|max:10',
-        'role'     => 'required|in:admin,customer',
       ],
       [
         'email.required'    => 'Email wajib diisi.',
@@ -46,22 +45,18 @@ class AuthController extends Controller
         'password.required' => 'Password wajib diisi.',
         'password.min'      => 'Password harus memiliki minimal 8 karakter.',
         'password.max'      => 'Password tidak boleh lebih dari 10 karakter.',
-        'role.required'     => 'Role wajib dipilih.',
-        'role.in'           => 'Role harus admin atau customer.',
       ]
     );
 
     // Menambahkan log percobaan login
     Log::info('Attempting login for:', [
       'email' => $credentials['email'],
-      'role'  => $credentials['role']
     ]);
 
-    // Attempt login dengan role yang dipilih
+    // Attempt login tanpa role
     if (Auth::attempt([
       'email_222305' => $credentials['email'],
       'password'     => $credentials['password'],
-      'role_222305'  => $credentials['role']
     ])) {
       // Regenerasi session ID untuk keamanan
       $request->session()->regenerate();
@@ -92,11 +87,10 @@ class AuthController extends Controller
 
     Log::warning('Login failed for:', [
       'email' => $credentials['email'],
-      'role'  => $credentials['role']
     ]);
 
     return back()->withErrors([
-      'email' => 'Email, password, atau role yang Anda masukkan salah.',
+      'email' => 'Email atau password yang Anda masukkan salah.',
     ])->withInput($request->except('password'));
   }
 
@@ -122,17 +116,16 @@ class AuthController extends Controller
       'name'     => 'required|string|max:255',
       'email'    => 'required|string|email|max:255|unique:users_222305,email_222305',
       'password' => 'required|string|min:8|confirmed',
-      'role'     => 'required|in:admin,customer',
     ]);
 
     // Begin transaction
 
-    // Create user
+    // Create user with default role 'customer'
     $user = Users::create([
       'nama_222305'     => $request->name,
       'email_222305'    => $request->email,
       'password_222305' => Hash::make($request->password),
-      'role_222305'     => $request->role,
+      'role_222305'     => 'customer',
     ]);
 
     // Login the user after registration

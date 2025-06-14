@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users = Users::all();
-        return view('admin.users.index', compact('users'));
+        return view('pages.admin.users.index', compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('pages.admin.users.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = Users::with(['albums', 'keranjang', 'pemesanan'])->findOrFail($id);
-        return view('admin.users.show', compact('user'));
+        return view('pages.admin.users.show', compact('user'));
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = Users::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        return view('pages.admin.users.edit', compact('user'));
     }
 
     /**
