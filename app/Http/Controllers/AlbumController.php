@@ -221,7 +221,7 @@ class AlbumController extends Controller
     $album->delete();
 
     return redirect()
-      ->route('album.index')
+      ->route('admin.album.index')
       ->with('success', 'Album berhasil dihapus!');
   }
 
@@ -307,7 +307,7 @@ class AlbumController extends Controller
     }
 
     return redirect()
-      ->route('album.show', $album->id_album_222305)
+      ->route('admin.album.show', $album->id_album_222305)
       ->with('success', 'Foto berhasil ditambahkan ke album!');
   }
 
@@ -342,7 +342,7 @@ class AlbumController extends Controller
     $photo->delete();
 
     return redirect()
-      ->route('album.show', $albumId)
+      ->route('admin.album.show', $albumId)
       ->with('success', 'Foto berhasil dihapus dari album!');
   }
 

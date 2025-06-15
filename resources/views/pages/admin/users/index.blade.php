@@ -84,9 +84,7 @@
                             <!-- Delete Modal -->
                             <div id="deleteModal{{ $user->email_222305 }}" class="fixed inset-0 z-10 hidden overflow-y-auto">
                                 <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                                    </div>
+                                    
                                     <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                                     <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                         <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
@@ -140,21 +138,8 @@
        </div>
     </div>
 </div>
-@endsection
-
-@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // DataTables initialization
-        if (document.getElementById('dataTable')) {
-            new DataTable('#dataTable', {
-                responsive: true,
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json'
-                }
-            });
-        }
-    });
+    
 
     // Modal toggle function
     function toggleModal(modalId) {
@@ -166,4 +151,5 @@
         }
     }
 </script>
-@endpush
+@endsection
+
