@@ -33,11 +33,12 @@ class AuthController extends Controller
    */
   public function login(Request $request)
   {
-    // Validasi input tanpa role
+    // Validasi input dengan role
     $credentials = $request->validate(
       [
         'email'    => ['required', 'email'],
         'password' => 'required|min:8|max:10',
+        'role'     => 'required|in:admin,customer',
       ],
       [
         'email.required'    => 'Email wajib diisi.',
@@ -45,18 +46,22 @@ class AuthController extends Controller
         'password.required' => 'Password wajib diisi.',
         'password.min'      => 'Password harus memiliki minimal 8 karakter.',
         'password.max'      => 'Password tidak boleh lebih dari 10 karakter.',
+        'role.required'     => 'Role wajib dipilih.',
+        'role.in'           => 'Role yang dipilih tidak valid.',
       ]
     );
 
     // Menambahkan log percobaan login
     Log::info('Attempting login for:', [
       'email' => $credentials['email'],
+      'role'  => $credentials['role'],
     ]);
 
-    // Attempt login tanpa role
+    // Attempt login dengan role
     if (Auth::attempt([
       'email_222305' => $credentials['email'],
       'password'     => $credentials['password'],
+      'role_222305'  => $credentials['role'],
     ])) {
       // Regenerasi session ID untuk keamanan
       $request->session()->regenerate();
@@ -87,6 +92,7 @@ class AuthController extends Controller
 
     Log::warning('Login failed for:', [
       'email' => $credentials['email'],
+      'role'  => $credentials['role'],
     ]);
 
     return back()->withErrors([
