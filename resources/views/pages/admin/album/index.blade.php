@@ -122,9 +122,7 @@
                                                             <p class="text-sm text-gray-500">
                                                                 Apakah Anda yakin ingin menghapus album <strong>{{ $album->judul_222305 }}</strong>?
                                                             </p>
-                                                            <p class="mt-2 text-sm text-red-500">
-                                                                Tindakan ini juga akan menghapus semua foto dalam album ini dan tidak dapat dibatalkan.
-                                                            </p>
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
