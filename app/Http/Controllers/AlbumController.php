@@ -187,7 +187,7 @@ class AlbumController extends Controller
     $album->syncKategorisWithCustomIds($request->kategori_ids);
 
     return redirect()
-      ->route('admin.album.index', $album->id_album_222305)
+      ->route('admin.album.index')
       ->with('success', 'Album berhasil diperbarui!');
   }
 
