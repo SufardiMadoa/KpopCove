@@ -46,10 +46,6 @@
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $user->email_222305 }}</dd>
                 </div>
                 
-                <div class="py-3 sm:grid sm:grid-cols-3 sm:gap-4 border-t border-gray-200">
-                    <dt class="text-sm font-medium text-gray-500">No. Telp</dt>
-                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ $user->no_telp_222305 }}</dd>
-                </div>
                 
                 <div class="py-3 sm:grid sm:grid-cols-3 sm:gap-4 border-t border-gray-200">
                     <dt class="text-sm font-medium text-gray-500">Role</dt>

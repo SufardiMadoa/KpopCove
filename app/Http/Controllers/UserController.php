@@ -40,18 +40,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_222305'    => 'required|string|max:255',
-            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305',
-            'password'       => 'required|string|min:8|confirmed',
-            'no_telp_222305' => 'required|string|max:15',
-            'role_222305'    => 'required|in:admin,user',
+            'nama_222305'  => 'required|string|max:255',
+            'email_222305' => 'required|string|email|max:255|unique:users_222305,email_222305',
+            'password'     => 'required|string|min:8|confirmed',
+            'role_222305'  => 'required|in:admin,customer',
         ]);
 
         $user = Users::create([
             'nama_222305'     => $request->nama_222305,
             'email_222305'    => $request->email_222305,
             'password_222305' => Hash::make($request->password),
-            'no_telp_222305'  => $request->no_telp_222305,
             'role_222305'     => $request->role_222305,
         ]);
 
@@ -96,10 +94,9 @@ class UserController extends Controller
         $user = Users::findOrFail($id);
 
         $rules = [
-            'nama_222305'    => 'required|string|max:255',
-            'email_222305'   => 'required|string|email|max:255|unique:users_222305,email_222305,' . $id . ',email_222305',
-            'no_telp_222305' => 'required|string|max:15',
-            'role_222305'    => 'required|in:admin,user',
+            'nama_222305'  => 'required|string|max:255',
+            'email_222305' => 'required|string|email|max:255|unique:users_222305,email_222305,' . $id . ',email_222305',
+            'role_222305'  => 'required|in:admin,customer',
         ];
 
         // Only validate password if it's provided
@@ -110,10 +107,9 @@ class UserController extends Controller
         $request->validate($rules);
 
         // Update user data
-        $user->nama_222305    = $request->nama_222305;
-        $user->email_222305   = $request->email_222305;
-        $user->no_telp_222305 = $request->no_telp_222305;
-        $user->role_222305    = $request->role_222305;
+        $user->nama_222305  = $request->nama_222305;
+        $user->email_222305 = $request->email_222305;
+        $user->role_222305  = $request->role_222305;
 
         // Update password if provided
         if ($request->filled('password')) {

@@ -76,18 +76,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
-                    <div>
-                        <label for="no_telp_222305" class="block text-sm font-medium text-gray-700">
-                            No. Telp <span class="text-red-500">*</span>
-                        </label>
-                        <input type="text" name="no_telp_222305" id="no_telp_222305" value="{{ old('no_telp_222305') }}" 
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                            @error('no_telp_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror" 
-                            placeholder="Masukkan nomor telepon" required>
-                        @error('no_telp_222305')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    
 
                     <div>
                         <label for="role_222305" class="block text-sm font-medium text-gray-700">
@@ -98,7 +87,7 @@
                             @error('role_222305') border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 @enderror" 
                             required>
                             <option value="admin" {{ old('role_222305') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="user" {{ old('role_222305') == 'user' ? 'selected' : '' }}>User</option>
+                            <option value="customer" {{ old('role_222305') == 'customer' ? 'selected' : '' }}>Customer</option>
                         </select>
                         @error('role_222305')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
