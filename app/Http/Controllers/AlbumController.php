@@ -120,7 +120,7 @@ class AlbumController extends Controller
    */
   public function show($id)
   {
-    $album = Album::with(['user', 'kategoris', 'fotos'])->findOrFail($id);
+    $album = Album::with(['user', 'kategoris'])->findOrFail($id);
     return view('pages.admin.album.show', compact('album'));
   }
 
@@ -186,9 +186,7 @@ class AlbumController extends Controller
     // Sync categories
     $album->syncKategorisWithCustomIds($request->kategori_ids);
 
-    return redirect()
-      ->route('admin.album.index')
-      ->with('success', 'Album berhasil diperbarui!');
+    return back()->with('success', 'Album berhasil diperbarui!');
   }
 
   /**
