@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Exception;
 
 class AlbumController extends Controller
 {
@@ -197,30 +198,34 @@ class AlbumController extends Controller
    */
   public function destroy($id)
   {
-    $album = Album::findOrFail($id);
+    DB::beginTransaction();
 
-    // Delete album cover if exists
-    if ($album->path_img_222305) {
-      Storage::disk('public')->delete($album->path_img_222305);
-    }
-
-    // Delete related photos if needed (you may want to customize this)
-    foreach ($album->fotos as $foto) {
-      if ($foto->path_foto_222305) {
-        Storage::disk('public')->delete($foto->path_foto_222305);
+    try {
+      $album = Album::findOrFail($id);
+      $album->kategoris()->detach();
+      foreach ($album->fotos as $foto) {
+        if ($foto->path_foto_222305) {
+          Storage::disk('public')->delete($foto->path_foto_222305);
+        }
+        $foto->delete();
       }
-      $foto->delete();
+      $album->delete();
+      if ($album->path_img_222305) {
+        Storage::disk('public')->delete($album->path_img_222305);
+      }
+
+      DB::commit();
+
+      return redirect()
+        ->route('admin.album.index')
+        ->with('success', 'Album berhasil dihapus!');
+    } catch (Exception $e) {
+      DB::rollBack();
+
+      return redirect()
+        ->route('admin.album.index')
+        ->with('error', $e->getMessage());
     }
-
-    // Detach all categories
-    $album->kategoris()->detach();
-
-    // Delete album
-    $album->delete();
-
-    return redirect()
-      ->route('admin.album.index')
-      ->with('success', 'Album berhasil dihapus!');
   }
 
   /**

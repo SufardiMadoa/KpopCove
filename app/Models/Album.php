@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\IDGenerator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Exception;
 
 class Album extends Model
 {
@@ -58,6 +59,28 @@ class Album extends Model
             'id_album_222305',
             'id_kategori_222305'
         )->using(AlbumKategori::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();  // Jangan lupa memanggil parent::boot()
+
+        // Menambahkan event 'deleting'
+        // Logika ini akan berjalan setiap kali Anda mencoba menghapus sebuah Album
+        static::deleting(function ($album) {
+            // Cek apakah album ini memiliki relasi dengan item pesanan
+            // ->itemPesanans()->count() akan menghitung jumlah item pesanan yang terkait
+            if ($album->itemPesanans()->count() > 0) {
+                // Jika ada (lebih dari 0), batalkan proses penghapusan
+                // dengan melempar exception atau return false.
+                // Melempar exception lebih baik karena memberikan feedback yang jelas.
+
+                throw new Exception('Produk ini tidak dapat dihapus karena sudah ada dalam data pemesanan.');
+
+                // Alternatif lain (tanpa pesan error yang jelas):
+                // return false;
+            }
+        });
     }
 
     public function syncKategorisWithCustomIds(array $kategoriIds)
